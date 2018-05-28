@@ -1,3 +1,3 @@
-# FullstackReactCode
+# Astrology Affinity App
 
-Companion repo to a course on Udemy.com. See here: https://www.udemy.com/node-with-react-fullstack-web-development
+Small example website that uses astrology to make predictions about your affinity with others.

@@ -1,0 +1,63 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js remove sendgrid
+
+PATH: 
+  C:\ProgramData\Oracle\Java\javapath;C:\tools\ruby24\bin;C:\Python36\Scripts\;C:\Python36\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\GtkSharp\2.12\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\Sublime Text 3;C:\TDM-GCC-64\bin;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\dotnet\;C:\Users\alexw\AppData\Local\Yarn\bin;C:\ProgramData\chocolatey\bin;C:\Program Files\PuTTY\;C:\Program Files\Git\cmd;C:\Program Files (x86)\Yarn\bin\;C:\Program Files\nodejs\;C:\WINDOWS\System32\OpenSSH\;C:\Users\alexw\.cargo\bin;C:\Users\alexw\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Heroku\bin;C:\Users\alexw\AppData\Local\Yarn\bin;C:\Users\alexw\AppData\Roaming\npm;C:\Program Files\Microsoft VS Code\bin;C:\Users\alexw\AppData\Local\Microsoft\WindowsApps;
+
+Yarn version: 
+  1.5.1
+
+Node version: 
+  9.11.1
+
+Platform: 
+  win32 x64
+
+npm manifest: 
+  {
+    "name": "server",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "engines": {
+      "node": "8.1.1",
+      "npm": "5.0.3"
+    },
+    "scripts": {
+      "start": "node index.js",
+      "server": "nodemon index.js",
+      "client": "npm run start --prefix client",
+      "dev": "concurrently \"npm run server\" \"npm run client\" \"npm run webhook\"",
+      "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
+      "webhook": "./sendgrid_webhook.sh"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+      "body-parser": "^1.17.2",
+      "concurrently": "^3.5.0",
+      "cookie-session": "^2.0.0-beta.2",
+      "express": "^4.15.3",
+      "localtunnel": "^1.8.3",
+      "lodash": "^4.17.4",
+      "mongoose": "^4.11.1",
+      "nodemon": "^1.11.0",
+      "passport": "^0.3.2",
+      "passport-google-oauth20": "^1.0.0",
+      "path-parser": "^2.0.2",
+      "sendgrid": "^5.1.2",
+      "stripe": "^4.23.1"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
+
+Trace: 
+  Error: No lockfile in this directory. Run `yarn install` to generate one.
+      at new MessageError (C:\Program Files (x86)\Yarn\lib\cli.js:186:110)
+      at C:\Program Files (x86)\Yarn\lib\cli.js:89389:13
+      at <anonymous>

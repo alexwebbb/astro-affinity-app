@@ -1,19 +1,18 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "",
+  "description": "server application for astrological affinity website",
   "main": "index.js",
   "engines": {
-    "node": "8.1.1",
+    "node": "9.11.1",
     "npm": "5.0.3"
   },
   "scripts": {
     "start": "node index.js",
     "server": "nodemon index.js",
     "client": "npm run start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\" \"npm run webhook\"",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
-    "webhook": "./sendgrid_webhook.sh"
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "author": "",
   "license": "ISC",
@@ -29,7 +28,6 @@
     "passport": "^0.3.2",
     "passport-google-oauth20": "^1.0.0",
     "path-parser": "^2.0.2",
-    "sendgrid": "^5.1.2",
     "stripe": "^4.23.1"
   }
 }
