@@ -29,7 +29,7 @@ class Header extends Component {
             to={this.props.auth ? '/affinities' : '/'}
             className="left brand-logo"
           >
-            Emaily
+            Astro App
           </Link>
           <ul className="right">
             {this.renderContent()}
