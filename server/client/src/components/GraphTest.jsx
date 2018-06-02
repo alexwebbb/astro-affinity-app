@@ -1,5 +1,6 @@
-const { Radar, RadarChart, PolarGrid, Legend,
-  PolarAngleAxis, PolarRadiusAxis } = Recharts;
+import React, { Component } from 'react';
+import { Radar, RadarChart, PolarGrid, Legend,
+  PolarAngleAxis, PolarRadiusAxis } from 'recharts';
 
 const data = [
   { subject: 'Math', A: 120, B: 110, fullMark: 150 },
@@ -10,7 +11,7 @@ const data = [
   { subject: 'History', A: 65, B: 85, fullMark: 150 },
 ];
 
-const TwoLevelPieChart = React.createClass({
+class Graph extends Component {
   render() {
     return (
       <RadarChart cx={300} cy={250} outerRadius={150} width={600} height={500} data={data}>
@@ -24,4 +25,6 @@ const TwoLevelPieChart = React.createClass({
       </RadarChart>
     );
   }
-})
+}
+
+export default Graph;

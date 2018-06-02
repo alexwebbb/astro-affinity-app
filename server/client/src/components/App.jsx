@@ -6,6 +6,7 @@ import * as actions from '../actions';
 import Header from './Header';
 import Landing from './Landing';
 import Dashboard from './Dashboard';
+import GraphTest from './GraphTest';
 
 class App extends Component {
   componentDidMount() {
@@ -20,7 +21,7 @@ class App extends Component {
             <Header />
             <Route exact path="/" component={Landing} />
             <Route exact path="/affinities" component={Dashboard} />
-            {/* <Route path="/affinities/new" component={AffinityNew} /> */}
+            <Route path="/graph" component={GraphTest} />
           </div>
         </BrowserRouter>
       </div>
