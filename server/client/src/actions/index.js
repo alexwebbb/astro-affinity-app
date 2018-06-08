@@ -13,3 +13,10 @@ export const handleToken = token => async dispatch => {
   dispatch({ type: FETCH_USER, payload: res.data });
 };
 
+export const submitProfile = (values, history) => async dispatch => {
+  const res = await axios.post('/api/surveys', values);
+
+  history.push('/affinities');
+  dispatch({ type: FETCH_USER, payload: res.data });
+};
+
