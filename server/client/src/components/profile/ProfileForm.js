@@ -4,6 +4,12 @@ import DateTimePicker from "react-widgets/lib/DateTimePicker";
 import { Link } from "react-router-dom";
 import ProfileField from "./ProfileField";
 import formFields from "./formFields";
+import moment from 'moment';
+import momentLocaliser from 'react-widgets-moment-localizer';
+
+import 'react-widgets/dist/css/react-widgets.css';
+
+momentLocaliser(moment);
 
 const renderDateTimePicker = ({ input: { onChange, value }, showTime }) => (
   <DateTimePicker
