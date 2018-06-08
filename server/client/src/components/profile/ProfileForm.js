@@ -1,22 +1,44 @@
 import React, { Component } from "react";
 import { reduxForm, Field } from "redux-form";
+import DateTimePicker from "react-widgets/lib/DateTimePicker";
 import { Link } from "react-router-dom";
 import ProfileField from "./ProfileField";
 import formFields from "./formFields";
 
+const renderDateTimePicker = ({ input: { onChange, value }, showTime }) => (
+  <DateTimePicker
+    onChange={onChange}
+    format="DD MMM YYYY"
+    time={showTime}
+    value={!value ? null : new Date(value)}
+  />
+);
+
 class ProfileForm extends Component {
   renderFields() {
     return formFields.map(({ label, name, fieldType }) => {
-      return (
-        <Field
-          key={name}
-          component={ProfileField}
-          className={(fieldType === "date" ? "datepicker" : "")}
-          type="text"
-          label={label}
-          name={name}
-        />
-      );
+      if (fieldType === "date") {
+        return (
+          <div>
+            <label>DOB</label>
+            <Field
+              name="dob"
+              showTime={false}
+              component={renderDateTimePicker}
+            />
+          </div>
+        );
+      } else {
+        return (
+          <Field
+            key={name}
+            component={ProfileField}
+            type="text"
+            label={label}
+            name={name}
+          />
+        );
+      }
     });
   }
 
