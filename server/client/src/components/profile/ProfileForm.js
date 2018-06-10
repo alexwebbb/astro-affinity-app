@@ -4,19 +4,19 @@ import DateTimePicker from "react-widgets/lib/DateTimePicker";
 import { Link } from "react-router-dom";
 import ProfileField from "./ProfileField";
 import formFields from "./formFields";
-import moment from 'moment';
-import momentLocaliser from 'react-widgets-moment-localizer';
+import moment from "moment";
+import momentLocaliser from "react-widgets-moment";
 
-import 'react-widgets/dist/css/react-widgets.css';
+import "react-widgets/dist/css/react-widgets.css";
 
 momentLocaliser(moment);
 
 const renderDateTimePicker = ({ input: { onChange, value }, showTime }) => (
   <DateTimePicker
-    onChange={onChange}
+    onChange={value => onChange(value)}
     format="DD MMM YYYY"
     time={showTime}
-    value={!value ? null : new Date(value)}
+    value={!value ? new Date("01 01 1990") : new Date(value)}
   />
 );
 
@@ -25,14 +25,13 @@ class ProfileForm extends Component {
     return formFields.map(({ label, name, fieldType }) => {
       if (fieldType === "date") {
         return (
-          <div>
-            <label>DOB</label>
-            <Field
-              name="dob"
-              showTime={false}
-              component={renderDateTimePicker}
-            />
-          </div>
+          <Field
+            key={name}
+            name="dob"
+            type="date"
+            showTime={false}
+            component={renderDateTimePicker}
+          />
         );
       } else {
         return (
@@ -80,6 +79,6 @@ function validate(values) {
 
 export default reduxForm({
   validate,
-  form: "ProfileForm",
+  form: "profileForm",
   destroyOnUnmount: false
 })(ProfileForm);

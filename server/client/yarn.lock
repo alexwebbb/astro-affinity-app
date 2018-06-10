@@ -5782,6 +5782,10 @@ react-widgets-moment-localizer@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/react-widgets-moment-localizer/-/react-widgets-moment-localizer-1.0.2.tgz#2153cfe62b72ee0bf14838ea958d3f220ca39b81"
 
+react-widgets-moment@^4.0.15:
+  version "4.0.15"
+  resolved "https://registry.yarnpkg.com/react-widgets-moment/-/react-widgets-moment-4.0.15.tgz#6d2be3ab876eb5a14db349bbb81cc0dc5d031b7a"
+
 react-widgets@^4.3.1:
   version "4.3.1"
   resolved "https://registry.yarnpkg.com/react-widgets/-/react-widgets-4.3.1.tgz#f1250d68689757edee88c8b2bedc51b52b14fcee"
