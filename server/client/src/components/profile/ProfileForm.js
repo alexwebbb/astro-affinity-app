@@ -10,12 +10,14 @@ class ProfileForm extends Component {
     return formFields.map(({ label, name, fieldType }) => {
       if (fieldType === "date") {
         return (
-          <Field
-            key={name}
-            name="dob"
-            type="text"
-            component={ReactDatePicker}
-          />
+          <div>
+            <label>DOB</label>
+            <Field
+              key={name}
+              name="dob"
+              component={ReactDatePicker}
+            />
+          </div>
         );
       } else {
         return (

@@ -1,12 +1,11 @@
-import React from "react";
-import DatePicker from "react-datepicker";
-import moment from "moment";
+import React from 'react';
+import DatePicker from 'react-datepicker';
+import moment from 'moment';
 
-import "react-datepicker/dist/react-datepicker.css";
+import 'react-datepicker/dist/react-datepicker.css';
 
 // CSS Modules, react-datepicker-cssmodules.css
 // import 'react-datepicker/dist/react-datepicker-cssmodules.css';
-
 
 class ReactDatePicker extends React.Component {
   constructor (props) {
@@ -30,12 +29,5 @@ class ReactDatePicker extends React.Component {
     />;
   }
 }
-
-// const renderDatePicker = ({input, placeholder, defaultValue, meta: {touched, error} }) => (
-//   <div>
-//         <DatePicker {...input} dateForm="MM/DD/YYYY" selected={input.value ? moment(input.value) : null} />
-//         {touched && error && <span>{error}</span>}
-//   </div>
-// );
 
 export default ReactDatePicker;
