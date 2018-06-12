@@ -31,7 +31,7 @@ class Graph extends Component {
         color: color
       };
 
-    RadarChart(".radarChart", [this.getData("aries"), this.getData("pisces")], radarChartOptions);
+    RadarChart(".radarChart", [this.getData("taurus"), this.getData("pisces")], radarChartOptions);
   }
 
   render() {

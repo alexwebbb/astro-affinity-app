@@ -6,13 +6,12 @@ import * as actions from '../../actions';
 
 const ProfileFormReview = ({ onCancel, formValues, submitProfile, history }) => {
   const reviewFields = formFields.map(({ name, label }) => {
-    console.log(formValues.dob.getFullYear());
 
     return (
       <div key={name}>
         <label>{label}</label>
         <div>
-          {(formValues[name] != null ? formValues[name] : formValues.dob.getFullYear())}
+          {formValues[name]}
         </div>
       </div>
     );
