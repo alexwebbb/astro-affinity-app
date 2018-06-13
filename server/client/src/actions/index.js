@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FETCH_USER } from './types';
+import { FETCH_USER, FETCH_PROFILES } from './types';
 
 export const fetchUser = () => async dispatch => {
   const res = await axios.get('/api/current_user');
@@ -14,9 +14,14 @@ export const handleToken = token => async dispatch => {
 };
 
 export const submitProfile = (values, history) => async dispatch => {
-  const res = await axios.post('/api/surveys', values);
+  const res = await axios.post('/api/profiles', values);
 
   history.push('/affinities');
   dispatch({ type: FETCH_USER, payload: res.data });
 };
 
+export const fetchProfiles = () => async dispatch => {
+  const res = await axios.get('/api/profiles');
+
+  dispatch({ type: FETCH_PROFILES, payload: res.data });
+};

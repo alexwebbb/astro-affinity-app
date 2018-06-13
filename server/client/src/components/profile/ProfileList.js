@@ -12,17 +12,13 @@ class ProfileList extends Component {
       return (
         <div className="card darken-1" key={profile._id}>
           <div className="card-content">
-            <span className="card-title">{profile.title}</span>
+            <span className="card-title">{profile.name}</span>
             <p>
-              {profile.body}
+              {profile.description}
             </p>
             <p className="right">
-              Sent On: {new Date(profile.dateSent).toLocaleDateString()}
+              Birthdate: {new Date(profile.birthdate).toLocaleDateString()}
             </p>
-          </div>
-          <div className="card-action">
-            <a>Yes: {profile.yes}</a>
-            <a>No: {profile.no}</a>
           </div>
         </div>
       );

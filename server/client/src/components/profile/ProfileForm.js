@@ -3,33 +3,19 @@ import { reduxForm, Field } from "redux-form";
 import { Link } from "react-router-dom";
 import ProfileField from "./ProfileField";
 import formFields from "./formFields";
-import ReactDatePicker from "./ReactDatePicker";
 
 class ProfileForm extends Component {
   renderFields() {
     return formFields.map(({ label, name, fieldType }) => {
-      if (fieldType === "date") {
-        return (
-          <div>
-            <label>DOB</label>
-            <Field
-              key={name}
-              name="dob"
-              component={ReactDatePicker}
-            />
-          </div>
-        );
-      } else {
         return (
           <Field
             key={name}
             component={ProfileField}
-            type="text"
+            type={fieldType}
             label={label}
             name={name}
           />
         );
-      }
     });
   }
 

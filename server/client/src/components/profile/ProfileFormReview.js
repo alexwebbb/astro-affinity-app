@@ -39,7 +39,6 @@ const ProfileFormReview = ({ onCancel, formValues, submitProfile, history }) => 
 };
 
 function mapStateToProps(state) {
-  console.log(state.form);
   return { formValues: state.form.profileForm.values };
 }
 
