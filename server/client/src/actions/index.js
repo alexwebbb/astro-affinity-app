@@ -20,6 +20,13 @@ export const submitProfile = (values, history) => async dispatch => {
   dispatch({ type: FETCH_USER, payload: res.data });
 };
 
+export const removeProfile = (values, history) => async dispatch => {
+  const res = await axios.delete('/api/profiles', values);
+
+  history.push('/affinities');
+  // dispatch({ type: FETCH_USER, payload: res.data });
+};
+
 export const fetchProfiles = () => async dispatch => {
   const res = await axios.get('/api/profiles');
 
