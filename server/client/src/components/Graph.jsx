@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import { scale } from "d3";
 import { RadarChart } from "../utils/radarChart";
-import { getWesternSigns } from "../data/westernData";
 
 class Graph extends Component {
   getData(name) {
-    const { affinities, indexToName, nameToIndex } = getWesternSigns();
+    const { affinities, indexToName, nameToIndex } = this.props.zodiac;
 
     return affinities[nameToIndex[name]].map((value, index) => {
       return { axis: indexToName[index], value };
@@ -31,7 +30,7 @@ class Graph extends Component {
         color: color
       };
 
-    RadarChart(".radarChart", [this.getData("taurus"), this.getData("pisces")], radarChartOptions);
+    RadarChart(".radarChart", this.getData(this.props.sign), radarChartOptions);
   }
 
   render() {

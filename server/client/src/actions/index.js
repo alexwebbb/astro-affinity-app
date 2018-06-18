@@ -1,5 +1,5 @@
 import axios from "axios";
-import { FETCH_USER, FETCH_PROFILES } from "./types";
+import { FETCH_USER, FETCH_PROFILES, SET_SELECTED } from "./types";
 
 export const fetchUser = () => async dispatch => {
   const res = await axios.get("/api/current_user");
@@ -33,4 +33,8 @@ export const fetchProfiles = () => async dispatch => {
   const profiles = await axios.get("/api/profiles");
 
   dispatch({ type: FETCH_PROFILES, payload: profiles.data });
+};
+
+export const setSelected = id => async dispatch => {
+  dispatch({ type: SET_SELECTED, payload: id });
 };

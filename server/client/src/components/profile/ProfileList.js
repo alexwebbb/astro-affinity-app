@@ -2,32 +2,34 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "../../actions";
 
-import { getWesternSign } from "../../utils/getWesternSign";
-import { getChineseSign } from "../../utils/getChineseSign";
+import { getChineseSign, getWesternSign } from "../../utils/getSign";
 
 class ProfileList extends Component {
-
   state = { selectedProfile: 0 };
 
   async componentDidMount() {
     await this.props.fetchProfiles();
-    this.setSelected(this.props.profiles[0]._id);
-    console.log(this.state.selectedProfile);
+    this.props.setSelected(this.props.profiles[0]._id);
   }
 
-  setSelected(id) {
-    this.setState({ selectedProfile: id });
-  }
+  // setSelected(id) {
+  //   this.setState({ selectedProfile: id });
+  // }
 
   renderProfiles() {
     return this.props.profiles.map(({ _id, name, birthdate, description }) => {
       const date = new Date(birthdate).toLocaleDateString(),
-      westernSign = getWesternSign(birthdate),
-      chineseSign = getChineseSign(birthdate),
-      currentState = (this.state.selectedProfile == _id ? "green accent-1" : "darken-1");
+        westernSign = getWesternSign(birthdate),
+        chineseSign = getChineseSign(birthdate),
+        currentState =
+          this.props.selected == _id ? "green accent-1" : "darken-1";
 
       return (
-        <div className={["card", currentState].join(" ")} key={_id} onClick={() => this.setSelected(_id)}>
+        <div
+          className={["card", currentState].join(" ")}
+          key={_id}
+          onClick={() => this.props.setSelected(_id)}
+        >
           <div className="card-content">
             <span className="card-title">{name}</span>
             <p>{description}</p>
@@ -37,12 +39,8 @@ class ProfileList extends Component {
             >
               <i className="material-icons right">delete_forever</i>delete
             </a>
-            <p className="right breadcrumb">
-              Western Sign: {westernSign}
-            </p>
-            <p className="right breadcrumb">
-              Eastern Sign: {chineseSign}
-            </p>
+            <p className="right breadcrumb">Western Sign: {westernSign}</p>
+            <p className="right breadcrumb">Eastern Sign: {chineseSign}</p>
             <p className="right breadcrumb">Birthdate: {date}</p>
           </div>
         </div>
@@ -55,8 +53,8 @@ class ProfileList extends Component {
   }
 }
 
-const mapStateToProps = ({ profiles }) => {
-  return { profiles };
+const mapStateToProps = ({ profiles, selected }) => {
+  return { profiles, selected };
 };
 
 export default connect(

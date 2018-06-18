@@ -1,4 +1,4 @@
-export const getWesternSigns = () => {
+export const westernZodiac = () => {
 
     return {
         nameToIndex: {

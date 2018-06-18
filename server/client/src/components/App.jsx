@@ -22,7 +22,6 @@ class App extends Component {
             <Header />
             <Route exact path="/" component={Landing} />
             <Route exact path="/affinities" component={Dashboard} />
-            <Route path="/graph" component={Graph} />
             <Route path="/affinities/new" component={ProfileNew} />
           </div>
         </BrowserRouter>
