@@ -3,8 +3,9 @@ import { scale } from "d3";
 import { RadarChart } from "../utils/radarChart";
 
 class Graph extends Component {
-  getData(name) {
-    const { affinities, indexToName, nameToIndex } = this.props.zodiac;
+  getData() {
+    const { affinities, indexToName, nameToIndex } = this.props.zodiac,
+      name = this.props.sign;
 
     return affinities[nameToIndex[name]].map((value, index) => {
       return { axis: indexToName[index], value };
@@ -14,7 +15,7 @@ class Graph extends Component {
   componentDidMount() {
     const margin = { top: 100, right: 100, bottom: 100, left: 100 },
       width =
-        Math.min(700, window.innerWidth - 10) - margin.left - margin.right,
+        Math.min(400, window.innerWidth - 10) - margin.left - margin.right,
       height = Math.min(
         width,
         window.innerHeight - margin.top - margin.bottom - 20
@@ -30,13 +31,27 @@ class Graph extends Component {
         color: color
       };
 
-    RadarChart(".radarChart", this.getData(this.props.sign), radarChartOptions);
+    RadarChart(".radarChart", [this.getData()], radarChartOptions);
   }
 
   render() {
     return (
       <div>
-        <div className="radarChart" />
+        <div className="card blue-grey darken-1">
+          <div className="card-content white-text">
+            <span className="card-title">Comparing to {this.props.sign}</span>
+            <div className="radarChart" />
+            <p>
+              I am a very simple card. I am good at containing small bits of
+              information. I am convenient because I require little markup to
+              use effectively.
+            </p>
+          </div>
+          <div className="card-action">
+            <a href="#">This is a link</a>
+            <a href="#">This is a link</a>
+          </div>
+        </div>
       </div>
     );
   }
