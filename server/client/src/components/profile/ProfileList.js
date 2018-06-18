@@ -1,37 +1,49 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
-import { fetchProfiles, removeProfile } from "../../actions";
+import * as actions from "../../actions";
+
+import { getWesternSign } from "../../utils/getWesternSign";
+import { getChineseSign } from "../../utils/getChineseSign";
 
 class ProfileList extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   // this.removeProfile = removeProfile.bind(this);
-  // }
 
-  componentDidMount() {
-    this.props.fetchProfiles();
+  state = { selectedProfile: 0 };
+
+  async componentDidMount() {
+    await this.props.fetchProfiles();
+    this.setSelected(this.props.profiles[0]._id);
+    console.log(this.state.selectedProfile);
+  }
+
+  setSelected(id) {
+    this.setState({ selectedProfile: id });
   }
 
   renderProfiles() {
-    const { history } = this.props;
+    return this.props.profiles.map(({ _id, name, birthdate, description }) => {
+      const date = new Date(birthdate).toLocaleDateString(),
+      westernSign = getWesternSign(birthdate),
+      chineseSign = getChineseSign(birthdate),
+      currentState = (this.state.selectedProfile == _id ? "green accent-1" : "darken-1");
 
-    return this.props.profiles.map(profile => {
       return (
-        <div className="card darken-1" key={profile._id}>
+        <div className={["card", currentState].join(" ")} key={_id} onClick={() => this.setSelected(_id)}>
           <div className="card-content">
-            <span className="card-title">{profile.name}</span>
-            <p>{profile.description}</p>
+            <span className="card-title">{name}</span>
+            <p>{description}</p>
             <a
               className="waves-effect waves-light btn"
-              // working on this 
-              onClick={removeProfile({ id: profile._id }, history)}
+              onClick={() => this.props.removeProfile(_id)}
             >
-              <i className="material-icons right">delete_forever</i>button
+              <i className="material-icons right">delete_forever</i>delete
             </a>
-            <p className="right">
-              Birthdate: {new Date(profile.birthdate).toLocaleDateString()}
+            <p className="right breadcrumb">
+              Western Sign: {westernSign}
             </p>
+            <p className="right breadcrumb">
+              Eastern Sign: {chineseSign}
+            </p>
+            <p className="right breadcrumb">Birthdate: {date}</p>
           </div>
         </div>
       );
@@ -43,11 +55,11 @@ class ProfileList extends Component {
   }
 }
 
-function mapStateToProps({ profiles }) {
+const mapStateToProps = ({ profiles }) => {
   return { profiles };
-}
+};
 
 export default connect(
   mapStateToProps,
-  { fetchProfiles }
-)(withRouter(ProfileList));
+  actions
+)(ProfileList);

@@ -1,34 +1,36 @@
-import axios from 'axios';
-import { FETCH_USER, FETCH_PROFILES } from './types';
+import axios from "axios";
+import { FETCH_USER, FETCH_PROFILES } from "./types";
 
 export const fetchUser = () => async dispatch => {
-  const res = await axios.get('/api/current_user');
+  const res = await axios.get("/api/current_user");
 
   dispatch({ type: FETCH_USER, payload: res.data });
 };
 
 export const handleToken = token => async dispatch => {
-  const res = await axios.post('/api/stripe', token);
+  const user = await axios.post("/api/stripe", token);
 
-  dispatch({ type: FETCH_USER, payload: res.data });
+  dispatch({ type: FETCH_USER, payload: user.data });
 };
 
 export const submitProfile = (values, history) => async dispatch => {
-  const res = await axios.post('/api/profiles', values);
+  const user = await axios.post("/api/profiles", values);
 
-  history.push('/affinities');
-  dispatch({ type: FETCH_USER, payload: res.data });
+  history.push("/affinities");
+  dispatch({ type: FETCH_USER, payload: user.data });
 };
 
-export const removeProfile = (values, history) => async dispatch => {
-  const res = await axios.delete('/api/profiles', values);
+export const removeProfile = id => async dispatch => {
+  const user = await axios.delete("/api/profiles", { data: { id } }),
+    profiles = await axios.get("/api/profiles");
 
-  history.push('/affinities');
-  // dispatch({ type: FETCH_USER, payload: res.data });
+  dispatch({ type: FETCH_USER, payload: user.data });
+
+  dispatch({ type: FETCH_PROFILES, payload: profiles.data });
 };
 
 export const fetchProfiles = () => async dispatch => {
-  const res = await axios.get('/api/profiles');
+  const profiles = await axios.get("/api/profiles");
 
-  dispatch({ type: FETCH_PROFILES, payload: res.data });
+  dispatch({ type: FETCH_PROFILES, payload: profiles.data });
 };

@@ -1,4 +1,6 @@
-export function getEasternSign(birthyear) {
+export function getChineseSign(birthdate) {
+  const birthyear = new Date(birthdate).getFullYear();
+
   const startDate = 1901,
     dateKey = [
       { name: "rat", offset: 1 },
@@ -15,7 +17,7 @@ export function getEasternSign(birthyear) {
       { name: "boar", offset: 2 }
     ];
 
-  let yearOffset = (startDate - birthyear) % 1;
+  let yearOffset = (startDate - birthyear) % 12;
 
   if (yearOffset < 0) {
     yearOffset += 12;
