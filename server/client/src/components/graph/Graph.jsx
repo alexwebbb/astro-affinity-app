@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { scale } from "d3";
 import { connect } from "react-redux";
-import { RadarChart } from "../utils/radarChart";
+import { RadarChart } from "../../utils/radarChart";
 
 class Graph extends Component {
   getData() {
@@ -14,34 +14,44 @@ class Graph extends Component {
   }
 
   renderGraph() {
-    const margin = { top: 100, right: 100, bottom: 100, left: 100 },
-      width =
-        Math.min(400, window.innerWidth - 10) - margin.left - margin.right,
-      height = Math.min(
-        width,
-        window.innerHeight - margin.top - margin.bottom - 20
-      ),
-      color = scale.ordinal().range(["#EDC951", "#CC333F", "#00A0B0"]),
-      radarChartOptions = {
-        w: width,
-        h: height,
-        margin: margin,
-        maxValue: 0.5,
-        levels: 5,
-        roundStrokes: false,
-        color: color
-      };
+    if (this.props.birthdate) {
+      const margin = { top: 100, right: 75, bottom: 100, left: 60 },
+        width =
+          Math.min(400, window.innerWidth - 10) - margin.left - margin.right,
+        height = Math.min(
+          width,
+          window.innerHeight - margin.top - margin.bottom - 20
+        ),
+        color = scale.ordinal().range(["#EDC951", "#CC333F", "#00A0B0"]),
+        radarChartOptions = {
+          w: width,
+          h: height,
+          margin: margin,
+          maxValue: 0.5,
+          levels: 5,
+          roundStrokes: false,
+          color: color
+        };
 
-    RadarChart(".radarChart", [this.getData()], radarChartOptions);
+      RadarChart(".radarChart", [this.getData()], radarChartOptions);
+    }
+  }
+
+  componentDidMount() {
+    this.renderGraph();
+  }
+  componentDidUpdate() {
+    this.renderGraph();
   }
 
   render() {
-    if(this.props.birthdate) this.renderGraph();
     return (
       <div>
         <div className="card blue-grey darken-1">
           <div className="card-content white-text">
-            <span className="card-title">Comparing to {this.props.sign}</span>
+            <span className="card-title">
+              Comparing to {this.props.zodiac.getSign(this.props.birthdate)}
+            </span>
             <div className="radarChart" />
             <p>
               I am a very simple card. I am good at containing small bits of

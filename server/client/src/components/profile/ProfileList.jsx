@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "../../actions";
 
-import { getSign as getChineseSign } from "../../data/chineseZodiac";
-import { getWesternSign } from "../../utils/getSign";
+import { getSign as getChineseSign } from "../../utils/chineseZodiac";
+import { getSign as getWesternSign } from "../../utils/westernZodiac";
 
 class ProfileList extends Component {
   state = { selectedProfile: 0 };
@@ -27,18 +27,24 @@ class ProfileList extends Component {
           key={_id}
           onClick={() => this.props.setSelected(_id)}
         >
-          <div className="card-content">
-            <span className="card-title">{name}</span>
-            <p>{description}</p>
-            <a
-              className="waves-effect waves-light btn"
-              onClick={() => this.props.removeProfile(_id)}
-            >
-              <i className="material-icons right">delete_forever</i>delete
-            </a>
-            <p className="right breadcrumb">Western Sign: {westernSign}</p>
-            <p className="right breadcrumb">Eastern Sign: {chineseSign}</p>
-            <p className="right breadcrumb">Birthdate: {date}</p>
+          <div className="card-content row">
+            <div className="col s12 m6">
+              <span className="card-title">{name}</span>
+              <p>{description}</p>
+            </div>
+            <div className="col s12 m6">
+              <ul className="collection">
+                <li className="collection-item">Western Sign: {westernSign}</li>
+                <li className="collection-item">Eastern Sign: {chineseSign}</li>
+                <li className="collection-item">Birthdate: {date}</li>
+              </ul>
+              <a
+                className="waves-effect waves-light btn right"
+                onClick={() => this.props.removeProfile(_id)}
+              >
+                <i className="material-icons right">delete_forever</i>delete
+              </a>
+            </div>
           </div>
         </div>
       );
