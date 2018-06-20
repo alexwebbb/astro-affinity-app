@@ -1,18 +1,19 @@
 import React, { Component } from "react";
 import { scale } from "d3";
+import { connect } from "react-redux";
 import { RadarChart } from "../utils/radarChart";
 
 class Graph extends Component {
   getData() {
-    const { affinities, indexToName, nameToIndex } = this.props.zodiac,
-      name = this.props.sign;
+    const { affinities, indexToName, nameToIndex, getSign } = this.props.zodiac,
+      name = this.props.birthdate ? getSign(this.props.birthdate) : "aries";
 
     return affinities[nameToIndex[name]].map((value, index) => {
       return { axis: indexToName[index], value };
     });
   }
 
-  componentDidMount() {
+  renderGraph() {
     const margin = { top: 100, right: 100, bottom: 100, left: 100 },
       width =
         Math.min(400, window.innerWidth - 10) - margin.left - margin.right,
@@ -35,6 +36,7 @@ class Graph extends Component {
   }
 
   render() {
+    if(this.props.birthdate) this.renderGraph();
     return (
       <div>
         <div className="card blue-grey darken-1">
@@ -48,8 +50,8 @@ class Graph extends Component {
             </p>
           </div>
           <div className="card-action">
-            <a href="#">This is a link</a>
-            <a href="#">This is a link</a>
+            <a href="/">This is a link</a>
+            <a href="/">This is a link</a>
           </div>
         </div>
       </div>
@@ -57,4 +59,20 @@ class Graph extends Component {
   }
 }
 
-export default Graph;
+const mapStateToProps = ({ profiles, selected }) => {
+  let date = null;
+
+  const profile = profiles.find(v => {
+    return v._id === selected;
+  });
+
+  if (profile) {
+    date = profile["birthdate"];
+  }
+
+  return {
+    birthdate: date
+  };
+};
+
+export default connect(mapStateToProps)(Graph);

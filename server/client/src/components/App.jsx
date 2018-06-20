@@ -6,7 +6,6 @@ import * as actions from '../actions';
 import Header from './Header';
 import Landing from './Landing';
 import Dashboard from './Dashboard';
-import Graph from './Graph';
 import ProfileNew from './profile/ProfileNew';
 
 class App extends Component {

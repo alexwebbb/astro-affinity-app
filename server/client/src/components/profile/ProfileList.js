@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "../../actions";
 
-import { getChineseSign, getWesternSign } from "../../utils/getSign";
+import { getSign as getChineseSign } from "../../data/chineseZodiac";
+import { getWesternSign } from "../../utils/getSign";
 
 class ProfileList extends Component {
   state = { selectedProfile: 0 };
@@ -12,17 +13,13 @@ class ProfileList extends Component {
     this.props.setSelected(this.props.profiles[0]._id);
   }
 
-  // setSelected(id) {
-  //   this.setState({ selectedProfile: id });
-  // }
-
   renderProfiles() {
     return this.props.profiles.map(({ _id, name, birthdate, description }) => {
       const date = new Date(birthdate).toLocaleDateString(),
         westernSign = getWesternSign(birthdate),
         chineseSign = getChineseSign(birthdate),
         currentState =
-          this.props.selected == _id ? "green accent-1" : "darken-1";
+          this.props.selected === _id ? "green accent-1" : "darken-1";
 
       return (
         <div
