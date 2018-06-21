@@ -23,12 +23,12 @@ class ProfileList extends Component {
 
       return (
         <div
-          className={["card", currentState].join(" ")}
+          className={["card hoverable", currentState].join(" ")}
           key={_id}
           onClick={() => this.props.setSelected(_id)}
         >
           <div className="card-content row">
-            <div className="col s12 m6">
+            <div className="col s12 m3">
               <span className="card-title">{name}</span>
               <p>{description}</p>
             </div>
@@ -38,11 +38,14 @@ class ProfileList extends Component {
                 <li className="collection-item">Eastern Sign: {chineseSign}</li>
                 <li className="collection-item">Birthdate: {date}</li>
               </ul>
+            </div>
+            <div className="col s12 m3">
               <a
-                className="waves-effect waves-light btn right"
+                className="waves-effect waves-light btn-large right"
                 onClick={() => this.props.removeProfile(_id)}
               >
-                <i className="material-icons right">delete_forever</i>delete
+                <i className="material-icons left">delete_forever</i>
+                delete
               </a>
             </div>
           </div>

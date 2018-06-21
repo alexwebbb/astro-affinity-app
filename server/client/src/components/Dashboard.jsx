@@ -9,11 +9,11 @@ const Dashboard = () => {
   return (
     <div>
       <div className="row">
-        <div className="col s12 m5">
+        <div className="col m12 l7 xl5">
           <Graph zodiac={westernZodiac} />
 
         </div>
-        <div className="col s12 m7">
+        <div className="col s12 m12 l5 xl7">
           <ProfileList />
         </div>
       </div>

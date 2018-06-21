@@ -52,11 +52,9 @@ class Graph extends Component {
             <span className="card-title">
               Comparing to {this.props.zodiac.getSign(this.props.birthdate)}
             </span>
-            <div className="radarChart" />
+            <div className="radarChart center-align" />
             <p>
-              I am a very simple card. I am good at containing small bits of
-              information. I am convenient because I require little markup to
-              use effectively.
+              Graph of the different affinities with the sign of the person selected.
             </p>
           </div>
           <div className="card-action">
