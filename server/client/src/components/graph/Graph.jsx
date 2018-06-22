@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { scale } from "d3";
-import { connect } from "react-redux";
 import { RadarChart } from "../../utils/radarChart";
 
 class Graph extends Component {
@@ -14,73 +13,38 @@ class Graph extends Component {
   }
 
   renderGraph() {
-    if (this.props.birthdate) {
-      const margin = { top: 100, right: 75, bottom: 100, left: 60 },
-        width =
-          Math.min(400, window.innerWidth - 10) - margin.left - margin.right,
-        height = Math.min(
-          width,
-          window.innerHeight - margin.top - margin.bottom - 20
-        ),
-        color = scale.ordinal().range(["#EDC951", "#CC333F", "#00A0B0"]),
-        radarChartOptions = {
-          w: width,
-          h: height,
-          margin: margin,
-          maxValue: 0.5,
-          levels: 5,
-          roundStrokes: false,
-          color: color
-        };
+    const margin = { top: 100, right: 75, bottom: 100, left: 60 },
+      width =
+        Math.min(400, window.innerWidth - 10) - margin.left - margin.right,
+      height = Math.min(
+        width,
+        window.innerHeight - margin.top - margin.bottom - 20
+      ),
+      color = scale.ordinal().range(["#EDC951", "#CC333F", "#00A0B0"]),
+      radarChartOptions = {
+        w: width,
+        h: height,
+        margin: margin,
+        maxValue: 5,
+        levels: 10,
+        roundStrokes: false,
+        color: color
+      };
 
-      RadarChart(".radarChart", [this.getData()], radarChartOptions);
-    }
+    RadarChart(".radarChart", [this.getData()], radarChartOptions);
   }
 
   componentDidMount() {
     this.renderGraph();
   }
   componentDidUpdate() {
+    // need to add "prev props" check
     this.renderGraph();
   }
 
   render() {
-    return (
-      <div>
-        <div className="card blue-grey darken-1">
-          <div className="card-content white-text">
-            <span className="card-title">
-              Comparing to {this.props.zodiac.getSign(this.props.birthdate)}
-            </span>
-            <div className="radarChart center-align" />
-            <p>
-              Graph of the different affinities with the sign of the person selected.
-            </p>
-          </div>
-          <div className="card-action">
-            <a href="/">This is a link</a>
-            <a href="/">This is a link</a>
-          </div>
-        </div>
-      </div>
-    );
+    return <div className="radarChart center-align" />;
   }
 }
 
-const mapStateToProps = ({ profiles, selected }) => {
-  let date = null;
-
-  const profile = profiles.find(v => {
-    return v._id === selected;
-  });
-
-  if (profile) {
-    date = profile["birthdate"];
-  }
-
-  return {
-    birthdate: date
-  };
-};
-
-export default connect(mapStateToProps)(Graph);
+export default Graph;

@@ -1,8 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Graph from "./graph/Graph";
 import ProfileList from "./profile/ProfileList";
-import * as westernZodiac from "../utils/westernZodiac";
+import GraphControl from "./graph/GraphControl";
 
 const Dashboard = () => {
 
@@ -10,7 +9,7 @@ const Dashboard = () => {
     <div>
       <div className="row">
         <div className="col m12 l7 xl5">
-          <Graph zodiac={westernZodiac} />
+          <GraphControl />
 
         </div>
         <div className="col s12 m12 l5 xl7">
