@@ -3,6 +3,8 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 
+import "./../css/index.css";
+
 import Header from './Header';
 import Landing from './Landing';
 import Dashboard from './Dashboard';

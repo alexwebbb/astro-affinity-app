@@ -1,0 +1,29 @@
+
+
+body {
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#3d6472+0,53cbf1+27,41215e+42,030e84+100 */
+  background: rgb(61, 100, 114); /* Old browsers */
+  background: -moz-linear-gradient(
+    top,
+    rgba(61, 100, 114, 1) 0%,
+    rgba(83, 203, 241, 1) 27%,
+    rgba(65, 33, 94, 1) 42%,
+    rgba(3, 14, 132, 1) 100%
+  ); /* FF3.6-15 */
+  background: -webkit-linear-gradient(
+    top,
+    rgba(61, 100, 114, 1) 0%,
+    rgba(83, 203, 241, 1) 27%,
+    rgba(65, 33, 94, 1) 42%,
+    rgba(3, 14, 132, 1) 100%
+  ); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(
+    to bottom,
+    rgba(61, 100, 114, 1) 0%,
+    rgba(83, 203, 241, 1) 27%,
+    rgba(65, 33, 94, 1) 42%,
+    rgba(3, 14, 132, 1) 100%
+  ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3d6472', endColorstr='#030e84',GradientType=0 ); /* IE6-9 */
+  height: 100%;
+}

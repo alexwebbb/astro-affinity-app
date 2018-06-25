@@ -43,7 +43,7 @@ class Graph extends Component {
   }
 
   render() {
-    return <div className="radarChart center-align" />;
+    return <div className="radarChart" />;
   }
 }
 

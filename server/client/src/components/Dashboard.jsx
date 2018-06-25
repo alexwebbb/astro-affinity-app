@@ -8,11 +8,11 @@ const Dashboard = () => {
   return (
     <div>
       <div className="row">
-        <div className="col m12 l7 xl5">
+        <div className="col m12 l7 xl6">
           <GraphControl />
 
         </div>
-        <div className="col s12 m12 l5 xl7">
+        <div className="col s12 m12 l5 xl6">
           <ProfileList />
         </div>
       </div>

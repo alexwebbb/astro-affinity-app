@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "../../actions";
+import parseDate from "../../utils/parseDate";
 
 import { getSign as getChineseSign } from "../../utils/chineseZodiac";
 import { getSign as getWesternSign } from "../../utils/westernZodiac";
@@ -15,7 +16,7 @@ class ProfileList extends Component {
 
   renderProfiles() {
     return this.props.profiles.map(({ _id, name, birthdate, description }) => {
-      const date = new Date(birthdate).toLocaleDateString(),
+      const date = parseDate(birthdate).toDateString(),
         westernSign = getWesternSign(birthdate),
         chineseSign = getChineseSign(birthdate),
         currentState =
@@ -29,25 +30,24 @@ class ProfileList extends Component {
         >
           <div className="card-content row">
             <div className="col s12 m3">
-              <span className="card-title">{name}</span>
-              <p>{description}</p>
+              <h1 className="card-title">{name}</h1>
+              <p className="flow-text">{description}</p>
             </div>
-            <div className="col s12 m6">
+            <div className="col s12 m9">
               <ul className="collection">
                 <li className="collection-item">Western Sign: {westernSign}</li>
                 <li className="collection-item">Eastern Sign: {chineseSign}</li>
                 <li className="collection-item">Birthdate: {date}</li>
               </ul>
-            </div>
-            <div className="col s12 m3">
               <a
-                className="waves-effect waves-light btn-large right"
+                className="waves-effect waves-light btn-small right"
                 onClick={() => this.props.removeProfile(_id)}
               >
                 <i className="material-icons left">delete_forever</i>
                 delete
               </a>
             </div>
+            <div className="col s12 right" />
           </div>
         </div>
       );

@@ -42,15 +42,15 @@ class GraphControl extends Component {
       return (
         <div>
           <div className="card blue-grey darken-1">
-            <div className="card-content white-text">
+            <div className="card-content white-text center-align">
               {this.renderGraph()}
-              <p>
+              <p className="flow-text">
                 Graph of the different affinities with the sign of the person
                 selected.
               </p>
             </div>
-            <div className="card-action">
-              <div className="row">
+            <div className="card-action center-align">
+              <div className="row center-align">
                 <div className="col s4 offset-s1">
                   <a
                     className="waves-effect waves-light btn"
@@ -59,7 +59,7 @@ class GraphControl extends Component {
                     Western
                   </a>
                 </div>
-                <div className="col s4 offset-s1">
+                <div className="col s4 offset-s2">
                   <a
                     className="waves-effect waves-light btn"
                     onClick={() => this.setState({ currentZodiac: CHINESE })}
