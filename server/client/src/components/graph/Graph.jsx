@@ -12,10 +12,11 @@ class Graph extends Component {
     });
   }
 
-  renderGraph() {
-    const margin = { top: 100, right: 75, bottom: 100, left: 60 },
-      width =
-        Math.min(400, window.innerWidth - 10) - margin.left - margin.right,
+  renderGraph(parentWidth) {
+    const labelFactorAdjusted =
+        1.24 + (0.5 - 0.5 * (Math.min(parentWidth - 330, 194) / 194)),
+      margin = { top: 75, right: 75, bottom: 75, left: 75 },
+      width = parentWidth - margin.left - margin.right,
       height = Math.min(
         width,
         window.innerHeight - margin.top - margin.bottom - 20
@@ -28,22 +29,23 @@ class Graph extends Component {
         maxValue: 5,
         levels: 10,
         roundStrokes: false,
-        color: color
+        color: color,
+        labelFactor: labelFactorAdjusted
       };
 
     RadarChart(".radarChart", [this.getData()], radarChartOptions);
   }
 
   componentDidMount() {
-    this.renderGraph();
+    this.renderGraph(this.refs.child.parentNode.clientWidth);
   }
   componentDidUpdate() {
+    console.log(this.props.selector);
     // need to add "prev props" check
-    this.renderGraph();
+    this.renderGraph(this.refs.child.parentNode.clientWidth);
   }
-
   render() {
-    return <div className="radarChart" />;
+    return <div ref="child" className={this.props.selector} />;
   }
 }
 

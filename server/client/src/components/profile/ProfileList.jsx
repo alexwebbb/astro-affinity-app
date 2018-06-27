@@ -29,11 +29,11 @@ class ProfileList extends Component {
           onClick={() => this.props.setSelected(_id)}
         >
           <div className="card-content row">
-            <div className="col s12 m3">
-              <h1 className="card-title">{name}</h1>
-              <p className="flow-text">{description}</p>
+            <div className="col s12 m3 l12 xl3">
+              <h2 className="card-title">{name}</h2>
+              <p >{description}</p>
             </div>
-            <div className="col s12 m9">
+            <div className="col s12 m9 l12 xl9">
               <ul className="collection">
                 <li className="collection-item">Western Sign: {westernSign}</li>
                 <li className="collection-item">Eastern Sign: {chineseSign}</li>

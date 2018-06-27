@@ -32,8 +32,12 @@ module.exports = app => {
 
   app.delete("/api/profiles", requireLogin, async (req, res) => {
     try {
-      await Profile.findByIdAndRemove(req.body.id);
-      req.user.credits += 1;
+      const result = await Profile.findByIdAndRemove(req.body.id);
+
+      if (result !== null) {
+        // res.status(303).redirect("/affinities");
+        req.user.credits += 1;
+      }
       const user = await req.user.save();
 
       res.send(user);
