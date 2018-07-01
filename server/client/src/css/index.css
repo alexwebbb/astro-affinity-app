@@ -1,4 +1,4 @@
-
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400');
 
 body {
   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#3d6472+0,53cbf1+27,41215e+42,030e84+100 */
@@ -27,3 +27,10 @@ body {
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3d6472', endColorstr='#030e84',GradientType=0 ); /* IE6-9 */
   height: 100%;
 }
+
+.legend, .text {
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  fill: white;
+}
+

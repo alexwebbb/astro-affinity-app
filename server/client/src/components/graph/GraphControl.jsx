@@ -22,7 +22,12 @@ class GraphControl extends Component {
           <span className="card-title">
             Comparing to {chineseZodiac.getSign(this.props.birthdate)}
           </span>
-          <Graph birthdate={this.props.birthdate} zodiac={chineseZodiac} selector="radarChart" />
+          <Graph
+            birthdate={this.props.birthdate}
+            zodiac={chineseZodiac}
+            selector="radarChart"
+            title="Chinese Zodiac"
+          />
         </div>
       );
     } else {
@@ -31,7 +36,12 @@ class GraphControl extends Component {
           <span className="card-title">
             Comparing to {westernZodiac.getSign(this.props.birthdate)}
           </span>
-          <Graph birthdate={this.props.birthdate} zodiac={westernZodiac} selector="radarChart" />
+          <Graph
+            birthdate={this.props.birthdate}
+            zodiac={westernZodiac}
+            selector="radarChart"
+            title="Western Zodiac"
+          />
         </div>
       );
     }
