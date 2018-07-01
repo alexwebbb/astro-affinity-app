@@ -13,8 +13,6 @@ const CHINESE = "chineseZodiac",
 class GraphControl extends Component {
   state = { currentZodiac: WESTERN };
 
-  componentDidMount() {}
-
   renderGraph() {
     if (this.state.currentZodiac === CHINESE) {
       return (

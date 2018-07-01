@@ -10,6 +10,18 @@ module.exports = app => {
     res.send(profiles);
   });
 
+  app.post("/api/profiles/set", requireLogin, async (req, res) => {
+    const { id } = req.body;
+
+    try {
+      req.user.primary = id;
+      const user = await req.user.save();
+      res.send(user);
+    } catch (err) {
+      res.status(422).send(err);
+    }
+  });
+
   app.post("/api/profiles", requireLogin, requireCredits, async (req, res) => {
     const { name, birthdate, description } = req.body;
     const profile = new Profile({
@@ -35,8 +47,9 @@ module.exports = app => {
       const result = await Profile.findByIdAndRemove(req.body.id);
 
       if (result !== null) {
-        // res.status(303).redirect("/affinities");
         req.user.credits += 1;
+      } else {
+        return;
       }
       const user = await req.user.save();
 

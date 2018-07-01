@@ -1,36 +1,60 @@
-@import url('https://fonts.googleapis.com/css?family=Lato:300,400');
+@import url("https://fonts.googleapis.com/css?family=Lato:300,400");
 
-body {
-  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#3d6472+0,53cbf1+27,41215e+42,030e84+100 */
-  background: rgb(61, 100, 114); /* Old browsers */
+.app-css {
+
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#4a187c+0,641fa8+31,641ebf+43,2a5193+100 */
+  background: rgb(74, 24, 124); /* Old browsers */
   background: -moz-linear-gradient(
     top,
-    rgba(61, 100, 114, 1) 0%,
-    rgba(83, 203, 241, 1) 27%,
-    rgba(65, 33, 94, 1) 42%,
-    rgba(3, 14, 132, 1) 100%
+    rgba(74, 24, 124, 1) 0%,
+    rgba(100, 31, 168, 1) 31%,
+    rgba(100, 30, 191, 1) 43%,
+    rgba(42, 81, 147, 1) 100%
   ); /* FF3.6-15 */
   background: -webkit-linear-gradient(
     top,
-    rgba(61, 100, 114, 1) 0%,
-    rgba(83, 203, 241, 1) 27%,
-    rgba(65, 33, 94, 1) 42%,
-    rgba(3, 14, 132, 1) 100%
+    rgba(74, 24, 124, 1) 0%,
+    rgba(100, 31, 168, 1) 31%,
+    rgba(100, 30, 191, 1) 43%,
+    rgba(42, 81, 147, 1) 100%
   ); /* Chrome10-25,Safari5.1-6 */
   background: linear-gradient(
     to bottom,
-    rgba(61, 100, 114, 1) 0%,
-    rgba(83, 203, 241, 1) 27%,
-    rgba(65, 33, 94, 1) 42%,
-    rgba(3, 14, 132, 1) 100%
+    rgba(74, 24, 124, 1) 0%,
+    rgba(100, 31, 168, 1) 31%,
+    rgba(100, 30, 191, 1) 43%,
+    rgba(42, 81, 147, 1) 100%
   ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3d6472', endColorstr='#030e84',GradientType=0 ); /* IE6-9 */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4a187c', endColorstr='#2a5193',GradientType=0 ); /* IE6-9 */
+
   height: 100%;
+  min-height: 800px;
+  /* fixes space at bottom created by materialize row */
+  padding-bottom: 10px;
 }
 
-.legend, .text {
-  font-family: 'Lato', sans-serif;
+.app-css h1,
+.app-css h2 {
+  font-family: "Lato", sans-serif;
   font-weight: 400;
+}
+
+.app-css p {
+  font-family: "Lato", sans-serif;
+  font-weight: 300;
+}
+
+.app-header {
+  padding: 0 0 0px 10px;
+}
+
+
+.profile-form-css {
+  padding: 20px;
+}
+
+.legend {
+  font-family: "Lato", sans-serif;
+  font-weight: 300;
   fill: white;
 }
-

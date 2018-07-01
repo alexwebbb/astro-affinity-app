@@ -1,4 +1,4 @@
-import { SET_SELECTED } from '../actions/types';
+import { SET_SELECTED } from "../actions/types";
 
 export default function(state = 0, action) {
   switch (action.type) {

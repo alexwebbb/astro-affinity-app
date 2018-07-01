@@ -3,22 +3,28 @@ import { reduxForm } from "redux-form";
 import ProfileForm from "./ProfileForm";
 import ProfileFormReview from "./ProfileFormReview";
 
+const classes = "light-blue lighten-5 profile-form-css";
+
 class ProfileNew extends Component {
   state = { showFormReview: false };
 
   renderContent() {
     if (this.state.showFormReview) {
       return (
-        <ProfileFormReview
-          onCancel={() => this.setState({ showFormReview: false })}
-        />
+        <div className={classes}>
+          <ProfileFormReview
+            onCancel={() => this.setState({ showFormReview: false })}
+          />
+        </div>
       );
     }
 
     return (
-      <ProfileForm
-        onProfileSubmit={() => this.setState({ showFormReview: true })}
-      />
+      <div className={classes}>
+        <ProfileForm
+          onProfileSubmit={() => this.setState({ showFormReview: true })}
+        />
+      </div>
     );
   }
 

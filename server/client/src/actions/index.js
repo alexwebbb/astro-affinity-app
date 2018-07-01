@@ -38,3 +38,10 @@ export const fetchProfiles = () => async dispatch => {
 export const setSelected = id => async dispatch => {
   dispatch({ type: SET_SELECTED, payload: id });
 };
+
+export const setPrimary = id => async dispatch => {
+
+  const profiles = await axios.post("/api/profiles/set", { id });
+
+  dispatch({ type: FETCH_USER, payload: profiles.data });
+};

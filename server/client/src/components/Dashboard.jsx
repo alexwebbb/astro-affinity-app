@@ -6,7 +6,7 @@ import GraphControl from "./graph/GraphControl";
 const Dashboard = () => {
 
   return (
-    <div>
+    <main>
       <div className="row">
         <div className="col m12 l7 xl6">
           <GraphControl />
@@ -23,7 +23,7 @@ const Dashboard = () => {
           <i className="material-icons">add</i>
         </Link>
       </div>
-    </div>
+    </main>
   );
 };
 

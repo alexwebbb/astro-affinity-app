@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import * as d3 from "d3";
-import { RadarChart } from "../../utils/radarChart/radarChart2";
+import { RadarChart } from "../../utils/radarChart/radarChart";
 
 class Graph extends Component {
   getData() {
@@ -32,12 +32,10 @@ class Graph extends Component {
         levels: 10,
         roundStrokes: false,
         color: d3.scaleOrdinal().range(["#AFC52F", "#ff6600"]),
-        format: ".0f",
+        format: ".1f",
         legend: { title: this.props.title, translateX: 100, translateY: 10 },
-        unit: "$",
         labelFactor: labelFactorAdjusted
       };
-    console.log(labelFactorAdjusted);
 
     RadarChart(".radarChart", [this.getData()], radarChartOptions);
   }
