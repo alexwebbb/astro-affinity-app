@@ -14,41 +14,45 @@ class ProfileList extends Component {
     this.props.setSelected(this.props.profiles[0]._id);
   }
 
-  renderSetPrimaryButton(active, id) {
+  renderButtons(active, id) {
     if (active) {
       return (
-        <a
-          className="waves-effect waves-light btn-small right"
-          onClick={() => this.props.setPrimary(id)}
-        >
-          set primary
-        </a>
-      );
-    }
-  }
-
-  renderDeleteButton(active, id) {
-    if (!active) {
-      return (
-        <a
-          className="waves-effect waves-light btn-small right"
-          onClick={() => this.props.removeProfile(id)}
-        >
-          <i className="material-icons left">delete_forever</i>
-          delete
-        </a>
+        <div className="profile-list-buttons-css">
+          <a
+            className="waves-effect waves-light btn-small"
+            onClick={() => this.props.setPrimary(id)}
+          >
+            set primary
+          </a>
+          <a
+            className="waves-effect waves-light btn-small"
+            onClick={() => this.props.removeProfile(id)}
+          >
+            <i className="material-icons left">delete_forever</i>
+            delete
+          </a>
+        </div>
       );
     }
   }
 
   renderProfiles() {
+    const primary = this.props.profiles.find(({ _id }) => {
+      return _id === this.props.auth.primary;
+    });
+    let cSignPrimary, wSignPrimary;
+    if (primary) {
+      cSignPrimary = getChineseSign(primary.birthdate);
+      wSignPrimary = getWesternSign(primary.birthdate);
+    }
+
     return this.props.profiles.map(({ _id, name, birthdate, description }) => {
       const date = parseDate(birthdate).toDateString(),
-        westernSign = getWesternSign(birthdate),
         chineseSign = getChineseSign(birthdate),
+        westernSign = getWesternSign(birthdate),
         currentState =
           this.props.selected === _id ? "green accent-1" : "darken-1",
-        isPrimary = this.props.auth.primary ===_id;
+        isPrimary = this.props.auth.primary === _id;
 
       return (
         <div
@@ -57,19 +61,20 @@ class ProfileList extends Component {
           onClick={() => this.props.setSelected(_id)}
         >
           <div className="card-content row">
-            <div className="col s12 m3 l12 xl3">
+            <div className="col s12 m6 l12 xl5">
               <h2 className="card-title">{name}</h2>
               <p>{description}</p>
+              <p>Score</p>
+              {}
             </div>
-            <div className="col s12 m9 l12 xl9">
+            <div className="col s12 m6 l12 xl7">
               <ul className="collection">
                 <li className="collection-item">Western Sign: {westernSign}</li>
                 <li className="collection-item">Eastern Sign: {chineseSign}</li>
                 <li className="collection-item">Birthdate: {date}</li>
               </ul>
+              {this.renderButtons(!isPrimary, _id)}
             </div>
-            {this.renderSetPrimaryButton(!isPrimary, _id)}
-            {this.renderDeleteButton(isPrimary, _id)}
           </div>
         </div>
       );

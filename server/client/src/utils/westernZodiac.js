@@ -74,3 +74,7 @@ export function getSign(birthdate) {
       }
     }).name;
   }
+
+  export const getAffinity = (primarySign, secondarySign) => {
+    return affinities[nameToIndex[primarySign]][nameToIndex[secondarySign]];
+  } 

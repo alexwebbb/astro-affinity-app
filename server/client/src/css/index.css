@@ -48,6 +48,9 @@
   padding: 0 0 0px 10px;
 }
 
+.affinities-css {
+  padding-top: 10px;
+}
 
 .profile-form-css {
   padding: 20px;
@@ -57,4 +60,9 @@
   font-family: "Lato", sans-serif;
   font-weight: 300;
   fill: white;
+}
+
+.profile-list-buttons-css {
+  display: flex;
+  justify-content: space-between;
 }

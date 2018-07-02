@@ -72,3 +72,7 @@ export const getSign = birthdate => {
     return yearOffset === sign.offset;
   }).name;
 };
+
+export const getAffinity = (primarySign, secondarySign) => {
+  return affinities[nameToIndex[primarySign]][nameToIndex[secondarySign]];
+};

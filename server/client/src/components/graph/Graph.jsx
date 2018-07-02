@@ -5,7 +5,7 @@ import { RadarChart } from "../../utils/radarChart/radarChart";
 class Graph extends Component {
   getData() {
     const { affinities, indexToName, nameToIndex, getSign } = this.props.zodiac,
-      name = this.props.birthdate ? getSign(this.props.birthdate) : "aries";
+      name = getSign(this.props.birthdate);
 
     return {
       name,

@@ -1,12 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import ProfileList from "./profile/ProfileList";
+import ProfileList from "./profileList/ProfileList";
 import GraphControl from "./graph/GraphControl";
 
 const Dashboard = () => {
 
   return (
-    <main>
+    <main className="affinities-css">
       <div className="row">
         <div className="col m12 l7 xl6">
           <GraphControl />
