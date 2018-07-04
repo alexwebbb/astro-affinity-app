@@ -8,7 +8,7 @@ import "./../css/index.css";
 import Header from './Header';
 import Landing from './Landing';
 import Dashboard from './Dashboard';
-import ProfileNew from './profile/ProfileNew';
+import ProfileNew from './profileNew/ProfileNew';
 
 class App extends Component {
   componentDidMount() {

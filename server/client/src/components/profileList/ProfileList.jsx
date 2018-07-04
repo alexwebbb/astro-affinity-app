@@ -3,8 +3,10 @@ import { connect } from "react-redux";
 import * as actions from "../../actions";
 import parseDate from "../../utils/parseDate";
 
-import { getSign as getChineseSign } from "../../utils/chineseZodiac";
-import { getSign as getWesternSign } from "../../utils/westernZodiac";
+import ScoreDisplay from "./ScoreDisplay";
+
+import * as chineseZodiac from "../../utils/chineseZodiac";
+import * as westernZodiac from "../../utils/westernZodiac";
 
 class ProfileList extends Component {
   state = { selectedProfile: 0 };
@@ -40,16 +42,16 @@ class ProfileList extends Component {
     const primary = this.props.profiles.find(({ _id }) => {
       return _id === this.props.auth.primary;
     });
-    let cSignPrimary, wSignPrimary;
+    let chineseSignPrimary, westernSignPrimary;
     if (primary) {
-      cSignPrimary = getChineseSign(primary.birthdate);
-      wSignPrimary = getWesternSign(primary.birthdate);
+      chineseSignPrimary = chineseZodiac.getSign(primary.birthdate);
+      westernSignPrimary = westernZodiac.getSign(primary.birthdate);
     }
 
     return this.props.profiles.map(({ _id, name, birthdate, description }) => {
       const date = parseDate(birthdate).toDateString(),
-        chineseSign = getChineseSign(birthdate),
-        westernSign = getWesternSign(birthdate),
+        chineseSign = chineseZodiac.getSign(birthdate),
+        westernSign = westernZodiac.getSign(birthdate),
         currentState =
           this.props.selected === _id ? "green accent-1" : "darken-1",
         isPrimary = this.props.auth.primary === _id;
@@ -64,8 +66,13 @@ class ProfileList extends Component {
             <div className="col s12 m6 l12 xl5">
               <h2 className="card-title">{name}</h2>
               <p>{description}</p>
-              <p>Score</p>
-              {}
+              <ScoreDisplay
+                id={_id}
+                cSignPrimary={chineseSignPrimary}
+                wSignPrimary={westernSignPrimary}
+                cSign={chineseSign}
+                wSign={westernSign}
+              />
             </div>
             <div className="col s12 m6 l12 xl7">
               <ul className="collection">

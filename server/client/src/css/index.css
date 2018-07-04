@@ -66,3 +66,20 @@
   display: flex;
   justify-content: space-between;
 }
+
+
+.test-for-circular-progress {
+	height: 100px;
+	width: 100px;
+
+}
+
+circle.na {
+	fill: #333;
+}
+circle.zero {
+	fill: #c00;
+}
+circle.one {
+	fill: #6c0;
+}
