@@ -1,20 +1,23 @@
-import "d3";
-import { fix } from "./fix";
+import { select } from "d3";
+import fix from "./fix";
 
-export const drawCircularProgressBar =  (selection, k) => {
+export default (parent, k) => {
+  const selection = select("." + parent);
+
   if (selection) {
     let r = 240, // radius of the ball
       h = 0,
       zero = 0,
       one = 0,
-	  text = "N/A";
-	  
+      text = "N/A",
+      clipSelector = "clip-in-" + parent;
+
     if (k >= 0) {
       const fixed = fix(k);
       h = r * 2 * (1 - fixed);
       zero = 1;
       one = k;
-      text = parseInt(k * 100) + "%";
+      text = parseInt(k * 100, 10) + "%";
     }
 
     selection.selectAll("svg").remove();
@@ -27,14 +30,16 @@ export const drawCircularProgressBar =  (selection, k) => {
         const defs = e.append("defs");
         defs
           .append("clipPath")
-          .attr("id", "clip")
+          .attr("id", clipSelector)
           .append("rect")
           .attr("x", "-" + r)
           .attr("y", "-" + r)
           .attr("width", r * 2)
           .attr("height", h);
 
-        const g = e.append("g").attr("transform", "translate(" + r + "," + r + ")");
+        const g = e
+          .append("g")
+          .attr("transform", "translate(" + r + "," + r + ")");
         g.append("circle")
           .attr("r", r)
           .attr("class", "na");
@@ -50,7 +55,7 @@ export const drawCircularProgressBar =  (selection, k) => {
           .attr("r", r)
           .style("fill", "#333")
           .style("fill-opacity", 0.5)
-          .attr("clip-path", "url(#clip)");
+          .attr("clip-path", "url(#" + clipSelector + ")");
         g.append("text")
           .attr("class", "value")
           .attr("text-anchor", "middle")
@@ -60,4 +65,4 @@ export const drawCircularProgressBar =  (selection, k) => {
           .text(text);
       });
   }
-}
+};

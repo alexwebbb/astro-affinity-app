@@ -13,7 +13,7 @@ const sin = Math.sin;
 const cos = Math.cos;
 const HALF_PI = Math.PI / 2;
 
-export const RadarChart = function RadarChart(parent_selector, data, options) {
+export default (parent_selector, data, options) => {
   const cfg = {
     w: 600, //Width of the circle
     h: 600, //Height of the circle
@@ -361,9 +361,9 @@ export const RadarChart = function RadarChart(parent_selector, data, options) {
       .selectAll("text")
       .data(names)
       .enter()
-	  .append("text")
-// may be changed
-	  .attr("class", "legend")
+      .append("text")
+      // may be changed
+      .attr("class", "legend")
       .attr("x", cfg.w - 52)
       .attr("y", (d, i) => i * 20 + 9)
       .attr("font-size", "11px")
