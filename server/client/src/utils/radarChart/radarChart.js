@@ -1,12 +1,7 @@
 import * as d3 from "d3";
 import { wrap } from "./wrap";
 
-/////////////////////////////////////////////////////////
-/////////////// The Radar Chart Function ////////////////
-/// mthh - 2017 /////////////////////////////////////////
-// Inspired by the code of alangrafu and Nadieh Bremer //
-// (VisualCinnamon.com) and modified for d3 v4 //////////
-/////////////////////////////////////////////////////////
+// updated for es6 + react from http://bl.ocks.org/mthh/7e17b680b35b83b49f1c22a3613bd89f
 
 const max = Math.max;
 const sin = Math.sin;
@@ -43,7 +38,7 @@ export default (parent_selector, data, options) => {
   } //if
 
   //If the supplied maxValue is smaller than the actual one, replace by the max in the data
-  // var maxValue = max(cfg.maxValue, d3.max(data, function(i){return d3.max(i.map(function(o){return o.value;}))}));
+  // let maxValue = max(cfg.maxValue, d3.max(data, function(i){return d3.max(i.map(function(o){return o.value;}))}));
   let maxValue = 0;
   for (let j = 0; j < data.length; j++) {
     for (let i = 0; i < data[j].axes.length; i++) {
@@ -150,7 +145,7 @@ export default (parent_selector, data, options) => {
   /////////////////////////////////////////////////////////
 
   //Create the straight lines radiating outward from the center
-  var axis = axisGrid
+  let axis = axisGrid
     .selectAll(".axis")
     .data(allAxis)
     .enter()
@@ -267,7 +262,8 @@ export default (parent_selector, data, options) => {
     .attr("r", cfg.dotRadius)
     .attr("cx", (d, i) => rScale(d.value) * cos(angleSlice * i - HALF_PI))
     .attr("cy", (d, i) => rScale(d.value) * sin(angleSlice * i - HALF_PI))
-    .style("fill", d => cfg.color(d.id))
+    // this is the one
+    .style("fill", d => cfg.color(data.map(v => v.name).indexOf(d.id)))
     .style("fill-opacity", 0.8);
 
   /////////////////////////////////////////////////////////
@@ -320,8 +316,8 @@ export default (parent_selector, data, options) => {
     .attr("dy", "0.35em");
 
   if (cfg.legend !== false && typeof cfg.legend === "object") {
-    let legendZone = svg.append("g");
-    let names = data.map(el => el.name);
+    let legendZone = svg.append("g"),
+      names = data.map(el => el.name);
     if (cfg.legend.title) {
       legendZone
         .append("text")

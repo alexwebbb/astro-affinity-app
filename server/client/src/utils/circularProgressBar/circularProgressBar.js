@@ -1,6 +1,8 @@
 import { select } from "d3";
 import fix from "./fix";
 
+// http://bl.ocks.org/xiaoxinghu/6ffd42cf0b76fd4819b7
+
 export default (parent, k) => {
   const selection = select("." + parent);
 
