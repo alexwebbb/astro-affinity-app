@@ -1,7 +1,15 @@
 @import url("https://fonts.googleapis.com/css?family=Lato:300,400");
 
-.app-css {
+html {
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
 
+.app-css {
   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#4a187c+0,641fa8+31,641ebf+43,2a5193+100 */
   background: rgb(74, 24, 124); /* Old browsers */
   background: -moz-linear-gradient(
@@ -67,19 +75,60 @@
   justify-content: space-between;
 }
 
+.score-block {
+  text-align: center;
+}
 
-.circular-progress-bar {
-	height: 100px;
-	width: 100px;
+.score-block__circular-progress-bar {
+  height: 60px;
+  width: 60px;
+  margin: 0 auto;
+}
 
+.score-block__title {
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.score-block__title--combined {
+  font-weight: 400;
+  font-size: 16px;
+
+  padding-top: 20px;
+}
+
+.score-block__score {
+  padding: 10px;
+}
+
+.score-block__decorative-circle {
+  /* border: black solid 1px; */
+  border-radius: 20px;
+  padding: 5px;
+  margin: 0px 0px 2px 0px;
+  width: 35px;
+}
+
+.score-block__circular-progress-bar--combined {
+  height: 80px;
+  width: 80px;
+  margin: 0px auto;
+}
+
+@media screen and (min-width: 1200px) {
+  .score-block__circular-progress-bar--combined {
+    height: 140px;
+    width: 140px;
+
+  }
 }
 
 circle.na {
-	fill: #333;
+  fill: #333;
 }
 circle.zero {
-	fill: #c00;
+  fill: #c00;
 }
 circle.one {
-	fill: #6c0;
+  fill: #6c0;
 }

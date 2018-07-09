@@ -2,33 +2,73 @@ import React, { Component } from "react";
 
 import CircularProgressBar from "./../../utils/circularProgressBar/circularProgressBar";
 
-import * as chineseZodiac from "../../utils/chineseZodiac";
-import * as westernZodiac from "../../utils/westernZodiac";
+import { getAffinity as getChineseAffinity } from "../../utils/chineseZodiac";
+import { getAffinity as getWesternAffinity } from "../../utils/westernZodiac";
 
-const selector = id => {
-  return "score-for-" + id;
-};
+const selector = (id, role) => {
+    return role + "-score-for-" + id;
+  },
+  COMBINED = "combined",
+  CHINESE = "chinese",
+  WESTERN = "western";
+
+  
 
 class ScoreDisplay extends Component {
-
   componentDidUpdate() {
     const { id, cSign, wSign, cSignPrimary, wSignPrimary } = this.props,
-      cScore = chineseZodiac.getAffinity(cSignPrimary, cSign),
-      wScore = westernZodiac.getAffinity(wSignPrimary, wSign);
+      cScore = getChineseAffinity(cSignPrimary, cSign),
+      wScore = getWesternAffinity(wSignPrimary, wSign);
 
-    CircularProgressBar(selector(id), (cScore + wScore) / 10);
+    CircularProgressBar(selector(id, COMBINED), (cScore + wScore) / 10);
+    CircularProgressBar(selector(id, CHINESE), cScore / 5);
+    CircularProgressBar(selector(id, WESTERN), wScore / 5);
   }
 
   render() {
     const { id, cSign, wSign, cSignPrimary, wSignPrimary } = this.props,
-      cScore = chineseZodiac.getAffinity(cSignPrimary, cSign),
-      wScore = westernZodiac.getAffinity(wSignPrimary, wSign);
+      cScore = getChineseAffinity(cSignPrimary, cSign),
+      wScore = getWesternAffinity(wSignPrimary, wSign);
 
     return (
-      <div>
-        <p>Chinese: {cScore}</p>
-        <p>Western: {wScore}</p>
-        <div className={"circular-progress-bar " + selector(id)} />
+      <div className="right">
+        <div className="col m4 xl6 score-block">
+          <p className="score-block__title">
+            {wSign} x {wSignPrimary}
+          </p>
+          <div className="score-block__score center-align">
+            <div className="score-block__decorative-circle">{wScore}</div>
+          </div>
+          <div
+            className={
+              "score-block__circular-progress-bar " + selector(id, WESTERN)
+            }
+          />
+        </div>
+        {/* <i class="small material-icons">add</i> */}
+        <div className="col m4 xl6 score-block">
+          <p className="score-block__title">
+            {cSign} x {cSignPrimary}
+          </p>
+          <div className="score-block__score center-align">
+            <div className="score-block__decorative-circle">{cScore}</div>
+          </div>
+          <div
+            className={
+              "score-block__circular-progress-bar " + selector(id, CHINESE)
+            }
+          />
+        </div>
+        <div className="col m4 xl12 score-block">
+          <p className="score-block__title--combined">Combined: </p>
+          <p className="score-block__score">{(cScore + wScore) / 2}</p>
+          <div
+            className={
+              "score-block__circular-progress-bar--combined " +
+              selector(id, COMBINED)
+            }
+          />
+        </div>
       </div>
     );
   }

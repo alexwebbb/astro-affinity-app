@@ -1,7 +1,7 @@
 import * as d3 from "d3";
 import { wrap } from "./wrap";
 
-// updated for es6 + react from http://bl.ocks.org/mthh/7e17b680b35b83b49f1c22a3613bd89f
+// updated and corrected for es6 + react from http://bl.ocks.org/mthh/7e17b680b35b83b49f1c22a3613bd89f
 
 const max = Math.max;
 const sin = Math.sin;
