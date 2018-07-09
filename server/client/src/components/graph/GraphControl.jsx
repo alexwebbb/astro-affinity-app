@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+
+import * as COLORS from "../../config/colors";
+
 import Graph from "./Graph";
 
 import * as chineseZodiac from "../../utils/chineseZodiac";
@@ -16,9 +19,10 @@ class GraphControl extends Component {
   renderGraph() {
     if (this.state.currentZodiac === CHINESE) {
       return (
-        <div>
-          <span className="card-title">
-            Comparing to {chineseZodiac.getSign(this.props.birthdate)}
+        <div className="card-title">
+          Comparing to{" "}
+          <span className="graph__active-sign">
+            {chineseZodiac.getSign(this.props.birthdate)}
           </span>
           <Graph
             birthdate={this.props.birthdate}
@@ -30,9 +34,10 @@ class GraphControl extends Component {
       );
     } else {
       return (
-        <div>
-          <span className="card-title">
-            Comparing to {westernZodiac.getSign(this.props.birthdate)}
+        <div className="card-title">
+          Comparing to{" "}
+          <span className="graph__active-sign">
+            {westernZodiac.getSign(this.props.birthdate)}
           </span>
           <Graph
             birthdate={this.props.birthdate}
@@ -49,8 +54,8 @@ class GraphControl extends Component {
     if (this.props.birthdate) {
       return (
         <div>
-          <div className="card blue-grey darken-1">
-            <div className="card-content white-text center-align">
+          <div className={"card " + COLORS.SECONDARY}>
+            <div className={"card-content center-align " + COLORS.TITLE}>
               {this.renderGraph()}
               <p className="flow-text">
                 Graph of the different affinities with the sign of the person

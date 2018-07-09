@@ -1,0 +1,13 @@
+export const WHITE = "grey lighten-5";
+export const PRIMARY = "deep-purple accent-3";
+export const SECONDARY = "blue-grey darken-1";
+export const TERTIARY = "grey lighten-1";
+export const SELECTED = "green accent-1";
+export const TITLE = "yellow-text text-lighten-5"; // #fffde7 yellow lighten-5
+export const TITLE2 = "lime-text text-darken-4"; // #827717
+export const TEXT = "amber-text text-accent-2"; // #ffd740
+export const TEXT2 = "deep-orange-text text-darken-4"; 
+export const TEXT3 = "teal-text text-darken-4"; // #004d40 
+export const TEXT4 = "blue-grey-text text-darken-1";
+export const ACCENT = "pink lighten-5";
+export const ACCENT2 = "red lighten-4";

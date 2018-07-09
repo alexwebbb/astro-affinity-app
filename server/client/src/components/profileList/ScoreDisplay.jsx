@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 
+import * as COLORS from "../../config/colors";
+
 import CircularProgressBar from "./../../utils/circularProgressBar/circularProgressBar";
 
 import { getAffinity as getChineseAffinity } from "../../utils/chineseZodiac";
@@ -11,8 +13,6 @@ const selector = (id, role) => {
   COMBINED = "combined",
   CHINESE = "chinese",
   WESTERN = "western";
-
-  
 
 class ScoreDisplay extends Component {
   componentDidUpdate() {
@@ -33,11 +33,18 @@ class ScoreDisplay extends Component {
     return (
       <div className="right">
         <div className="col m4 xl6 score-block">
-          <p className="score-block__title">
-            {wSign} x {wSignPrimary}
-          </p>
-          <div className="score-block__score center-align">
-            <div className="score-block__decorative-circle">{wScore}</div>
+          <div className="score-block__title">
+            <p>
+              {wSign} x 
+            </p>
+            <p>
+              {wSignPrimary}
+            </p>
+          </div>
+          <div className="score-block__score">
+            <div className={"score-block__decorative-circle " + COLORS.ACCENT2}>
+              {wScore}
+            </div>
           </div>
           <div
             className={
@@ -45,13 +52,19 @@ class ScoreDisplay extends Component {
             }
           />
         </div>
-        {/* <i class="small material-icons">add</i> */}
         <div className="col m4 xl6 score-block">
-          <p className="score-block__title">
-            {cSign} x {cSignPrimary}
-          </p>
-          <div className="score-block__score center-align">
-            <div className="score-block__decorative-circle">{cScore}</div>
+          <div className="score-block__title">
+            <p>
+              {cSign} x 
+            </p>
+            <p>
+              {cSignPrimary}
+            </p>
+          </div>
+          <div className="score-block__score">
+            <div className={"score-block__decorative-circle " + COLORS.ACCENT}>
+              {cScore}
+            </div>
           </div>
           <div
             className={
@@ -61,10 +74,14 @@ class ScoreDisplay extends Component {
         </div>
         <div className="col m4 xl12 score-block">
           <p className="score-block__title--combined">Combined: </p>
-          <p className="score-block__score">{(cScore + wScore) / 2}</p>
+          <div className="score-block__score">
+            <div className={"score-block__decorative-circle " + COLORS.WHITE}>
+              {(cScore + wScore) / 2}
+            </div>
+          </div>
           <div
             className={
-              "score-block__circular-progress-bar--combined " +
+              "score-block__circular-progress-bar--combined " + 
               selector(id, COMBINED)
             }
           />

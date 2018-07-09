@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import * as actions from "../../actions";
 import parseDate from "../../utils/parseDate";
 
+import * as COLORS from "../../config/colors";
+
 import ScoreDisplay from "./ScoreDisplay";
 
 import * as chineseZodiac from "../../utils/chineseZodiac";
@@ -19,7 +21,7 @@ class ProfileList extends Component {
   renderButtons(active, id) {
     if (active) {
       return (
-        <div className="profile-list-buttons-css">
+        <div className="profile-list-buttons">
           <a
             className="waves-effect waves-light btn-small"
             onClick={() => this.props.setPrimary(id)}
@@ -40,7 +42,11 @@ class ProfileList extends Component {
 
   renderProfiles() {
     const primary = this.props.profiles.find(({ _id }) => {
-      return _id === this.props.auth.primary || null;
+      if (this.props.auth !== null) {
+        return _id === this.props.auth.primary;
+      } else {
+        return null;
+      }
     });
     // let chineseSignPrimary, westernSignPrimary;
     if (primary) {
@@ -53,7 +59,7 @@ class ProfileList extends Component {
             chineseSign = chineseZodiac.getSign(birthdate),
             westernSign = westernZodiac.getSign(birthdate),
             currentState =
-              this.props.selected === _id ? "green accent-1" : "grey lighten-3",
+              this.props.selected === _id ? COLORS.SELECTED : COLORS.TERTIARY,
             isPrimary = this.props.auth.primary === _id;
 
           return (
@@ -64,8 +70,12 @@ class ProfileList extends Component {
             >
               <div className="card-content row">
                 <div className="col s12 m6 l12 xl5">
-                  <div className="col">
-                    <p className="card-title">{name}</p>
+                  <div className="col s6 xl12">
+                    <p className={"card-title " + COLORS.TEXT4}>
+                      {name}
+                    </p>
+                  </div>
+                  <div className={"col s6 xl12 " + COLORS.TEXT3}>
                     <p>{description}</p>
                   </div>
                   <ScoreDisplay
@@ -78,13 +88,39 @@ class ProfileList extends Component {
                 </div>
                 <div className="col s12 m6 l12 xl7">
                   <ul className="collection">
-                    <li className="collection-item">
-                      Western Sign: {westernSign}
+                    <li
+                      className={[
+                        "collection-item",
+                        COLORS.ACCENT2,
+                        COLORS.TEXT3
+                      ].join(" ")}
+                    >
+                      Western Sign:{" "}
+                      <span className="profile-card__active-sign">
+                        {westernSign}
+                      </span>
                     </li>
-                    <li className="collection-item">
-                      Eastern Sign: {chineseSign}
+                    <li
+                      className={[
+                        "collection-item",
+                        COLORS.ACCENT,
+                        COLORS.TEXT4
+                      ].join(" ")}
+                    >
+                      Chinese Sign:{" "}
+                      <span className="profile-card__active-sign">
+                        {chineseSign}
+                      </span>
                     </li>
-                    <li className="collection-item">Birthdate: {date}</li>
+                    <li
+                      className={[
+                        "collection-item",
+                        COLORS.WHITE,
+                        COLORS.TEXT4
+                      ].join(" ")}
+                    >
+                      Birthdate: {date}
+                    </li>
                   </ul>
                   {this.renderButtons(!isPrimary, _id)}
                 </div>

@@ -295,6 +295,7 @@ export default (parent_selector, data, options) => {
         .attr("x", this.cx.baseVal.value - 10)
         .attr("y", this.cy.baseVal.value - 10)
         .transition()
+        .attr("class", "radarTooltipText")
         .style("display", "block")
         .text(Format(d.value) + cfg.unit);
     })

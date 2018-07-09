@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Payments from './Payments';
 
+import * as COLORS from "../config/colors";
+
 class Header extends Component {
   renderContent() {
     switch (this.props.auth) {
@@ -14,7 +16,7 @@ class Header extends Component {
         return [
           <li key="1"><Payments /></li>,
           <li key="3" style={{ margin: '0 10px' }}>
-            Credits: {this.props.auth.credits}
+            Slots: {this.props.auth.credits}
           </li>,
           <li key="2"><a href="/api/logout">Logout</a></li>
         ];
@@ -24,7 +26,7 @@ class Header extends Component {
   render() {
     return (
       <nav>
-        <div className="nav-wrapper deep-purple accent-3 app-header">
+        <div className={"nav-wrapper app-header " + COLORS.PRIMARY}>
           <Link
             to={this.props.auth ? '/affinities' : '/'}
             className="left brand-logo"

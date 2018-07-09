@@ -8,13 +8,13 @@ class Payments extends Component {
     return (
       <StripeCheckout
         name="Astro App"
-        description="$5 for 5 credits"
-        amount={500}
+        description="$1 for 1 slot"
+        amount={100}
         token={token => this.props.handleToken(token)}
         stripeKey={process.env.REACT_APP_STRIPE_KEY}
       >
         <button className="btn">
-          Add Credits
+          Add Slots
         </button>
       </StripeCheckout>
     );
