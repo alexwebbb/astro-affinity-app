@@ -66,7 +66,7 @@ class GraphControl extends Component {
               <div className="row center-align">
                 <div className="col s4 offset-s1">
                   <a
-                    className="waves-effect waves-light btn"
+                    className="waves-effect waves-light btn-large"
                     onClick={() => this.setState({ currentZodiac: WESTERN })}
                   >
                     Western
@@ -74,7 +74,7 @@ class GraphControl extends Component {
                 </div>
                 <div className="col s4 offset-s2">
                   <a
-                    className="waves-effect waves-light btn"
+                    className="waves-effect waves-light btn-large"
                     onClick={() => this.setState({ currentZodiac: CHINESE })}
                   >
                     Chinese

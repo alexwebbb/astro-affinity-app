@@ -21,20 +21,32 @@ class ProfileList extends Component {
   renderButtons(active, id) {
     if (active) {
       return (
-        <div className="profile-list-buttons">
-          <a
-            className="waves-effect waves-light btn-small"
-            onClick={() => this.props.setPrimary(id)}
-          >
-            set primary
-          </a>
-          <a
-            className="waves-effect waves-light btn-small"
-            onClick={() => this.props.removeProfile(id)}
-          >
-            <i className="material-icons left">delete_forever</i>
-            delete
-          </a>
+        <div>
+          <div className="profile-list__button right">
+            <a
+              className="waves-effect waves-light btn-small"
+              onClick={() => this.props.setPrimary(id)}
+            >
+              set primary
+            </a>
+            
+          </div>
+          <div className="profile-list__button right">
+            
+            <a
+              className="waves-effect waves-light btn-small"
+              onClick={() => this.props.removeProfile(id)}
+            >
+              <i className="material-icons left">delete_forever</i>
+              delete
+            </a>
+          </div>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <div className="profile-list__button right"><a className="waves-effect waves-light btn-large">current primary</a></div>
         </div>
       );
     }

@@ -35,10 +35,8 @@ class ScoreDisplay extends Component {
         <div className="col m4 xl6 score-block">
           <div className="score-block__title">
             <p>
-              {wSign} x 
-            </p>
-            <p>
-              {wSignPrimary}
+              <span className="score-block__active-sign">{wSign + " "}</span>
+              <br className="hide-on-large-only" /> x {wSignPrimary}
             </p>
           </div>
           <div className="score-block__score">
@@ -55,10 +53,8 @@ class ScoreDisplay extends Component {
         <div className="col m4 xl6 score-block">
           <div className="score-block__title">
             <p>
-              {cSign} x 
-            </p>
-            <p>
-              {cSignPrimary}
+              <span className="score-block__active-sign">{cSign + " "}</span>
+              <br className="hide-on-large-only" /> x {cSignPrimary}
             </p>
           </div>
           <div className="score-block__score">
@@ -81,7 +77,7 @@ class ScoreDisplay extends Component {
           </div>
           <div
             className={
-              "score-block__circular-progress-bar--combined " + 
+              "score-block__circular-progress-bar--combined " +
               selector(id, COMBINED)
             }
           />
