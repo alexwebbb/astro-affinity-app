@@ -20,6 +20,8 @@ app.use(
     keys: [keys.cookieKey]
   })
 );
+
+console.log("about to call passport");
 app.use(passport.initialize());
 app.use(passport.session());
 
