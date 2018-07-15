@@ -4,13 +4,13 @@ export const nameToIndex = {
   tiger: 2,
   rabbit: 3,
   dragon: 4,
-  sanke: 5,
+  snake: 5,
   horse: 6,
   sheep: 7,
   monkey: 8,
   rooster: 9,
   dog: 10,
-  pig: 11
+  boar: 11
 };
 
 export const indexToName = [
@@ -19,13 +19,13 @@ export const indexToName = [
   "tiger",
   "rabbit",
   "dragon",
-  "sanke",
+  "snake",
   "horse",
   "sheep",
   "monkey",
   "rooster",
   "dog",
-  "pig"
+  "boar"
 ];
 
 export const affinities = [

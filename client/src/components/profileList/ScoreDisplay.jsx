@@ -15,7 +15,8 @@ const selector = (id, role) => {
   WESTERN = "western";
 
 class ScoreDisplay extends Component {
-  componentDidUpdate() {
+
+  callDraw() {
     const { id, cSign, wSign, cSignPrimary, wSignPrimary } = this.props,
       cScore = getChineseAffinity(cSignPrimary, cSign),
       wScore = getWesternAffinity(wSignPrimary, wSign);
@@ -25,13 +26,18 @@ class ScoreDisplay extends Component {
     CircularProgressBar(selector(id, WESTERN), wScore / 5);
   }
 
+  componentDidUpdate() {
+    this.callDraw();
+  }
+
   render() {
-    const { id, cSign, wSign, cSignPrimary, wSignPrimary } = this.props,
+    const { id, name, namePrimary, cSign, wSign, cSignPrimary, wSignPrimary, active } = this.props,
       cScore = getChineseAffinity(cSignPrimary, cSign),
-      wScore = getWesternAffinity(wSignPrimary, wSign);
+      wScore = getWesternAffinity(wSignPrimary, wSign),
+      state = (active ? "" : "hide");
 
     return (
-      <div className="right">
+      <div className={"right " + state}>
         <div className="col m4 xl6 score-block">
           <div className="score-block__title">
             <p>
@@ -69,7 +75,12 @@ class ScoreDisplay extends Component {
           />
         </div>
         <div className="col m4 xl12 score-block">
-          <p className="score-block__title--combined">Combined: </p>
+        <div className="score-block__title">
+            <p>
+              <span className="score-block__active-sign">{name + " "}</span>
+              <br className="hide-on-large-only" /> x {namePrimary}
+            </p>
+          </div>
           <div className="score-block__score">
             <div className={"score-block__decorative-circle " + COLORS.WHITE}>
               {(cScore + wScore) / 2}

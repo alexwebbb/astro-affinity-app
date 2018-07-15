@@ -82,6 +82,7 @@ html {
   font-size: 1.2em;
   font-weight: 900;
   color: var(--title2);
+  text-shadow: 3px 3px var(--title);
 }
 
 /* radar chart */
@@ -102,6 +103,10 @@ html {
 .profile-list__button {
   padding: 5px 10px;
   display: inline-block;
+}
+
+.profile-list__card--primary {
+  order: 1;
 }
 
 .score-block {
@@ -148,7 +153,7 @@ html {
 
 .score-block__active-sign {
   color: var(--title2);
-  text-shadow: 1px 1px 2px var(--text);
+  text-shadow: 2px 2px 2px var(--text);
   font-size: 1.2em;
 }
 
@@ -160,7 +165,7 @@ html {
   }
 }
 
-.profile-card__active-sign {
+.profile-list__active-sign {
   color: var(--title2);
   font-weight: 900;
   font-size: 1.2em;

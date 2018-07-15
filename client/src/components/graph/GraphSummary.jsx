@@ -5,9 +5,9 @@ import Graph from "./Graph";
 import GraphSpinner from "./GraphSpinner";
 import * as chineseZodiac from "../../utils/chineseZodiac";
 import * as westernZodiac from "../../utils/westernZodiac";
-import { CHINESE, WESTERN } from "./zodiacDefinitions";
+import "./zodiacDefinitions";
 
-class GraphControl extends Component {
+class GraphSummary extends Component {
   state = { currentZodiac: WESTERN };
 
   renderGraph() {
@@ -101,4 +101,4 @@ const mapStateToProps = ({ profiles, selected }) => {
   };
 };
 
-export default connect(mapStateToProps)(GraphControl);
+export default connect(mapStateToProps)(GraphSummary);
