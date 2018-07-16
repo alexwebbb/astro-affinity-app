@@ -14,6 +14,28 @@ class ProfileList extends Component {
     this.props.setSelected(this.props.profiles[0]._id);
   }
 
+  getData(birthdate, birthdatePrimary) {
+    const date = parseDate(birthdate).toDateString(),
+      cSign = ZODIAC[CHINESE].getSign(birthdate),
+      wSign = ZODIAC[WESTERN].getSign(birthdate),
+      cSignPrimary = ZODIAC[CHINESE].getSign(birthdatePrimary),
+      wSignPrimary = ZODIAC[WESTERN].getSign(birthdatePrimary),
+      cScore = ZODIAC[CHINESE].getAffinity(cSignPrimary, cSign),
+      wScore = ZODIAC[WESTERN].getAffinity(wSignPrimary, wSign),
+      combinedScore = (cScore + wScore) / 2;
+
+    return {
+      birthdate: date,
+      cSign,
+      wSign,
+      cSignPrimary,
+      wSignPrimary,
+      cScore,
+      wScore,
+      combinedScore
+    };
+  }
+
   renderSignInfo(chineseSign, westernSign, date) {
     return (
       <ul className="collection">
@@ -67,7 +89,9 @@ class ProfileList extends Component {
       return (
         <div>
           <div className="profile-list__button right">
-            <a className={"waves-effect waves-light btn-large " + COLORS.ACCENT3}>
+            <a
+              className={"waves-effect waves-light btn-large " + COLORS.ACCENT3}
+            >
               current primary
             </a>
           </div>
@@ -77,26 +101,29 @@ class ProfileList extends Component {
   }
 
   renderProfiles() {
-    if (this.props.profiles.length === 0 || this.props.auth === null) {
+    const { profiles, auth } = this.props;
+
+    if (profiles.length === 0 || auth === null) {
       return null;
     }
-    const primary = this.props.profiles.find(({ _id }) => {
-      return _id === this.props.auth.primary;
+
+    const pIndex = profiles.findIndex(({ _id }) => {
+      return _id === auth.primary;
     });
 
-    let filteredProfiles = this.props.profiles.filter(({ _id }, i, a) => {
-      return _id !== primary._id;
+    const newProfiles = profiles.map((v, i) => {
+      return { index: i, ...v, ...this.getData(v.birthdate, profiles[pIndex].birthdate) };
     });
+    
 
-    filteredProfiles.unshift(primary);
+    const filteredProfiles = newProfiles.splice(0, 0, newProfiles.splice(pIndex, 1)[0]);
+    console.log(newProfiles);
 
-    return filteredProfiles.map(({ _id, name, birthdate, description }) => {
-      const date = parseDate(birthdate).toDateString(),
-        chineseSign = ZODIAC[CHINESE].getSign(birthdate),
-        westernSign = ZODIAC[WESTERN].getSign(birthdate),
+    return newProfiles.map(data => {
+      const { _id, name, cSign, wSign, birthdate, description } = data,
         selectedColor =
           this.props.selected === _id ? COLORS.SELECTED : COLORS.TERTIARY,
-        isPrimary = this.props.auth.primary === _id;
+        isPrimary = auth.primary === _id;
 
       return (
         <div
@@ -113,19 +140,19 @@ class ProfileList extends Component {
                 <p>{description}</p>
               </div>
 
-              <ScoreDisplay
+              {/* <ScoreDisplay
                 id={_id}
-                name={name}
                 namePrimary={primary.name}
+                name={name}
                 cSignPrimary={ZODIAC[CHINESE].getSign(primary.birthdate)}
                 wSignPrimary={ZODIAC[WESTERN].getSign(primary.birthdate)}
                 cSign={chineseSign}
                 wSign={westernSign}
                 active={!isPrimary}
-              />
+              /> */}
             </div>
             <div className="col s12 m6 l12 xl7">
-              {this.renderSignInfo(chineseSign, westernSign, date)}
+              {this.renderSignInfo(cSign, wSign, birthdate)}
               {this.renderButtons(isPrimary, _id)}
             </div>
           </div>
