@@ -1,25 +1,19 @@
 import React, { Component } from "react";
-
+import ZODIAC, { CHINESE, WESTERN } from "../../utils/zodiac";
 import * as COLORS from "../../config/colors";
-
 import CircularProgressBar from "../../utils/circularProgressBar/circularProgressBar";
-
-import { getAffinity as getChineseAffinity } from "../../utils/zodiac/chineseZodiac";
-import { getAffinity as getWesternAffinity } from "../../utils/zodiac/westernZodiac";
 
 const selector = (id, role) => {
     return role + "-score-for-" + id;
   },
-  COMBINED = "combined",
-  CHINESE = "chinese",
-  WESTERN = "western";
+  COMBINED = "combined";
 
 class ScoreDisplay extends Component {
 
   callDraw() {
     const { id, cSign, wSign, cSignPrimary, wSignPrimary } = this.props,
-      cScore = getChineseAffinity(cSignPrimary, cSign),
-      wScore = getWesternAffinity(wSignPrimary, wSign);
+      cScore = ZODIAC[CHINESE].getAffinity(cSignPrimary, cSign),
+      wScore = ZODIAC[WESTERN].getAffinity(wSignPrimary, wSign);
 
     CircularProgressBar(selector(id, COMBINED), (cScore + wScore) / 10);
     CircularProgressBar(selector(id, CHINESE), cScore / 5);
@@ -32,8 +26,8 @@ class ScoreDisplay extends Component {
 
   render() {
     const { id, name, namePrimary, cSign, wSign, cSignPrimary, wSignPrimary, active } = this.props,
-      cScore = getChineseAffinity(cSignPrimary, cSign),
-      wScore = getWesternAffinity(wSignPrimary, wSign),
+      cScore = ZODIAC[CHINESE].getAffinity(cSignPrimary, cSign),
+      wScore = ZODIAC[WESTERN].getAffinity(wSignPrimary, wSign),
       state = (active ? "" : "hide");
 
     return (

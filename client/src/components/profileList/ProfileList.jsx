@@ -2,13 +2,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "../../actions";
 import parseDate from "../../utils/parseDate";
-
+import ZODIAC, { CHINESE, WESTERN } from "../../utils/zodiac";
 import * as COLORS from "../../config/colors";
-
 import ScoreDisplay from "./ScoreDisplay";
-
-import * as chineseZodiac from "../../utils/zodiac/chineseZodiac";
-import * as westernZodiac from "../../utils/zodiac/westernZodiac";
 
 class ProfileList extends Component {
   state = { selectedProfile: 0 };
@@ -71,7 +67,7 @@ class ProfileList extends Component {
       return (
         <div>
           <div className="profile-list__button right">
-            <a className="waves-effect waves-light btn-large">
+            <a className={"waves-effect waves-light btn-large " + COLORS.ACCENT3}>
               current primary
             </a>
           </div>
@@ -81,27 +77,30 @@ class ProfileList extends Component {
   }
 
   renderProfiles() {
-    if (this.props.profiles.length === 0) {
+    if (this.props.profiles.length === 0 || this.props.auth === null) {
       return null;
     }
-    const currentPrimary = this.props.profiles.find(({ _id }) => {
-        return _id === this.props.auth.primary;
-      }),
-      chineseSignPrimary = chineseZodiac.getSign(currentPrimary.birthdate),
-      westernSignPrimary = westernZodiac.getSign(currentPrimary.birthdate);
+    const primary = this.props.profiles.find(({ _id }) => {
+      return _id === this.props.auth.primary;
+    });
 
-    return this.props.profiles.map(({ _id, name, birthdate, description }) => {
+    let filteredProfiles = this.props.profiles.filter(({ _id }, i, a) => {
+      return _id !== primary._id;
+    });
+
+    filteredProfiles.unshift(primary);
+
+    return filteredProfiles.map(({ _id, name, birthdate, description }) => {
       const date = parseDate(birthdate).toDateString(),
-        chineseSign = chineseZodiac.getSign(birthdate),
-        westernSign = westernZodiac.getSign(birthdate),
+        chineseSign = ZODIAC[CHINESE].getSign(birthdate),
+        westernSign = ZODIAC[WESTERN].getSign(birthdate),
         selectedColor =
           this.props.selected === _id ? COLORS.SELECTED : COLORS.TERTIARY,
-        isPrimary = this.props.auth.primary === _id,
-        primaryState = isPrimary ? "profile-list__card--primary" : "";
+        isPrimary = this.props.auth.primary === _id;
 
       return (
         <div
-          className={["card hoverable", selectedColor, primaryState].join(" ")}
+          className={["card hoverable", selectedColor].join(" ")}
           key={_id}
           onClick={() => this.props.setSelected(_id)}
         >
@@ -117,9 +116,9 @@ class ProfileList extends Component {
               <ScoreDisplay
                 id={_id}
                 name={name}
-                namePrimary={currentPrimary.name}
-                cSignPrimary={chineseSignPrimary}
-                wSignPrimary={westernSignPrimary}
+                namePrimary={primary.name}
+                cSignPrimary={ZODIAC[CHINESE].getSign(primary.birthdate)}
+                wSignPrimary={ZODIAC[WESTERN].getSign(primary.birthdate)}
                 cSign={chineseSign}
                 wSign={westernSign}
                 active={!isPrimary}
