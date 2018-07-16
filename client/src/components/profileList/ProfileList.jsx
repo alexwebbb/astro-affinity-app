@@ -4,10 +4,18 @@ import * as actions from "../../actions";
 import parseDate from "../../utils/parseDate";
 import ZODIAC, { CHINESE, WESTERN } from "../../utils/zodiac";
 import * as COLORS from "../../config/colors";
-import ScoreDisplay from "./ScoreDisplay";
+import SignInfo from "./ProfileSignInfo";
+import Buttons from "./ProfileButtons";
+import ScoreDisplay from "./ProfileScoreDisplay";
 
 class ProfileList extends Component {
-  state = { selectedProfile: 0 };
+  constructor(props) {
+    super(props);
+
+    this.state = { selectedProfile: 0 };
+    this.setPrimary = this.props.setPrimary.bind(this);
+    this.removeProfile = this.props.removeProfile.bind(this);
+  }
 
   async componentDidMount() {
     await this.props.fetchProfiles();
@@ -36,70 +44,6 @@ class ProfileList extends Component {
     };
   }
 
-  renderSignInfo(chineseSign, westernSign, date) {
-    return (
-      <ul className="collection">
-        <li
-          className={["collection-item", COLORS.ACCENT2, COLORS.TEXT3].join(
-            " "
-          )}
-        >
-          Western Sign:{" "}
-          <span className="profile-list__active-sign">{westernSign}</span>
-        </li>
-        <li
-          className={["collection-item", COLORS.ACCENT, COLORS.TEXT4].join(" ")}
-        >
-          Chinese Sign:{" "}
-          <span className="profile-list__active-sign">{chineseSign}</span>
-        </li>
-        <li
-          className={["collection-item", COLORS.WHITE, COLORS.TEXT4].join(" ")}
-        >
-          Birthdate: {date}
-        </li>
-      </ul>
-    );
-  }
-
-  renderButtons(isPrimary, id) {
-    if (!isPrimary) {
-      return (
-        <div>
-          <div className="profile-list__button right">
-            <a
-              className="waves-effect waves-light btn-small"
-              onClick={() => this.props.setPrimary(id)}
-            >
-              set primary
-            </a>
-          </div>
-          <div className="profile-list__button right">
-            <a
-              className="waves-effect waves-light btn-small"
-              onClick={() => this.props.removeProfile(id)}
-            >
-              <i className="material-icons left">delete_forever</i>
-              delete
-            </a>
-          </div>
-        </div>
-      );
-    } else {
-      return (
-        <div>
-          <div className="profile-list__button right">
-            <a
-              className={"waves-effect waves-light btn-large " + COLORS.ACCENT3}
-            >
-              current primary
-            </a>
-          </div>
-        </div>
-      );
-    }
-  }
-
   renderProfiles() {
     const { profiles, auth } = this.props;
 
@@ -107,17 +51,23 @@ class ProfileList extends Component {
       return null;
     }
 
-    const pIndex = profiles.findIndex(({ _id }) => {
+    let pIndex = profiles.findIndex(({ _id }) => {
       return _id === auth.primary;
     });
 
-    const newProfiles = profiles.map((v, i) => {
-      return { index: i, ...v, ...this.getData(v.birthdate, profiles[pIndex].birthdate) };
-    });
-    
+    if (pIndex < 0) {
+      pIndex = 0;
+    }
 
-    const filteredProfiles = newProfiles.splice(0, 0, newProfiles.splice(pIndex, 1)[0]);
-    console.log(newProfiles);
+    const newProfiles = profiles.map((v, i) => {
+      return {
+        index: i,
+        ...v,
+        ...this.getData(v.birthdate, profiles[pIndex].birthdate)
+      };
+    });
+
+    newProfiles.splice(0, 0, newProfiles.splice(pIndex, 1)[0]);
 
     return newProfiles.map(data => {
       const { _id, name, cSign, wSign, birthdate, description } = data,
@@ -140,20 +90,21 @@ class ProfileList extends Component {
                 <p>{description}</p>
               </div>
 
-              {/* <ScoreDisplay
+              <ScoreDisplay
                 id={_id}
-                namePrimary={primary.name}
-                name={name}
-                cSignPrimary={ZODIAC[CHINESE].getSign(primary.birthdate)}
-                wSignPrimary={ZODIAC[WESTERN].getSign(primary.birthdate)}
-                cSign={chineseSign}
-                wSign={westernSign}
+                namePrimary={profiles[pIndex].name}
+                data={data}
                 active={!isPrimary}
-              /> */}
+              />
             </div>
             <div className="col s12 m6 l12 xl7">
-              {this.renderSignInfo(cSign, wSign, birthdate)}
-              {this.renderButtons(isPrimary, _id)}
+              <SignInfo cSign={cSign} wSign={wSign} birthdate={birthdate} />
+              <Buttons
+                isPrimary={isPrimary}
+                id={_id}
+                setPrimary={id => this.setPrimary(id)}
+                removeProfile={id => this.removeProfile(id)}
+              />
             </div>
           </div>
         </div>
