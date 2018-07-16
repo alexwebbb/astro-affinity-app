@@ -1,3 +1,5 @@
+export const name = "Chinese Zodiac";
+
 export const nameToIndex = {
   rat: 0,
   ox: 1,

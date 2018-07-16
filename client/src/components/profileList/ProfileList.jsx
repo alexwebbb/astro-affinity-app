@@ -6,10 +6,9 @@ import parseDate from "../../utils/parseDate";
 import * as COLORS from "../../config/colors";
 
 import ScoreDisplay from "./ScoreDisplay";
-import { Spinner } from "../../utils/materialize-widgets";
 
-import * as chineseZodiac from "../../utils/chineseZodiac";
-import * as westernZodiac from "../../utils/westernZodiac";
+import * as chineseZodiac from "../../utils/zodiac/chineseZodiac";
+import * as westernZodiac from "../../utils/zodiac/westernZodiac";
 
 class ProfileList extends Component {
   state = { selectedProfile: 0 };
@@ -82,19 +81,13 @@ class ProfileList extends Component {
   }
 
   renderProfiles() {
-    const currentPrimary = this.props.profiles.find(({ _id }) => {
-      if (this.props.auth !== null) {
-        return _id === this.props.auth.primary;
-      } else {
-        return null;
-      }
-    });
-
-    if (!currentPrimary) {
-      return <Spinner />;
+    if (this.props.profiles.length === 0) {
+      return null;
     }
-
-    const chineseSignPrimary = chineseZodiac.getSign(currentPrimary.birthdate),
+    const currentPrimary = this.props.profiles.find(({ _id }) => {
+        return _id === this.props.auth.primary;
+      }),
+      chineseSignPrimary = chineseZodiac.getSign(currentPrimary.birthdate),
       westernSignPrimary = westernZodiac.getSign(currentPrimary.birthdate);
 
     return this.props.profiles.map(({ _id, name, birthdate, description }) => {

@@ -2,10 +2,10 @@ import React, { Component } from "react";
 
 import * as COLORS from "../../config/colors";
 
-import CircularProgressBar from "./../../utils/circularProgressBar/circularProgressBar";
+import CircularProgressBar from "../../utils/circularProgressBar/circularProgressBar";
 
-import { getAffinity as getChineseAffinity } from "../../utils/chineseZodiac";
-import { getAffinity as getWesternAffinity } from "../../utils/westernZodiac";
+import { getAffinity as getChineseAffinity } from "../../utils/zodiac/chineseZodiac";
+import { getAffinity as getWesternAffinity } from "../../utils/zodiac/westernZodiac";
 
 const selector = (id, role) => {
     return role + "-score-for-" + id;

@@ -1,3 +1,5 @@
+export const name = "Western Zodiac";
+
 export const nameToIndex = {
   aries: 0,
   taurus: 1,
