@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "../../actions";
-import parseDate from "../../utils/parseDate";
-import ZODIAC, { CHINESE, WESTERN } from "../../utils/zodiac";
 import * as COLORS from "../../config/colors";
+import getData from "./getData";
 import SignInfo from "./ProfileSignInfo";
 import Buttons from "./ProfileButtons";
 import ScoreDisplay from "./ProfileScoreDisplay";
@@ -20,28 +19,6 @@ class ProfileList extends Component {
   async componentDidMount() {
     await this.props.fetchProfiles();
     this.props.setSelected(this.props.profiles[0]._id);
-  }
-
-  getData(birthdate, birthdatePrimary) {
-    const date = parseDate(birthdate).toDateString(),
-      cSign = ZODIAC[CHINESE].getSign(birthdate),
-      wSign = ZODIAC[WESTERN].getSign(birthdate),
-      cSignPrimary = ZODIAC[CHINESE].getSign(birthdatePrimary),
-      wSignPrimary = ZODIAC[WESTERN].getSign(birthdatePrimary),
-      cScore = ZODIAC[CHINESE].getAffinity(cSignPrimary, cSign),
-      wScore = ZODIAC[WESTERN].getAffinity(wSignPrimary, wSign),
-      combinedScore = (cScore + wScore) / 2;
-
-    return {
-      birthdate: date,
-      cSign,
-      wSign,
-      cSignPrimary,
-      wSignPrimary,
-      cScore,
-      wScore,
-      combinedScore
-    };
   }
 
   renderProfiles() {
@@ -63,7 +40,7 @@ class ProfileList extends Component {
       return {
         index: i,
         ...v,
-        ...this.getData(v.birthdate, profiles[pIndex].birthdate)
+        ...getData(v.birthdate, profiles[pIndex].birthdate)
       };
     });
 
