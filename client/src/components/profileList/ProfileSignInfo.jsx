@@ -13,7 +13,7 @@ export default ({cSign, wSign, birthdate}) => {
           <span className="profile-list__active-sign">{wSign}</span>
         </li>
         <li
-          className={["collection-item", COLORS.ACCENT, COLORS.TEXT4].join(" ")}
+          className={["collection-item", COLORS.ACCENT1, COLORS.TEXT4].join(" ")}
         >
           Chinese Sign:{" "}
           <span className="profile-list__active-sign">{cSign}</span>

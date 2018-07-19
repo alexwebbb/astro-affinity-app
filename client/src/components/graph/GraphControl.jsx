@@ -5,8 +5,15 @@ import * as COLORS from "../../config/colors";
 import Graph from "./Graph";
 import GraphSpinner from "./GraphSpinner";
 
+import * as M from "materialize-css";
+
 class GraphControl extends Component {
   state = { currentZodiac: WESTERN };
+
+  componentDidUpdate() {
+    const elems = document.querySelectorAll(".pushpin");
+    M.Pushpin.init(elems, { top: 64 }); // true offset is 74px
+  }
 
   renderGraph() {
     const { currentZodiac } = this.state,
@@ -39,13 +46,13 @@ class GraphControl extends Component {
     };
 
     return (
-      <div>
+      <div className="graph-control pushpin">
         <div className={"card " + COLORS.SECONDARY}>
           <div className={"card-content center-align " + COLORS.TITLE}>
             {this.renderGraph()}
             <p className="flow-text">
-              Graph of the different affinities with the sign of the person
-              selected.
+              Graph of the different affinities <br /> with the sign of the
+              person selected.
             </p>
           </div>
           <div className="card-action center-align">

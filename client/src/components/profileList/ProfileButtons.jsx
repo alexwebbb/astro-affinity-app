@@ -1,7 +1,7 @@
 import React from "react";
 import * as COLORS from "../../config/colors";
  
- export default ({isPrimary, id, setPrimary}) => {
+ export default ({isPrimary, id, setPrimary, removeProfile}) => {
     if (!isPrimary) {
       return (
         <div>
@@ -16,7 +16,7 @@ import * as COLORS from "../../config/colors";
           <div className="profile-list__button right">
             <a
               className="waves-effect waves-light btn-small"
-              onClick={() => this.props.removeProfile(id)}
+              onClick={() => removeProfile(id)}
             >
               <i className="material-icons left">delete_forever</i>
               delete

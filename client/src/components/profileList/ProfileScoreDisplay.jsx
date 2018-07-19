@@ -54,7 +54,7 @@ class ScoreDisplay extends Component {
             </p>
           </div>
           <div className="score-block__score">
-            <div className={"score-block__decorative-circle " + COLORS.ACCENT}>
+            <div className={"score-block__decorative-circle " + COLORS.ACCENT1}>
               {cScore}
             </div>
           </div>

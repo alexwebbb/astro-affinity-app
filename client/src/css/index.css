@@ -2,12 +2,12 @@
 
 :root {
   --primary: #4527a0;
-  --title: #dd2c00; /* deep-orange lighten-3 */
-  --title2: #9e9d24;
-  --text: #ffd740; /* amber accent-2 */
-  --text2: #dd2c00; /* deep-orange accent-4*/
+  --title2: #9e9d24; 
+  --text: #ffd740; /*  */
+  --text2: #dd2c00; /* */
   --text3: #004d40;
   --accent4: #00acc1;
+  --accent5: #dd2c00; /* deep-orange accent-4 */
 }
 
 html {
@@ -78,11 +78,15 @@ html {
   padding: 20px;
 }
 
+.graph-control {
+  width: auto;
+}
+
 .graph__active-sign {
   font-size: 1.2em;
   font-weight: 900;
   color: var(--title2);
-  text-shadow: 3px 3px var(--title);
+  text-shadow: 3px 3px var(--accent5);
 }
 
 /* radar chart */
@@ -103,6 +107,10 @@ html {
 .profile-list__button {
   padding: 5px 10px;
   display: inline-block;
+}
+
+.profile-list__sort-button {
+  margin: 10px;
 }
 
 .profile-list__card--primary {

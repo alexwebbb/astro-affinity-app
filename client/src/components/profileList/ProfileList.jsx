@@ -7,11 +7,15 @@ import SignInfo from "./ProfileSignInfo";
 import Buttons from "./ProfileButtons";
 import ScoreDisplay from "./ProfileScoreDisplay";
 
+import { CHINESE, WESTERN } from "../../utils/zodiac";
+
+const COMBINED = "combined";
+
 class ProfileList extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { selectedProfile: 0 };
+    this.state = { selectedProfile: 0, sortIndex: COMBINED, reverse: false };
     this.setPrimary = this.props.setPrimary.bind(this);
     this.removeProfile = this.props.removeProfile.bind(this);
   }
@@ -20,6 +24,63 @@ class ProfileList extends Component {
     await this.props.fetchProfiles();
     this.props.setSelected(this.props.profiles[0]._id);
   }
+
+  renderSortButtons() {
+    const isActive = index => {
+      if (this.state.sortIndex === index) {
+        return COLORS.ACCENT3;
+      }
+    };
+
+    return (
+      <div className={"card " + COLORS.MENU}>
+        <div className="card-content row center-align">
+          
+            <p className="card-title white-text">Sort order:</p>
+
+            <a
+              className={
+                "hoverable waves-effect waves-light btn profile-list__sort-button " +
+                isActive(WESTERN)
+              }
+              onClick={() => this.setState({ sortIndex: WESTERN })}
+            >
+              Western
+            </a>
+            <a
+              className={
+                "hoverable waves-effect waves-light btn profile-list__sort-button " +
+                isActive(CHINESE)
+              }
+              onClick={() => this.setState({ sortIndex: CHINESE })}
+            >
+              Chinese
+            </a>
+            <a
+              className={
+                "hoverable waves-effect waves-light btn profile-list__sort-button " +
+                isActive(COMBINED)
+              }
+              onClick={() => this.setState({ sortIndex: COMBINED })}
+            >
+              Combined
+            </a>
+            <a
+              className={
+                "hoverable waves-effect waves-light btn profile-list__sort-button " +
+                (this.state.reverse ? COLORS.ACCENT5 : "")
+              }
+              onClick={() => this.setState({ reverse: !this.state.reverse })}
+            >
+              Reverse
+            </a>
+          
+        </div>
+      </div>
+    );
+  }
+
+  sortProfiles() {}
 
   renderProfiles() {
     const { profiles, auth } = this.props;
@@ -44,7 +105,31 @@ class ProfileList extends Component {
       };
     });
 
-    newProfiles.splice(0, 0, newProfiles.splice(pIndex, 1)[0]);
+    const primaryProfile = newProfiles.splice(pIndex, 1)[0];
+
+    switch (this.state.sortIndex) {
+      case CHINESE:
+        newProfiles.sort((a, b) => {
+          return b.cScore - a.cScore;
+        });
+        break;
+      case WESTERN:
+        newProfiles.sort((a, b) => {
+          return b.wScore - a.wScore;
+        });
+        break;
+      case COMBINED:
+        newProfiles.sort((a, b) => {
+          return b.combinedScore - a.combinedScore;
+        });
+        break;
+    }
+
+    if (this.state.reverse) {
+      newProfiles.reverse();
+    }
+
+    newProfiles.splice(0, 0, primaryProfile);
 
     return newProfiles.map(data => {
       const { _id, name, cSign, wSign, birthdate, description } = data,
@@ -90,7 +175,12 @@ class ProfileList extends Component {
   }
 
   render() {
-    return <div>{this.renderProfiles()}</div>;
+    return (
+      <div>
+        {this.renderSortButtons()}
+        {this.renderProfiles()}
+      </div>
+    );
   }
 }
 
