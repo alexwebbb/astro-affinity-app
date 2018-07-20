@@ -1,12 +1,11 @@
 import React, { Component } from "react";
-import { CHINESE, WESTERN } from "../../utils/zodiac";
+import { CHINESE, WESTERN, COMBINED } from "../../utils/zodiac";
 import * as COLORS from "../../config/colors";
 import CircularProgressBar from "../../utils/circularProgressBar/circularProgressBar";
 
 const selector = (id, role) => {
     return role + "-score-for-" + id;
-  },
-  COMBINED = "combined";
+  };
 
 class ScoreDisplay extends Component {
   callDraw() {

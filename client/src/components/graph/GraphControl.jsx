@@ -12,7 +12,7 @@ class GraphControl extends Component {
 
   componentDidUpdate() {
     const elems = document.querySelectorAll(".pushpin");
-    M.Pushpin.init(elems, { top: 64 }); // true offset is 74px
+    M.Pushpin.init(elems, { top: 44 }); // true offset is 74px
   }
 
   renderGraph() {

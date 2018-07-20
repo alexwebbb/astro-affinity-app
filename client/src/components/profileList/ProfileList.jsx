@@ -4,12 +4,11 @@ import * as actions from "../../actions";
 import * as COLORS from "../../config/colors";
 import getData from "./getData";
 import SignInfo from "./ProfileSignInfo";
+import SortButtons from "./ProfileSortButtons";
 import Buttons from "./ProfileButtons";
 import ScoreDisplay from "./ProfileScoreDisplay";
 
-import { CHINESE, WESTERN } from "../../utils/zodiac";
-
-const COMBINED = "combined";
+import { CHINESE, WESTERN, COMBINED } from "../../utils/zodiac";
 
 class ProfileList extends Component {
   constructor(props) {
@@ -18,6 +17,8 @@ class ProfileList extends Component {
     this.state = { selectedProfile: 0, sortIndex: COMBINED, reverse: false };
     this.setPrimary = this.props.setPrimary.bind(this);
     this.removeProfile = this.props.removeProfile.bind(this);
+    this.setSort = this.setSort.bind(this);
+    this.setReverse = this.setReverse.bind(this);
   }
 
   async componentDidMount() {
@@ -25,70 +26,15 @@ class ProfileList extends Component {
     this.props.setSelected(this.props.profiles[0]._id);
   }
 
-  renderSortButtons() {
-    const isActive = index => {
-      if (this.state.sortIndex === index) {
-        return COLORS.ACCENT3;
-      }
-    };
-
-    return (
-      <div className={"card " + COLORS.MENU}>
-        <div className="card-content row center-align">
-          
-            <p className="card-title white-text">Sort order:</p>
-
-            <a
-              className={
-                "hoverable waves-effect waves-light btn profile-list__sort-button " +
-                isActive(WESTERN)
-              }
-              onClick={() => this.setState({ sortIndex: WESTERN })}
-            >
-              Western
-            </a>
-            <a
-              className={
-                "hoverable waves-effect waves-light btn profile-list__sort-button " +
-                isActive(CHINESE)
-              }
-              onClick={() => this.setState({ sortIndex: CHINESE })}
-            >
-              Chinese
-            </a>
-            <a
-              className={
-                "hoverable waves-effect waves-light btn profile-list__sort-button " +
-                isActive(COMBINED)
-              }
-              onClick={() => this.setState({ sortIndex: COMBINED })}
-            >
-              Combined
-            </a>
-            <a
-              className={
-                "hoverable waves-effect waves-light btn profile-list__sort-button " +
-                (this.state.reverse ? COLORS.ACCENT5 : "")
-              }
-              onClick={() => this.setState({ reverse: !this.state.reverse })}
-            >
-              Reverse
-            </a>
-          
-        </div>
-      </div>
-    );
+  setSort(index) {
+    this.setState({ sortIndex: index });
   }
 
-  sortProfiles() {}
+  setReverse() {
+    this.setState({ reverse: !this.state.reverse });
+  }
 
-  renderProfiles() {
-    const { profiles, auth } = this.props;
-
-    if (profiles.length === 0 || auth === null) {
-      return null;
-    }
-
+  sortProfiles(profiles, auth) {
     let pIndex = profiles.findIndex(({ _id }) => {
       return _id === auth.primary;
     });
@@ -131,6 +77,18 @@ class ProfileList extends Component {
 
     newProfiles.splice(0, 0, primaryProfile);
 
+    return { primary: profiles[pIndex], newProfiles };
+  }
+
+  renderProfiles() {
+    const { profiles, auth } = this.props;
+
+    if (profiles.length === 0 || auth === null) {
+      return null;
+    }
+
+    const { primary, newProfiles } = this.sortProfiles(profiles, auth);
+
     return newProfiles.map(data => {
       const { _id, name, cSign, wSign, birthdate, description } = data,
         selectedColor =
@@ -154,7 +112,7 @@ class ProfileList extends Component {
 
               <ScoreDisplay
                 id={_id}
-                namePrimary={profiles[pIndex].name}
+                namePrimary={primary.name}
                 data={data}
                 active={!isPrimary}
               />
@@ -164,8 +122,8 @@ class ProfileList extends Component {
               <Buttons
                 isPrimary={isPrimary}
                 id={_id}
-                setPrimary={id => this.setPrimary(id)}
-                removeProfile={id => this.removeProfile(id)}
+                setPrimary={this.setPrimary}
+                removeProfile={this.removeProfile}
               />
             </div>
           </div>
@@ -177,7 +135,12 @@ class ProfileList extends Component {
   render() {
     return (
       <div>
-        {this.renderSortButtons()}
+        <SortButtons
+          currentIndex={this.state.sortIndex}
+          currentReverse={this.state.reverse}
+          setSort={this.setSort}
+          setReverse={this.setReverse}
+        />
         {this.renderProfiles()}
       </div>
     );
