@@ -4,8 +4,15 @@ import * as COLORS from "../../config/colors";
 import CircularProgressBar from "../../utils/circularProgressBar/circularProgressBar";
 
 const selector = (id, role) => {
-  return role + "-score-for-" + id;
-};
+    return role + "-score-for-" + id;
+  },
+  truncate = (string, length = 8) => {
+    if (string.length > length) {
+      return [string.substring(0, length - 1), "..."].join("");
+    } else {
+      return string;
+    }
+  };
 
 class ScoreDisplay extends Component {
   callDraw() {
@@ -39,7 +46,7 @@ class ScoreDisplay extends Component {
         <div className="col m4 xl6 score-block">
           <div className="score-block__title">
             <p>
-              <span className="score-block__active-sign">{wSign + " "}</span>
+              <span className="score-block__active-sign">{truncate(wSign) + " "}</span>
               <br className="hide-on-large-and-up" /> x{" "}
               <br className="hide-on-large-and-up" />
               {wSignPrimary}
@@ -59,7 +66,7 @@ class ScoreDisplay extends Component {
         <div className="col m4 xl6 score-block">
           <div className="score-block__title">
             <p>
-              <span className="score-block__active-sign">{cSign + " "}</span>
+              <span className="score-block__active-sign">{truncate(cSign) + " "}</span>
               <br className="hide-on-large-and-up" /> x{" "}
               <br className="hide-on-large-and-up" />
               {cSignPrimary}
@@ -79,8 +86,9 @@ class ScoreDisplay extends Component {
         <div className="col m4 xl12 score-block">
           <div className="score-block__title">
             <p>
-              <span className="score-block__active-sign">{name + " "}</span>
-              <br className="hide-on-large-and-up" /> x {namePrimary}
+              <span className="score-block__active-sign">{truncate(name, 10) + " "}</span>
+              <br className="hide-on-large-and-up" /> x{" "}
+              {truncate(namePrimary)}
             </p>
           </div>
           <div className="score-block__score">

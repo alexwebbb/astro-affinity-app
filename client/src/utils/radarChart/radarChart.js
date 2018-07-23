@@ -3,10 +3,10 @@ import { wrap } from "./wrap";
 
 // updated and corrected for es6 + react from http://bl.ocks.org/mthh/7e17b680b35b83b49f1c22a3613bd89f
 
-const max = Math.max;
-const sin = Math.sin;
-const cos = Math.cos;
-const HALF_PI = Math.PI / 2;
+const max = Math.max,
+  sin = Math.sin,
+  cos = Math.cos,
+  HALF_PI = Math.PI / 2;
 
 export default (parent_selector, data, options) => {
   const cfg = {

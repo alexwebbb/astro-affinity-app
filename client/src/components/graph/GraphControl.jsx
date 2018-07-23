@@ -73,7 +73,7 @@ class GraphControl extends Component {
     return (
       <div className={"graph-control " + pushpinActive}>
         <div className={"card " + COLORS.SECONDARY}>
-          <div className={"card-content center-align " + COLORS.TITLE}>
+          <div className={"card-content center-align " + COLORS.TITLE1}>
             {this.renderGraph()}
             <p className="flow-text">
               Graph of the different affinities <br /> with the sign of the

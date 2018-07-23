@@ -16,8 +16,8 @@ export const handleToken = token => async dispatch => {
 export const submitProfile = (values, history) => async dispatch => {
   const user = await axios.post("/api/profiles", values);
 
-  history.push("/affinities");
   dispatch({ type: FETCH_USER, payload: user.data });
+  history.push("/affinities");
 };
 
 export const removeProfile = id => async dispatch => {

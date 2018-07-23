@@ -8,7 +8,7 @@ import "./../css/index.css";
 import Header from './Header';
 import Landing from './Landing';
 import Dashboard from './Dashboard';
-import ProfileNew from './profileNew/ProfileNew';
+import NewProfile from './newProfile/NewProfile';
 
 class App extends Component {
   componentDidMount() {
@@ -23,7 +23,7 @@ class App extends Component {
             <Header />
             <Route exact path="/" component={Landing} />
             <Route exact path="/affinities" component={Dashboard} />
-            <Route path="/affinities/new" component={ProfileNew} />
+            <Route path="/affinities/new" component={NewProfile} />
           </div>
         </BrowserRouter>
       </div>

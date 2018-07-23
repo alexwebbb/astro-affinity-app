@@ -1,14 +1,15 @@
 import React, { Component } from "react";
 import { reduxForm } from "redux-form";
-import ProfileForm from "./ProfileForm";
-import ProfileFormReview from "./ProfileFormReview";
+import ProfileForm from "./NewProfileForm";
+import ProfileFormReview from "./NewProfileFormReview";
 
 const classes = "light-blue lighten-5 profile-form-css";
 
-class ProfileNew extends Component {
+class NewProfile extends Component {
   state = { showFormReview: false };
 
   renderContent() {
+    
     if (this.state.showFormReview) {
       return (
         <div className={classes}>
@@ -35,4 +36,4 @@ class ProfileNew extends Component {
 
 export default reduxForm({
   form: "ProfileForm"
-})(ProfileNew);
+})(NewProfile);

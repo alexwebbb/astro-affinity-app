@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import ProfileList from "./profileList/ProfileList";
 import GraphControl from "./graph/GraphControl";
+import * as COLORS from "../config/colors";
 
 const Dashboard = () => {
 
@@ -19,7 +20,7 @@ const Dashboard = () => {
 
       
       <div className="fixed-action-btn">
-        <Link to="/affinities/new" className="btn-floating btn-large red">
+        <Link to="/affinities/new" className={"btn-floating btn-large " + COLORS.ACCENT5}>
           <i className="material-icons">add</i>
         </Link>
       </div>
