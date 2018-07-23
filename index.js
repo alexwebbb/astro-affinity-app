@@ -21,7 +21,6 @@ app.use(
   })
 );
 
-console.log("about to call passport");
 app.use(passport.initialize());
 app.use(passport.session());
 

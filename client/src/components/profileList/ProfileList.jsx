@@ -5,7 +5,8 @@ import * as COLORS from "../../config/colors";
 import sortProfiles from "./sortProfiles";
 import SignInfo from "./ProfileSignInfo";
 import SortButtons from "./ProfileSortButtons";
-import Buttons from "./ProfileButtons";
+import SelectionButton from "./ProfileSelectionButton";
+import PrimaryButtons from "./ProfilePrimaryButtons";
 import ScoreDisplay from "./ProfileScoreDisplay";
 
 import { COMBINED } from "../../utils/zodiac";
@@ -50,28 +51,22 @@ class ProfileList extends Component {
 
     return newProfiles.map(data => {
       const { _id, name, cSign, wSign, birthdate, description } = data,
-        selectedColor =
-          this.props.selected === _id ? COLORS.SELECTED : COLORS.TERTIARY,
+        isSelected = this.props.selected === _id,
+        selectedColor = isSelected ? COLORS.SELECTED : COLORS.TERTIARY,
         isPrimary = auth.primary === _id;
 
       return (
         <div
           className={["card hoverable", selectedColor].join(" ")}
           key={_id}
-          onClick={() => this.props.setSelected(_id)}
         >
           <div className="card-content row">
             <div className="col s12 m6 l12 xl5">
-              <a class="profile-list__title btn-floating btn-large waves-effect waves-light left red">
-                <i class="material-icons">add</i>
-              </a>
+              <div className="row">
+                <SelectionButton id={_id} selected={isSelected} setSelected={this.props.setSelected} />
                 <p className={"card-title " + COLORS.TEXT4}>{name}</p>
                 <p className={"right " + COLORS.TEXT3}>{description}</p>
-              {/* <div className="">
               </div>
-              <div className={"col " + COLORS.TEXT3}>
-              </div> */}
-
               <ScoreDisplay
                 id={_id}
                 namePrimary={primary.name}
@@ -81,9 +76,9 @@ class ProfileList extends Component {
             </div>
             <div className="col s12 m6 l12 xl7">
               <SignInfo cSign={cSign} wSign={wSign} birthdate={birthdate} />
-              <Buttons
-                isPrimary={isPrimary}
+              <PrimaryButtons
                 id={_id}
+                isPrimary={isPrimary}
                 setPrimary={this.setPrimary}
                 removeProfile={this.removeProfile}
               />

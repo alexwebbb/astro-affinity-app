@@ -1,7 +1,7 @@
 import React from "react";
 import * as COLORS from "../../config/colors";
  
- export default ({isPrimary, id, setPrimary, removeProfile}) => {
+ export default ({id, isPrimary, setPrimary, removeProfile}) => {
     if (!isPrimary) {
       return (
         <div>
@@ -29,7 +29,7 @@ import * as COLORS from "../../config/colors";
         <div>
           <div className="profile-list__button right">
             <a
-              className={"waves-effect waves-light btn-large " + COLORS.ACCENT3}
+              className={"waves-effect waves-light btn-large " + COLORS.PRIMARY}
             >
               current primary
             </a>

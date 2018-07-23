@@ -4,8 +4,8 @@ import * as COLORS from "../../config/colors";
 import CircularProgressBar from "../../utils/circularProgressBar/circularProgressBar";
 
 const selector = (id, role) => {
-    return role + "-score-for-" + id;
-  };
+  return role + "-score-for-" + id;
+};
 
 class ScoreDisplay extends Component {
   callDraw() {
@@ -22,7 +22,16 @@ class ScoreDisplay extends Component {
 
   render() {
     const { id, namePrimary, active } = this.props,
-      { name, cSign, wSign, cSignPrimary, wSignPrimary, cScore, wScore, combinedScore } = this.props.data,
+      {
+        name,
+        cSign,
+        wSign,
+        cSignPrimary,
+        wSignPrimary,
+        cScore,
+        wScore,
+        combinedScore
+      } = this.props.data,
       state = active ? "" : "hide";
 
     return (
@@ -31,7 +40,9 @@ class ScoreDisplay extends Component {
           <div className="score-block__title">
             <p>
               <span className="score-block__active-sign">{wSign + " "}</span>
-              <br className="hide-on-large-and-up" /> x <br className="hide-on-large-and-up" />{wSignPrimary}
+              <br className="hide-on-large-and-up" /> x{" "}
+              <br className="hide-on-large-and-up" />
+              {wSignPrimary}
             </p>
           </div>
           <div className="score-block__score">
@@ -49,7 +60,9 @@ class ScoreDisplay extends Component {
           <div className="score-block__title">
             <p>
               <span className="score-block__active-sign">{cSign + " "}</span>
-              <br className="hide-on-large-and-up" /> x <br className="hide-on-large-and-up" />{cSignPrimary}
+              <br className="hide-on-large-and-up" /> x{" "}
+              <br className="hide-on-large-and-up" />
+              {cSignPrimary}
             </p>
           </div>
           <div className="score-block__score">

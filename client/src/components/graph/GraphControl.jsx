@@ -24,6 +24,7 @@ class GraphControl extends Component {
   }
 
   componentDidUpdate() {
+    // logic for pushpin, so that it doesnt run on med and below
     if (window.instances && this.state.width < 992) {
       window.instances.forEach(element => {
         element.destroy();
