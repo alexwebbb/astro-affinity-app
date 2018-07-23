@@ -8,11 +8,34 @@ import GraphSpinner from "./GraphSpinner";
 import * as M from "materialize-css";
 
 class GraphControl extends Component {
-  state = { currentZodiac: WESTERN };
+  constructor(props) {
+    super(props);
+    this.state = { width: 0, currentZodiac: WESTERN };
+    this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
+  }
+
+  updateWindowDimensions() {
+    this.setState({ width: window.innerWidth });
+  }
+
+  componentDidMount() {
+    this.updateWindowDimensions();
+    window.addEventListener("resize", this.updateWindowDimensions);
+  }
 
   componentDidUpdate() {
-    const elems = document.querySelectorAll(".pushpin");
-    M.Pushpin.init(elems, { top: 44 }); // true offset is 74px
+    if (window.instances && this.state.width < 992) {
+      window.instances.forEach(element => {
+        element.destroy();
+      });
+    } else if (this.state.width >= 992) {
+      const elems = document.querySelectorAll(".pushpin");
+      window.instances = M.Pushpin.init(elems, { top: 44 }); // true offset is 74px
+    }
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.updateWindowDimensions);
   }
 
   renderGraph() {
@@ -40,13 +63,14 @@ class GraphControl extends Component {
     }
 
     const isActive = zodiac => {
-      if (this.state.currentZodiac === zodiac) {
-        return COLORS.ACCENT3;
-      }
-    };
+        if (this.state.currentZodiac === zodiac) {
+          return COLORS.ACCENT3;
+        }
+      },
+      pushpinActive = true ? "pushpin" : "";
 
     return (
-      <div className="graph-control pushpin">
+      <div className={"graph-control " + pushpinActive}>
         <div className={"card " + COLORS.SECONDARY}>
           <div className={"card-content center-align " + COLORS.TITLE}>
             {this.renderGraph()}

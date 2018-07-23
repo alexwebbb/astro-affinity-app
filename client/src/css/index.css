@@ -109,6 +109,11 @@ html {
   fill: var(--text2);
 }
 
+.profile-list__title {
+  margin-right: 10px;
+  /* display: inline-block; */
+}
+
 .profile-list__button {
   padding: 5px 10px;
   display: inline-block;

@@ -3,6 +3,12 @@ import React, { Component } from "react";
 import RadarChart from "../../utils/radarChart/radarChart";
 
 class Graph extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { width: 0 };
+    this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
+  }
+
   getData() {
     const { affinities, indexToName, nameToIndex, getSign } = this.props.zodiac,
       name = getSign(this.props.birthdate);
@@ -13,6 +19,10 @@ class Graph extends Component {
         return { axis: indexToName[index], value };
       })
     };
+  }
+
+  updateWindowDimensions() {
+    this.setState({ width: this.refs.child.parentNode.clientWidth });
   }
 
   renderGraph(parentWidth) {
@@ -41,11 +51,19 @@ class Graph extends Component {
   }
 
   componentDidMount() {
-    this.renderGraph(this.refs.child.parentNode.clientWidth);
+    this.updateWindowDimensions();
+    window.addEventListener("resize", this.updateWindowDimensions);
+    this.renderGraph(this.state.width);
   }
+
   componentDidUpdate() {
-    this.renderGraph(this.refs.child.parentNode.clientWidth);
+    this.renderGraph(this.state.width);
   }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.updateWindowDimensions);
+  }
+
   render() {
     return <div ref="child" className={this.props.selector} />;
   }

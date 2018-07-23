@@ -8,7 +8,7 @@ import SortButtons from "./ProfileSortButtons";
 import Buttons from "./ProfileButtons";
 import ScoreDisplay from "./ProfileScoreDisplay";
 
-import { CHINESE, WESTERN, COMBINED } from "../../utils/zodiac";
+import { COMBINED } from "../../utils/zodiac";
 
 class ProfileList extends Component {
   constructor(props) {
@@ -62,12 +62,15 @@ class ProfileList extends Component {
         >
           <div className="card-content row">
             <div className="col s12 m6 l12 xl5">
-              <div className="col s6 xl12">
+              <a class="profile-list__title btn-floating btn-large waves-effect waves-light left red">
+                <i class="material-icons">add</i>
+              </a>
                 <p className={"card-title " + COLORS.TEXT4}>{name}</p>
+                <p className={"right " + COLORS.TEXT3}>{description}</p>
+              {/* <div className="">
               </div>
-              <div className={"col s6 xl12 " + COLORS.TEXT3}>
-                <p>{description}</p>
-              </div>
+              <div className={"col " + COLORS.TEXT3}>
+              </div> */}
 
               <ScoreDisplay
                 id={_id}
