@@ -2,12 +2,15 @@
 
 :root {
   --primary: #4527a0;
-  --title2: #9e9d24; 
+  --title2: #9e9d24;
   --text: #ffd740; /*  */
   --text2: #dd2c00; /* */
   --text3: #004d40;
   --accent4: #00acc1;
   --accent5: #dd2c00; /* deep-orange accent-4 */
+  --circle-na: #333;
+  --circle-zero: #c00;
+  --circle-one: #6c0;
 }
 
 html {
@@ -19,7 +22,9 @@ html {
   box-sizing: inherit;
 }
 
-.btn, .btn-large, .btn-small {
+.btn,
+.btn-large,
+.btn-small {
   background-color: var(--accent4);
 }
 
@@ -57,7 +62,7 @@ html {
 
 .app-css {
   font-family: "Lato", sans-serif;
-  font-weight: 400; 
+  font-weight: 400;
 }
 
 .app-css p {
@@ -154,8 +159,8 @@ html {
 }
 
 .score-block__circular-progress-bar--combined {
-  height: 70px;
-  width: 70px;
+  height: 80px;
+  width: 80px;
   margin: 0px auto;
 }
 
@@ -169,7 +174,6 @@ html {
   .score-block__circular-progress-bar--combined {
     height: 140px;
     width: 140px;
-
   }
 }
 
@@ -180,11 +184,11 @@ html {
 }
 
 circle.na {
-  fill: #333;
+  fill: var(--circle-na);
 }
 circle.zero {
-  fill: #c00;
+  fill: var(--circle-zero);
 }
 circle.one {
-  fill: #6c0;
+  fill: var(--circle-one);
 }

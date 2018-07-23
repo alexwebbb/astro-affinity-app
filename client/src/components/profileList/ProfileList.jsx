@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "../../actions";
 import * as COLORS from "../../config/colors";
-import getData from "./getData";
+import sortProfiles from "./sortProfiles";
 import SignInfo from "./ProfileSignInfo";
 import SortButtons from "./ProfileSortButtons";
 import Buttons from "./ProfileButtons";
@@ -34,52 +34,6 @@ class ProfileList extends Component {
     this.setState({ reverse: !this.state.reverse });
   }
 
-  sortProfiles(profiles, auth) {
-    let pIndex = profiles.findIndex(({ _id }) => {
-      return _id === auth.primary;
-    });
-
-    if (pIndex < 0) {
-      pIndex = 0;
-    }
-
-    const newProfiles = profiles.map((v, i) => {
-      return {
-        index: i,
-        ...v,
-        ...getData(v.birthdate, profiles[pIndex].birthdate)
-      };
-    });
-
-    const primaryProfile = newProfiles.splice(pIndex, 1)[0];
-
-    switch (this.state.sortIndex) {
-      case CHINESE:
-        newProfiles.sort((a, b) => {
-          return b.cScore - a.cScore;
-        });
-        break;
-      case WESTERN:
-        newProfiles.sort((a, b) => {
-          return b.wScore - a.wScore;
-        });
-        break;
-      case COMBINED:
-        newProfiles.sort((a, b) => {
-          return b.combinedScore - a.combinedScore;
-        });
-        break;
-    }
-
-    if (this.state.reverse) {
-      newProfiles.reverse();
-    }
-
-    newProfiles.splice(0, 0, primaryProfile);
-
-    return { primary: profiles[pIndex], newProfiles };
-  }
-
   renderProfiles() {
     const { profiles, auth } = this.props;
 
@@ -87,7 +41,12 @@ class ProfileList extends Component {
       return null;
     }
 
-    const { primary, newProfiles } = this.sortProfiles(profiles, auth);
+    const { primary, newProfiles } = sortProfiles(
+      profiles,
+      auth,
+      this.state.sortIndex,
+      this.state.reverse
+    );
 
     return newProfiles.map(data => {
       const { _id, name, cSign, wSign, birthdate, description } = data,

@@ -31,7 +31,7 @@ class ScoreDisplay extends Component {
           <div className="score-block__title">
             <p>
               <span className="score-block__active-sign">{wSign + " "}</span>
-              <br className="hide-on-large-only" /> x {wSignPrimary}
+              <br className="hide-on-large-and-up" /> x <br className="hide-on-large-and-up" />{wSignPrimary}
             </p>
           </div>
           <div className="score-block__score">
@@ -49,7 +49,7 @@ class ScoreDisplay extends Component {
           <div className="score-block__title">
             <p>
               <span className="score-block__active-sign">{cSign + " "}</span>
-              <br className="hide-on-large-only" /> x {cSignPrimary}
+              <br className="hide-on-large-and-up" /> x <br className="hide-on-large-and-up" />{cSignPrimary}
             </p>
           </div>
           <div className="score-block__score">
@@ -67,7 +67,7 @@ class ScoreDisplay extends Component {
           <div className="score-block__title">
             <p>
               <span className="score-block__active-sign">{name + " "}</span>
-              <br className="hide-on-large-only" /> x {namePrimary}
+              <br className="hide-on-large-and-up" /> x {namePrimary}
             </p>
           </div>
           <div className="score-block__score">
