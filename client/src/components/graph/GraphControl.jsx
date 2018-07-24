@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import * as M from "materialize-css";
 import ZODIAC, { CHINESE, WESTERN } from "../../utils/zodiac";
 import * as COLORS from "../../config/colors";
 import Graph from "./Graph";
 import GraphSpinner from "./GraphSpinner";
-
-import * as M from "materialize-css";
 
 class GraphControl extends Component {
   constructor(props) {

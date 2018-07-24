@@ -1,6 +1,17 @@
 import React from "react";
 
+
 export default ({ input, label, type, meta: { error, touched } }) => {
+  
+  if(type === "textarea") {
+    return (
+      <div className="input-field col s12 textarea1"  >
+          <textarea {...input} id="textarea1" className="materialize-textarea"></textarea>
+          <label htmlFor="textarea1">Description</label>
+        </div>
+    );
+  }
+  
   return (
     <div>
       <label>{label}</label>

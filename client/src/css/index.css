@@ -108,25 +108,26 @@ html {
   fill: var(--TEXT2);
 }
 
-.new-profile__cancel-button {
-  margin-right: 20px;
+.new-profile__button {
+  margin: 5px 10px;
 }
 
 .profile-list__title {
   margin-right: 10px;
 }
 
-.profile-list__button {
-  padding: 5px 10px;
-  display: inline-block;
+.profile-list__primary-button {
+  margin: 5px 10px;
 }
 
 .profile-list__sort-button {
   margin: 10px;
 }
 
-.profile-list__card--PRIMARY {
-  order: 1;
+.profile-list__active-sign {
+  color: var(--TITLE2);
+  font-weight: 900;
+  font-size: 1.2em;
 }
 
 .score-block {
@@ -185,11 +186,7 @@ html {
   }
 }
 
-.profile-list__active-sign {
-  color: var(--TITLE2);
-  font-weight: 900;
-  font-size: 1.2em;
-}
+
 
 circle.na {
   fill: var(--circle-na);
@@ -201,9 +198,8 @@ circle.one {
   fill: var(--circle-one);
 }
 
-.truncate-box {
-  width: 250px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+.group:after {
+  content: "";
+  display: table;
+  clear: both;
 }
