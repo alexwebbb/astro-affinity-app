@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import M from "materialize-css";
 import * as actions from "../../actions";
 import * as COLORS from "../../config/colors";
 import sortProfiles from "./sortProfiles";
@@ -22,6 +23,11 @@ class ProfileList extends Component {
 
   async componentDidMount() {
     await this.props.fetchProfiles();
+  }
+
+  componentDidUpdate() {
+    const elems = document.querySelectorAll(".modal");
+      window.modalInstances = M.Modal.init(elems);
   }
 
   setSort(index) {

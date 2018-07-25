@@ -13,55 +13,56 @@ const ProfileFormReview = ({
   credits
 }) => {
   const reviewFields = formFields.map(({ name, label }) => {
-    return (
-      <div key={name}>
-        <label>{label}</label>
-        <div>{formValues[name]}</div>
-      </div>
-    );
-  }),
-  renderSaveButton = () => {
-    if(credits) {
       return (
-        <button
-        onClick={() => submitProfile(formValues, history)}
-        className="green btn-flat right white-text"
-      >
-        Save Profile
-        <i className="material-icons right">save</i>
-      </button>
+        <div key={name}>
+          <label>{label}</label>
+          <div>{formValues[name]}</div>
+        </div>
       );
-    } else {
-      return (
-        <button
-        className={"btn-flat right white-text " + COLORS.ACCENT5}
-      >
-        No More Slots
-        <i className="material-icons right">warning</i>
-      </button>
-      );
-    }
-  };
-
-
+    }),
+    renderSaveButton = () => {
+      if (credits) {
+        return (
+          <button
+            onClick={() => submitProfile(formValues, history)}
+            className="green btn-flat right white-text new-profile__button"
+          >
+            Save Profile
+            <i className="material-icons right">save</i>
+          </button>
+        );
+      } else {
+        return (
+          <button className={"btn-flat right white-text new-profile__button " + COLORS.ACCENT5}>
+            No More Slots
+            <i className="material-icons right">warning</i>
+          </button>
+        );
+      }
+    };
 
   return (
     <div>
       <h5>Please confirm your entries</h5>
       {reviewFields}
-      <button
-        className={"white-text btn-flat " + COLORS.YELLOW2}
-        onClick={onCancel}
-      >
-        Back
-      </button>
-      {renderSaveButton()}
+      <div className="group">
+        <button
+          className={"white-text btn-flat new-profile__button " + COLORS.YELLOW2}
+          onClick={onCancel}
+        >
+          Back
+        </button>
+        {renderSaveButton()}
+      </div>
     </div>
   );
 };
 
 function mapStateToProps(state) {
-  return { formValues: state.form.profileForm.values, credits: state.auth.credits };
+  return {
+    formValues: state.form.profileForm.values,
+    credits: state.auth.credits
+  };
 }
 
 export default connect(

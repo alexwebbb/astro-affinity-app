@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-// import { scaleOrdinal } from "d3";
+import { scaleOrdinal } from "d3";
 import RadarChart from "../../utils/radarChart/radarChart";
 
 class Graph extends Component {
@@ -41,7 +41,7 @@ class Graph extends Component {
         maxValue: 5,
         levels: 10,
         roundStrokes: false,
-        // color: scaleOrdinal().range(["#AFC52F", "#ff6600"]),
+        color: scaleOrdinal().range(["#651fff", "#ff6600"]),
         format: ".1f",
         legend: { title: this.props.title, translateX: 100, translateY: 10 },
         labelFactor: labelFactorAdjusted
