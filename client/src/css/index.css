@@ -86,6 +86,10 @@ html {
   width: auto;
 }
 
+.graph-control__button {
+  margin-bottom: 10px;
+}
+
 .graph__active-sign {
   font-size: 1.2em;
   font-weight: 900;

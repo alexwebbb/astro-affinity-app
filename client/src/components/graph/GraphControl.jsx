@@ -81,21 +81,21 @@ class GraphControl extends Component {
             </p>
           </div>
           <div className="card-action center-align">
-            <div className="row center-align">
-              <div className="col s4 offset-s1">
+            <div className="group">
+              <div className="col s12 m4 offset-m1">
                 <a
                   className={
-                    "waves-effect waves-light btn-large " + isActive(WESTERN)
+                    "graph-control__button waves-effect waves-light btn-large " + isActive(WESTERN)
                   }
                   onClick={() => this.setState({ currentZodiac: WESTERN })}
                 >
                   Western
                 </a>
               </div>
-              <div className="col s4 offset-s2">
+              <div className="col s12 m4 offset-m2">
                 <a
                   className={
-                    "waves-effect waves-light btn-large " + isActive(CHINESE)
+                    "graph-control__button waves-effect waves-light btn-large " + isActive(CHINESE)
                   }
                   onClick={() => this.setState({ currentZodiac: CHINESE })}
                 >

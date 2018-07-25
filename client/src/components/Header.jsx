@@ -29,9 +29,9 @@ class Header extends Component {
         <div className={"nav-wrapper app-header " + COLORS.PRIMARY}>
           <Link
             to={this.props.auth ? '/affinities' : '/'}
-            className="left brand-logo"
+            className="left brand-logo truncate"
           >
-            Astro App
+            Astro <span className="hide-on-small-only">App</span>
           </Link>
           <ul className="right">
             {this.renderContent()}
