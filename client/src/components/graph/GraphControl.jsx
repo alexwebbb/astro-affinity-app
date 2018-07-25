@@ -14,7 +14,7 @@ class GraphControl extends Component {
   }
 
   updateWindowDimensions() {
-    window.scrollTo(0,0);
+    window.scrollTo(0, 0);
     this.setState({ width: window.innerWidth });
   }
 
@@ -111,11 +111,14 @@ class GraphControl extends Component {
 }
 
 const mapStateToProps = ({ profiles, selected }) => {
-  let date = null;
+  let date = null,
+    profile;
 
-  const profile = profiles.find(v => {
-    return v._id === selected;
-  });
+  if (profiles) {
+    profile = profiles.find(v => {
+      return v._id === selected;
+    });
+  }
 
   if (profile) {
     date = profile["birthdate"];

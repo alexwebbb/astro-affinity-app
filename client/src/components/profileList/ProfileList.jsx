@@ -16,15 +16,12 @@ class ProfileList extends Component {
     super(props);
 
     this.state = { selectedProfile: 0, sortIndex: COMBINED, reverse: false };
-    this.setPrimary = this.props.setPrimary.bind(this);
-    this.removeProfile = this.props.removeProfile.bind(this);
     this.setSort = this.setSort.bind(this);
     this.setReverse = this.setReverse.bind(this);
   }
 
   async componentDidMount() {
     await this.props.fetchProfiles();
-    this.props.setSelected(this.props.profiles[0]._id);
   }
 
   setSort(index) {
@@ -36,9 +33,19 @@ class ProfileList extends Component {
   }
 
   renderProfiles() {
-    const { profiles, auth } = this.props;
+    const { profiles, auth, selected } = this.props;
 
-    if (profiles.length === 0 || auth === null) {
+    if (profiles === null || profiles.length === 0 || auth === null) {
+      return null;
+    }
+
+    if (!profiles.find(v => v._id === auth.primary)) {
+      this.setPrimary(profiles[0]._id);
+      return null;
+    }
+
+    if (!profiles.find(v => v._id === selected)) {
+      this.props.setSelected(auth.primary);
       return null;
     }
 
@@ -51,19 +58,20 @@ class ProfileList extends Component {
 
     return newProfiles.map(data => {
       const { _id, name, cSign, wSign, birthdate, description } = data,
-        isSelected = this.props.selected === _id,
+        isSelected = selected === _id,
         selectedColor = isSelected ? COLORS.SELECTED : COLORS.TERTIARY,
         isPrimary = auth.primary === _id;
 
       return (
-        <div
-          className={["card hoverable", selectedColor].join(" ")}
-          key={_id}
-        >
+        <div className={["card hoverable", selectedColor].join(" ")} key={_id}>
           <div className="card-content row">
             <div className="col s12 m6 l12 xl5">
               <div className="row">
-                <SelectionButton id={_id} selected={isSelected} setSelected={this.props.setSelected} />
+                <SelectionButton
+                  id={_id}
+                  selected={isSelected}
+                  setSelected={this.props.setSelected}
+                />
                 <p className={"card-title " + COLORS.TEXT4}>{name}</p>
                 <p className={"right " + COLORS.TEXT3}>{description}</p>
               </div>
@@ -79,8 +87,8 @@ class ProfileList extends Component {
               <PrimaryButtons
                 id={_id}
                 isPrimary={isPrimary}
-                setPrimary={this.setPrimary}
-                removeProfile={this.removeProfile}
+                setPrimary={this.props.setPrimary}
+                removeProfile={this.props.removeProfile}
               />
             </div>
           </div>

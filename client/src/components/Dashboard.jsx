@@ -1,31 +1,62 @@
-import React from "react";
+import React, { Component } from "react";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import ProfileList from "./profileList/ProfileList";
 import GraphControl from "./graph/GraphControl";
 import * as COLORS from "../config/colors";
+import * as M from "materialize-css";
 
-const Dashboard = () => {
+class Dashboard extends Component {
 
-  return (
-    <main className="affinities-css">
-      <div className="row">
-        <div className="col s12 m12 l7 xl6">
-          <GraphControl />
+  componentDidMount() {
+    const elems = document.querySelectorAll(".tap-target");
+    window.taptargetInstances = M.TapTarget.init(elems);
+  }
+
+  componentDidUpdate() {
+    const { auth, profiles } = this.props;
+    if (auth && profiles && profiles.length < 3) {
+      window.taptargetInstances[0].open();
+    }
+  }
+  
+  render() {
+    return (
+      <main className="affinities-css">
+        <div className="row">
+          <div className="col s12 m12 l7 xl6">
+            <GraphControl />
+          </div>
+          <div className="col s12 m12 l5 xl6">
+            <ProfileList />
+          </div>
         </div>
-        <div className="col s12 m12 l5 xl6">
-          <ProfileList />
+
+        <div className="fixed-action-btn">
+          <Link
+            to="/affinities/new"
+            className={"btn-floating btn-large " + COLORS.ACCENT5}
+            id="newProfile"
+          >
+            <i className="material-icons">add</i>
+          </Link>
+          {/* <!-- Tap Target Structure --> */}
+          <div className="tap-target" data-target="newProfile">
+            <div className="tap-target-content white-text">
+              <h5>You're almost there!</h5>
+              <p>Try adding another profile by clicking this button! You need at least three profiles to use the app.</p>
+            </div>
+          </div>
         </div>
+      </main>
+    );
+  }
+}
 
-      </div>
-
-      
-      <div className="fixed-action-btn">
-        <Link to="/affinities/new" className={"btn-floating btn-large " + COLORS.ACCENT5}>
-          <i className="material-icons">add</i>
-        </Link>
-      </div>
-    </main>
-  );
+const mapStateToProps = ({ auth, profiles }) => {
+  return { auth, profiles };
 };
 
-export default Dashboard;
+export default connect(
+  mapStateToProps
+)(Dashboard);

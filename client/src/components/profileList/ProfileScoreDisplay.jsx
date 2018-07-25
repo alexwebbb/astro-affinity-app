@@ -23,6 +23,10 @@ class ScoreDisplay extends Component {
     CircularProgressBar(selector(_id, COMBINED), combinedScore / 5);
   }
 
+  componentDidMount() {
+    this.callDraw();
+  }
+
   componentDidUpdate() {
     this.callDraw();
   }
