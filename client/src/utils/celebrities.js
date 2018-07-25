@@ -107,14 +107,14 @@ export default [
   {
     name: "Anthony Mackie",
     image: "https://www.famousbirthdays.com/faces/mackie-anthony-image.jpg",
-    birthday: "1978-09-23",
+    birthdate: "1978-09-23",
     description:
       "Actor who became known for his roles in the Academy Award-winning films The Hurt Locker and Million Dollar Baby. He also plays the character Sam Wilson/Falcon in the Marvel universe."
   },
   {
     name: "Tessa Thompson",
     image: "https://www.famousbirthdays.com/faces/thompson-tessa-image.jpg",
-    birthday: "1983-10-03",
+    birthdate: "1983-10-03",
     description:
       "Actress known for her roles as Jackie Cook on Veronica Mars and Bianca in the film Creed. She has also had prominent roles in For Colored Girls, Dear White People, and Westworld. In 2017, she starred as Valkyrie in Thor: Ragnarok."
   },

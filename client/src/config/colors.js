@@ -16,4 +16,5 @@ export const ACCENT3 = "green accent-3"; //#00e676
 export const ACCENT4 = "cyan darken-1"; //
 export const ACCENT5 = "deep-orange accent-4"; // #dd2c00 
 export const YELLOW1 = "yellow"; // #dd2c00 
+export const YELLOW2 = "yellow darken-3"
 export const TEAL1 = "teal"; // #dd2c00 

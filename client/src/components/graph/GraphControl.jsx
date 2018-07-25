@@ -14,6 +14,7 @@ class GraphControl extends Component {
   }
 
   updateWindowDimensions() {
+    window.scrollTo(0,0);
     this.setState({ width: window.innerWidth });
   }
 
@@ -24,13 +25,13 @@ class GraphControl extends Component {
 
   componentDidUpdate() {
     // logic for pushpin, so that it doesnt run on med and below
-    if (window.instances && this.state.width < 992) {
-      window.instances.forEach(element => {
+    if (window.pushpinInstances && this.state.width < 992) {
+      window.pushpinInstances.forEach(element => {
         element.destroy();
       });
     } else if (this.state.width >= 992) {
       const elems = document.querySelectorAll(".pushpin");
-      window.instances = M.Pushpin.init(elems, { top: 44 }); // true offset is 74px
+      window.pushpinInstances = M.Pushpin.init(elems, { top: 44 }); // true offset is 74px
     }
   }
 

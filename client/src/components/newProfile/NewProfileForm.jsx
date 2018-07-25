@@ -52,7 +52,7 @@ class ProfileForm extends Component {
             }
             onClick={() => this.autofillEntries()}
           >
-            <i className="material-icons left">cloud</i>Autofill
+            <i className="material-icons left">face</i>Autofill
           </a>
           <button
             type="submit"
