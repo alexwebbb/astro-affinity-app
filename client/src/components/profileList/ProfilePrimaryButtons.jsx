@@ -23,22 +23,22 @@ export default ({ id, isPrimary, setPrimary, removeProfile }) => {
         </a>
 
         {/* <!-- Modal Structure --> */}
-        <div id={"modal-" + id} class={"modal " + COLORS.WHITE}>
-          <div class={"modal-content center " + COLORS.TEXT3}>
+        <div id={"modal-" + id} className={"modal " + COLORS.WHITE}>
+          <div className={"modal-content center " + COLORS.TEXT3}>
             <h4>Delete Profile?</h4>
           </div>
-          <div class={"modal-footer " + COLORS.ACCENT1}>
+          <div className={"modal-footer " + COLORS.ACCENT1}>
             <a
               href="#!"
-              class={"col s5 center-align modal-close waves-effect waves-red btn-flat " + COLORS.WHITE}
+              className={"col s5 center-align modal-close waves-effect waves-red btn-flat " + COLORS.WHITE}
             >
               No
             </a>
             <a
               href="#!"
-              class={
+              className={
                 "col s5 offset-s2 center-align modal-close waves-effect waves-light btn-flat white-text right " +
-                COLORS.ACCENT5
+                COLORS.PRIMARY_RED
               }
               onClick={() => removeProfile(id)}
             >
@@ -53,7 +53,7 @@ export default ({ id, isPrimary, setPrimary, removeProfile }) => {
       <a
         className={
           "waves-effect waves-light btn-large profile-list__primary-button right " +
-          COLORS.PRIMARY
+          COLORS.PRIMARY_BLUE
         }
       >
         current primary

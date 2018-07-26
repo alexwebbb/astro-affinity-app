@@ -5,12 +5,12 @@ import { CHINESE, WESTERN, COMBINED } from "../../utils/zodiac";
 export default ({ currentIndex, currentReverse, setSort, setReverse }) => {
   const isActive = index => {
     if (currentIndex === index) {
-      return COLORS.ACCENT3;
+      return COLORS.SELECTED_BUTTON;
     }
   };
 
   return (
-    <div className={"card " + COLORS.MENU}>
+    <div className={"card " + COLORS.MENU_BACKGROUND}>
       <div className="card-content row center-align">
         <p className="card-title white-text">Sort order:</p>
 
@@ -44,7 +44,7 @@ export default ({ currentIndex, currentReverse, setSort, setReverse }) => {
         <a
           className={
             "hoverable waves-effect waves-light btn profile-list__sort-button " +
-            (currentReverse ? COLORS.ACCENT5 : "")
+            (currentReverse ? COLORS.PRIMARY_RED : "")
           }
           onClick={setReverse}
         >

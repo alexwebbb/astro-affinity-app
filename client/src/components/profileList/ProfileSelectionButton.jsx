@@ -7,7 +7,7 @@ export default ({ id, selected, setSelected }) => {
       <a
         className={
           "profile-list__title btn-floating btn-large waves-effect waves-light left " +
-          COLORS.ACCENT3
+          COLORS.SELECTED_BUTTON
         }
         onClick={() => setSelected(id)}
       >
@@ -19,7 +19,7 @@ export default ({ id, selected, setSelected }) => {
       <a
         className={
           "profile-list__title btn-floating btn-large waves-effect waves-light left " +
-          COLORS.SECONDARY
+          COLORS.GRAPH_BACKGROUND
         }
         onClick={() => setSelected(id)}
       >

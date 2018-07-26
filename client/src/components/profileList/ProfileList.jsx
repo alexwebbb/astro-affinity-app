@@ -65,7 +65,7 @@ class ProfileList extends Component {
     return newProfiles.map(data => {
       const { _id, name, cSign, wSign, birthdate, description } = data,
         isSelected = selected === _id,
-        selectedColor = isSelected ? COLORS.SELECTED : COLORS.TERTIARY,
+        selectedColor = isSelected ? COLORS.SELECTED_BACKGROUND : COLORS.PROFILE_BACKGROUND,
         isPrimary = auth.primary === _id;
 
       return (

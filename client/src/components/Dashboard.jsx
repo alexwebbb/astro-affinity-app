@@ -35,7 +35,7 @@ class Dashboard extends Component {
         <div className="fixed-action-btn">
           <Link
             to="/affinities/new"
-            className={"btn-floating btn-large " + COLORS.ACCENT5}
+            className={"btn-floating btn-large " + COLORS.PRIMARY_RED}
             id="newProfile"
           >
             <i className="material-icons">add</i>

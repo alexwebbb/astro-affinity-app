@@ -27,7 +27,7 @@ class Graph extends Component {
 
   renderGraph(parentWidth) {
     const labelFactorAdjusted =
-        1.24 + (0.13 - 0.13 * (Math.min(parentWidth - 330, 194) / 194)),
+        1.2 + (0.13 - 0.13 * (Math.min(parentWidth - 330, 194) / 194)),
       margin = { top: 75, right: 75, bottom: 75, left: 75 },
       width = parentWidth - margin.left - margin.right,
       height = Math.min(

@@ -44,14 +44,14 @@ class ProfileForm extends Component {
           <Link
             to="/affinities"
             className={
-              "left btn-flat new-profile__button white-text " + COLORS.ACCENT5
+              "left btn-flat new-profile__button white-text " + COLORS.PRIMARY_RED
             }
           >
             Cancel
           </Link>
           <a
             className={
-              "waves-effect waves-light btn-flat new-profile__button " + COLORS.YELLOW1
+              "waves-effect waves-light btn-flat new-profile__button " + COLORS.AUTOFILL_BUTTON
             }
             onClick={() => this.autofillEntries()}
           >
@@ -59,7 +59,7 @@ class ProfileForm extends Component {
           </a>
           <button
             type="submit"
-            className={"right btn-flat new-profile__button white-text " + COLORS.TEAL1}
+            className={"right btn-flat new-profile__button white-text " + COLORS.NEXT_BUTTON}
           >
             Next
             <i className="material-icons right">done</i>

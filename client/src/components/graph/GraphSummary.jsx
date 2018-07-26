@@ -48,7 +48,7 @@ class GraphSummary extends Component {
     if (this.props.birthdate) {
       return (
         <div>
-          <div className={"card " + COLORS.SECONDARY}>
+          <div className={"card " + COLORS.GRAPH_BACKGROUND}>
             <div className={"card-content center-align " + COLORS.TITLE}>
               {this.renderGraph()}
               <p className="flow-text">

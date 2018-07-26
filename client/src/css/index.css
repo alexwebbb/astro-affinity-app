@@ -1,12 +1,12 @@
 @import url("https://fonts.googleapis.com/css?family=Lato:400,900");
 
 :root {
-  --PRIMARY: #651fff;
+  --PRIMARY_BLUE: #651fff;
+  --PRIMARY_RED: #dd2c00; /* deep-orange accent-4 */
   --TITLE2: #9e9d24;
   --TEXT1: #ffe57f; /*  */
   --TEXT2: #dd2c00; /* */
-  --ACCENT4: #00acc1;
-  --ACCENT5: #dd2c00; /* deep-orange accent-4 */
+  --DEFAULT_BUTTON: #00acc1;
   --circle-na: #333;
   --circle-zero: #c00;
   --circle-one: #6c0;
@@ -24,7 +24,7 @@ html {
 .btn,
 .btn-large,
 .btn-small {
-  background-color: var(--ACCENT4);
+  background-color: var(--DEFAULT_BUTTON);
 }
 
 .app-css {
@@ -94,7 +94,7 @@ html {
   font-size: 1.2em;
   font-weight: 900;
   color: var(--TITLE2);
-  text-shadow: 3px 3px var(--ACCENT5);
+  text-shadow: 3px 3px var(--PRIMARY_RED);
 }
 
 /* radar chart */

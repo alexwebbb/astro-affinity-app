@@ -1,19 +1,26 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as M from "materialize-css";
-import ZODIAC, { CHINESE, WESTERN } from "../../utils/zodiac";
+import ZODIAC, { WESTERN } from "../../utils/zodiac";
 import * as COLORS from "../../config/colors";
 import Graph from "./Graph";
+import Buttons from "./GraphButtons";
 import GraphSpinner from "./GraphSpinner";
 
 class GraphControl extends Component {
   constructor(props) {
     super(props);
     this.state = { width: 0, currentZodiac: WESTERN };
+    this.setZodiac = this.setZodiac.bind(this);
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
   }
 
+  setZodiac(zodiac) {
+    this.setState({ currentZodiac: zodiac });
+  }
+
   updateWindowDimensions() {
+    // returns the view to the top so pushpinned graph will resize properly
     window.scrollTo(0, 0);
     this.setState({ width: window.innerWidth });
   }
@@ -65,14 +72,14 @@ class GraphControl extends Component {
 
     const isActive = zodiac => {
         if (this.state.currentZodiac === zodiac) {
-          return COLORS.ACCENT3;
+          return COLORS.SELECTED_BUTTON;
         }
       },
       pushpinActive = true ? "pushpin" : "";
 
     return (
       <div className={"graph-control " + pushpinActive}>
-        <div className={"card " + COLORS.SECONDARY}>
+        <div className={"card " + COLORS.GRAPH_BACKGROUND}>
           <div className={"card-content center-align " + COLORS.TITLE1}>
             {this.renderGraph()}
             <p className="flow-text">
@@ -80,30 +87,7 @@ class GraphControl extends Component {
               person selected.
             </p>
           </div>
-          <div className="card-action center-align">
-            <div className="group">
-              <div className="col s12 m4 offset-m1">
-                <a
-                  className={
-                    "graph-control__button waves-effect waves-light btn-large " + isActive(WESTERN)
-                  }
-                  onClick={() => this.setState({ currentZodiac: WESTERN })}
-                >
-                  Western
-                </a>
-              </div>
-              <div className="col s12 m4 offset-m2">
-                <a
-                  className={
-                    "graph-control__button waves-effect waves-light btn-large " + isActive(CHINESE)
-                  }
-                  onClick={() => this.setState({ currentZodiac: CHINESE })}
-                >
-                  Chinese
-                </a>
-              </div>
-            </div>
-          </div>
+          <Buttons setZodiac={this.setZodiac} isActive={isActive} />
         </div>
       </div>
     );

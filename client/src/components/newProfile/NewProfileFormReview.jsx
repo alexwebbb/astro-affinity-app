@@ -33,7 +33,7 @@ const ProfileFormReview = ({
         );
       } else {
         return (
-          <button className={"btn-flat right white-text new-profile__button " + COLORS.ACCENT5}>
+          <button className={"btn-flat right white-text new-profile__button " + COLORS.PRIMARY_RED}>
             No More Slots
             <i className="material-icons right">warning</i>
           </button>
@@ -47,7 +47,7 @@ const ProfileFormReview = ({
       {reviewFields}
       <div className="group">
         <button
-          className={"white-text btn-flat new-profile__button " + COLORS.YELLOW2}
+          className={"white-text btn-flat new-profile__button " + COLORS.BACK_BUTTON}
           onClick={onCancel}
         >
           Back

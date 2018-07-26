@@ -25,7 +25,6 @@ export const removeProfile = id => async dispatch => {
     profiles = await axios.get("/api/profiles");
 
   dispatch({ type: FETCH_USER, payload: user.data });
-
   dispatch({ type: FETCH_PROFILES, payload: profiles.data });
 };
 
