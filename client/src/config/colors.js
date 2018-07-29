@@ -3,6 +3,7 @@ export const PRIMARY_BLUE = "deep-purple accent-3"; //#651fff
 export const PRIMARY_RED = "deep-orange accent-4"; // #dd2c00 
 export const GRAPH_BACKGROUND = "blue-grey darken-1";
 export const PROFILE_BACKGROUND = "grey lighten-1";
+export const FORM_BACKGROUND = "light-blue lighten-5";
 export const MENU_BACKGROUND = "grey darken-1"; // #757575 grey darken-1
 export const DEFAULT_BUTTON = "cyan darken-1"; //
 export const SELECTED_BUTTON = "green accent-3"; //#00e676 

@@ -23,7 +23,7 @@ export default ({ id, isPrimary, setPrimary, removeProfile }) => {
         </a>
 
         {/* <!-- Modal Structure --> */}
-        <div id={"modal-" + id} className={"modal " + COLORS.WHITE}>
+        <div id={"modal-" + id} className={"profile-primary-buttons__delete-button modal " + COLORS.WHITE}>
           <div className={"modal-content center " + COLORS.TEXT3}>
             <h4>Delete Profile?</h4>
           </div>

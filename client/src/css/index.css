@@ -6,7 +6,10 @@
   --TITLE2: #9e9d24;
   --TEXT1: #ffe57f; /*  */
   --TEXT2: #dd2c00; /* */
+  --TEXT3: #004d40;
+  --TEXT4: #546e7a;
   --DEFAULT_BUTTON: #00acc1;
+  --GRAPH_BACKGROUND: #546e7a;
   --circle-na: #333;
   --circle-zero: #c00;
   --circle-one: #6c0;
@@ -74,8 +77,39 @@ html {
   padding: 0 0 0px 10px;
 }
 
+.about p {
+  font-size: 1.1em;
+  color: var(--TEXT4);
+}
+
+.about a {
+  font-size: 1.2em;
+  color: var(--TEXT3);
+}
+
+.about__heading {
+  display: inline;
+  font-size: 6vw;
+  color: var(--TEXT2);
+}
+
+p.about__signature {
+  font-size: 4vw;
+  color: var(--TITLE2);
+}
+
 .affinities-css {
   padding-top: 10px;
+}
+
+circle.na {
+  fill: var(--circle-na);
+}
+circle.zero {
+  fill: var(--circle-zero);
+}
+circle.one {
+  fill: var(--circle-one);
 }
 
 .profile-form-css {
@@ -134,6 +168,10 @@ html {
   font-size: 1.2em;
 }
 
+.profile-primary-buttons__delete-button {
+  border: var(--GRAPH_BACKGROUND) solid 8px;
+}
+
 .score-block {
   text-align: center;
   color: var(--TEXT2);
@@ -190,17 +228,32 @@ html {
   }
 }
 
+.landing {
+  padding: 30px;
+  background-color: var(--GRAPH_BACKGROUND);
+  color: var(--TEXT1);
+}
+
+.landing p {
+  font-size: 1.2em;
+  
+}
+
+.landing h1 {
+  margin: 0;
+  font-size: 8vh;
+  padding-top: 35px;
+}
+
+.landing__text {
+  text-shadow: 2px 2px var(--PRIMARY_BLUE);
+}
+
+.landing__credentials {
+  color: var(--TEXT2);
+}
 
 
-circle.na {
-  fill: var(--circle-na);
-}
-circle.zero {
-  fill: var(--circle-zero);
-}
-circle.one {
-  fill: var(--circle-one);
-}
 
 .group:after {
   content: "";

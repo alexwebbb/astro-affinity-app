@@ -5,6 +5,8 @@ import M from "materialize-css";
 import Payments from "./Payments";
 import * as COLORS from "../config/colors";
 
+const ABOUT_PATH = "/about";
+
 class Header extends Component {
   componentDidUpdate() {
     const elems = document.querySelectorAll(".dropdown-trigger");
@@ -17,9 +19,11 @@ class Header extends Component {
         return;
       case false:
         return (
-          <li>
-            <a href="/auth/google">Login With Google</a>
-          </li>
+          <ul className="nav-mobile">
+            <li>
+              <a href="/auth/google">Login With Google</a>
+            </li>
+          </ul>
         );
       default:
         return (
@@ -32,20 +36,24 @@ class Header extends Component {
                 Slots: {this.props.auth.credits}
               </li>
               <li key="3" className="hide-on-small-only">
-                <a href="#!">About</a>
+                <Link to={ABOUT_PATH}>About</Link>
               </li>
               <li key="4" className="hide-on-small-only">
                 <a href="/api/logout">Logout</a>
               </li>
               <li key="5">
-                <a  className="dropdown-trigger hide-on-med-and-up" href="#!" data-target="dropdown1">
+                <a
+                  className="dropdown-trigger hide-on-med-and-up"
+                  href="#!"
+                  data-target="dropdown1"
+                >
                   <i className="material-icons right">more_vert</i>
                 </a>
               </li>
             </ul>
             <ul id="dropdown1" className="dropdown-content right">
               <li key="1">
-                <a href="#!">About</a>
+                <Link to={ABOUT_PATH}>About</Link>
               </li>
               <li key="2" className="divider" />
               <li key="3">
@@ -67,7 +75,7 @@ class Header extends Component {
           >
             Astro <span className="hide-on-small-only">App</span>
           </Link>
-          {this.renderContent()}
+          <ul className="right">{this.renderContent()}</ul>
         </div>
       </nav>
     );

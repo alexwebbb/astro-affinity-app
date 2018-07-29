@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { reduxForm } from "redux-form";
+import * as COLORS from "./../../config/colors";
 import ProfileForm from "./NewProfileForm";
 import ProfileFormReview from "./NewProfileFormReview";
 
-const classes = "light-blue lighten-5 profile-form-css";
+const classes = "profile-form-css " + COLORS.FORM_BACKGROUND;
 
 class NewProfile extends Component {
   state = { showFormReview: false };

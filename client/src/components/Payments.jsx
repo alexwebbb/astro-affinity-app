@@ -1,9 +1,15 @@
-import React, { Component } from 'react';
-import StripeCheckout from 'react-stripe-checkout';
-import { connect } from 'react-redux';
-import * as actions from '../actions';
+import React, { Component } from "react";
+import StripeCheckout from "react-stripe-checkout";
+import { connect } from "react-redux";
+import * as M from "materialize-css";
+import * as actions from "../actions";
 
 class Payments extends Component {
+  componentDidMount() {
+    const elems = document.querySelectorAll(".tooltipped");
+    window.tooltipInstances = M.Tooltip.init(elems);
+  }
+
   render() {
     return (
       <StripeCheckout
@@ -12,13 +18,21 @@ class Payments extends Component {
         amount={100}
         token={token => this.props.handleToken(token)}
         stripeKey={process.env.REACT_APP_STRIPE_KEY}
+        panelLabel="Buy one slot for"
       >
-        <button className="btn">
-          Add Slots
-        </button>
+        <span
+          className="tooltipped"
+          data-position="bottom"
+          data-tooltip="Payment info is 4242 4242 4242 4242, 04/24, 242"
+        >
+          <button className="btn">Add Slots</button>
+        </span>
       </StripeCheckout>
     );
   }
 }
 
-export default connect(null, actions)(Payments);
+export default connect(
+  null,
+  actions
+)(Payments);
