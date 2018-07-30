@@ -12,7 +12,7 @@ The goal of the app is to allow users to have fun making quick comparisons to pe
 ![purchasing tokens](https://res.cloudinary.com/execool/image/upload/v1532922949/astro-app/payment-example.png "Payment view")
 One more feature I will make note of, is the "slots" you will see when using the app. In order to use the app, no purchase is necessary. However, you are only given five profile slots initially. If you wish to make comparisons with large numbers of people, you must either purchase additional slots, or be willing to delete and re-add profiles by hand.
 
-Celebrity info and copy used in autofill button is sourced from Famous Birthdays.
+Celebrity info and copy used in autofill button is sourced from [Famous Birthdays](https://www.famousbirthdays.com/).
 
 - Alex Webb
 
