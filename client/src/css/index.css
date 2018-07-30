@@ -103,6 +103,12 @@ p.about__email {
   font-size: 2.5vw;
   color: var(--TEXT3);
 }
+p.about__github > a {
+
+  font-size: 1.6em;
+  color: var(--TEXT2);
+}
+
 
 .dashboard {
   padding-top: 10px;

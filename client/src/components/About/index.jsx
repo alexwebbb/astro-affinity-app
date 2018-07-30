@@ -108,6 +108,9 @@ class About extends Component {
               </p>
             </div>
           </div>
+              <p className="about__github center-align">
+                {link("Visit on Github", "github.com/alexwebbb/astro-affinity-app")}
+              </p>
         </div>
         <div
           class="parallax-container"
