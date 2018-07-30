@@ -20,9 +20,9 @@ class Header extends Component {
       case false:
         return (
           <ul className="nav-mobile">
-            <li key="1" className="hide-on-small-only">
-                <Link to={ABOUT_PATH}>About</Link>
-              </li>
+            <li key="1">
+              <Link to={ABOUT_PATH}>About</Link>
+            </li>
             <li key="2">
               <a href="/auth/google">Login With Google</a>
             </li>
