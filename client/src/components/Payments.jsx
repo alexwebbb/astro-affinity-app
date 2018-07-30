@@ -7,7 +7,7 @@ import * as actions from "../actions";
 class Payments extends Component {
   componentDidMount() {
     const elems = document.querySelectorAll(".tooltipped");
-    window.tooltipInstances = M.Tooltip.init(elems);
+    document.tooltipInstances = M.Tooltip.init(elems);
   }
 
   render() {

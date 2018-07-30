@@ -32,13 +32,13 @@ class GraphControl extends Component {
 
   componentDidUpdate() {
     // logic for pushpin, so that it doesnt run on med and below
-    if (window.pushpinInstances && this.state.width < 992) {
-      window.pushpinInstances.forEach(element => {
+    if (document.pushpinInstances && this.state.width < 992) {
+      document.pushpinInstances.forEach(element => {
         element.destroy();
       });
     } else if (this.state.width >= 992) {
       const elems = document.querySelectorAll(".pushpin");
-      window.pushpinInstances = M.Pushpin.init(elems, { top: 44 }); // true offset is 74px
+      document.pushpinInstances = M.Pushpin.init(elems, { top: 44 }); // true offset is 74px
     }
   }
 
@@ -48,13 +48,18 @@ class GraphControl extends Component {
 
   renderGraph() {
     const { currentZodiac } = this.state,
-      { birthdate } = this.props;
+      { name, birthdate } = this.props;
     return (
       <div className="card-title">
-        Comparing to{" "}
-        <span className="graph__active-sign">
-          {ZODIAC[currentZodiac].getSign(birthdate)}
-        </span>
+        <h1 style={{ fontSize: "0.6em", margin: "0px"}}>
+          Currently Selected: <br /><span className="graph__active-sign">{name}</span>
+        </h1>
+        <h2 style={{ fontSize: "1.4em", margin: "0px" }}>
+          Comparing to{" "}
+          <span className="graph__active-sign">
+            {ZODIAC[currentZodiac].getSign(birthdate)}
+          </span>
+        </h2>
         <Graph
           birthdate={birthdate}
           zodiac={ZODIAC[currentZodiac]}
@@ -82,7 +87,7 @@ class GraphControl extends Component {
         <div className={"card " + COLORS.GRAPH_BACKGROUND}>
           <div className={"card-content center-align " + COLORS.TITLE1}>
             {this.renderGraph()}
-            <p className="flow-text">
+            <p style={{ margin: "0px"}}>
               Graph of the different affinities <br /> with the sign of the
               person selected.
             </p>
@@ -96,6 +101,7 @@ class GraphControl extends Component {
 
 const mapStateToProps = ({ profiles, selected }) => {
   let date = null,
+    name = "",
     profile;
 
   if (profiles) {
@@ -105,10 +111,12 @@ const mapStateToProps = ({ profiles, selected }) => {
   }
 
   if (profile) {
+    name = profile["name"];
     date = profile["birthdate"];
   }
 
   return {
+    name,
     birthdate: date
   };
 };

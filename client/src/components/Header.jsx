@@ -10,7 +10,7 @@ const ABOUT_PATH = "/about";
 class Header extends Component {
   componentDidUpdate() {
     const elems = document.querySelectorAll(".dropdown-trigger");
-    window.dropdownInstances = M.Dropdown.init(elems);
+    document.dropdownInstances = M.Dropdown.init(elems);
   }
 
   renderContent() {

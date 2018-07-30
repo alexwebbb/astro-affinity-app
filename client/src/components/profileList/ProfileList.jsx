@@ -27,7 +27,7 @@ class ProfileList extends Component {
 
   componentDidUpdate() {
     const elems = document.querySelectorAll(".modal");
-      window.modalInstances = M.Modal.init(elems);
+    document.modalInstances = M.Modal.init(elems);
   }
 
   setSort(index) {

@@ -3,13 +3,17 @@ import * as M from "materialize-css";
 
 import top from "./../../images/greg-rakozy-38802-unsplash-top.jpg";
 import bottom from "./../../images/greg-rakozy-38802-unsplash-bottom.jpg";
+import app_view from "./../../images/app-view.png";
+import payment_example from "./../../images/payment-example.png";
 
 import ImageCredit from "./ImageCredit";
 
 class About extends Component {
   componentDidMount() {
-    const elems = document.querySelectorAll(".parallax");
-    window.parallaxInstances = M.Parallax.init(elems);
+    const pElems = document.querySelectorAll(".parallax"),
+      mElems = document.querySelectorAll('.materialboxed');
+    document.parallaxInstances = M.Parallax.init(pElems);
+    document.materialboxedInstances = M.Materialbox.init(mElems);
   }
 
   render() {
@@ -76,6 +80,13 @@ class About extends Component {
               </a>{" "}
               to create an engaging visual and interactive experience.
             </p>
+            <img
+              src={app_view}
+              alt="view of the app in action"
+              class="left materialboxed"
+              width="270"
+              style={{ margin: "5px 15px 5px 0px"}}
+            />
             <p>
               This app allows a user to create an account, add a profile with
               their birthdate, and the app will calculate their western zodiac
@@ -84,11 +95,6 @@ class About extends Component {
               to sort profiles based on their affinity using a particular
               zodiac.
             </p>
-            <img
-              src=""
-              alt="Source chart for zodiac affinities"
-              class="right"
-            />
             <p>
               Many people take astrology and the zodiacs very seriously. The
               data used in this project was hand transcribed from charts found
@@ -96,6 +102,13 @@ class About extends Component {
               behind the scores granted, and a serious astrologer should be
               sought out if deeper analysis is desired.
             </p>
+            <img
+              className="right materialboxed"
+              width="270"
+              src={payment_example}
+              alt="Example of a payment being applied to purchase more slots"
+              style={{ margin: "5px 0px 5px 15px"}}
+            />
             <p>
               The goal of the app is to allow users to have fun making quick
               comparisons to people they know, without having to do more
@@ -104,10 +117,6 @@ class About extends Component {
               other existing users, although that type of utility can be easily
               added in the future.
             </p>
-            <img
-              src=""
-              alt="Example of a payment being applied to purchase more slots"
-            />
             <p>
               One more feature I will make note of, is the "slots" you will see
               when using the app. In order to use the app, no purchase is

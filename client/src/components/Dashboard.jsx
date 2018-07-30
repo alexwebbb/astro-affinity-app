@@ -10,13 +10,13 @@ class Dashboard extends Component {
 
   componentDidMount() {
     const elems = document.querySelectorAll(".tap-target");
-    window.taptargetInstances = M.TapTarget.init(elems);
+    document.taptargetInstances = M.TapTarget.init(elems);
   }
 
   componentDidUpdate() {
     const { auth, profiles } = this.props;
     if (auth && profiles && profiles.length < 3) {
-      window.taptargetInstances[0].open();
+      document.taptargetInstances[0].open();
     }
   }
   
