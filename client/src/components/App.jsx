@@ -9,7 +9,7 @@ import Header from "./Header";
 import About from "./About/index.jsx";
 import Landing from "./Landing/index.jsx";
 import Dashboard from "./Dashboard";
-import NewProfile from "./NewProfile";
+import NewProfile from "./NewProfile/index.jsx";
 
 class App extends Component {
   componentDidMount() {
