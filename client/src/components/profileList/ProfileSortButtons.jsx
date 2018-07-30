@@ -2,6 +2,9 @@ import React from "react";
 import * as COLORS from "../../config/colors";
 import { CHINESE, WESTERN, COMBINED } from "../../utils/zodiac";
 
+const classes =
+  "hoverable waves-effect waves-light btn profile-list__sort-button";
+
 export default ({ currentIndex, currentReverse, setSort, setReverse }) => {
   const isActive = index => {
     if (currentIndex === index) {
@@ -15,37 +18,27 @@ export default ({ currentIndex, currentReverse, setSort, setReverse }) => {
         <p className="card-title white-text">Sort order:</p>
 
         <a
-          className={
-            "hoverable waves-effect waves-light btn profile-list__sort-button " +
-            isActive(WESTERN)
-          }
+          className={[classes, isActive(WESTERN)].join(" ")}
           onClick={() => setSort(WESTERN)}
         >
           Western
         </a>
         <a
-          className={
-            "hoverable waves-effect waves-light btn profile-list__sort-button " +
-            isActive(CHINESE)
-          }
+          className={[classes, isActive(CHINESE)].join(" ")}
           onClick={() => setSort(CHINESE)}
         >
           Chinese
         </a>
         <a
-          className={
-            "hoverable waves-effect waves-light btn profile-list__sort-button " +
-            isActive(COMBINED)
-          }
+          className={[classes, isActive(COMBINED)].join(" ")}
           onClick={() => setSort(COMBINED)}
         >
           Combined
         </a>
         <a
-          className={
-            "hoverable waves-effect waves-light btn profile-list__sort-button " +
-            (currentReverse ? COLORS.PRIMARY_RED : "")
-          }
+          className={[classes, currentReverse ? COLORS.PRIMARY_RED : ""].join(
+            " "
+          )}
           onClick={setReverse}
         >
           Reverse

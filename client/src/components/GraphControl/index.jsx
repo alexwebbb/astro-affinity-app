@@ -32,13 +32,13 @@ class GraphControl extends Component {
 
   componentDidUpdate() {
     // logic for pushpin, so that it doesnt run on med and below
-    if (document.pushpinInstances && this.state.width < 992) {
-      document.pushpinInstances.forEach(element => {
+    if (this.pushpinInstances && this.state.width < 992) {
+      this.pushpinInstances.forEach(element => {
         element.destroy();
       });
     } else if (this.state.width >= 992) {
-      const elems = document.querySelectorAll(".pushpin");
-      document.pushpinInstances = M.Pushpin.init(elems, { top: 44 }); // true offset is 74px
+      const elems = document.querySelectorAll(".graph-control .pushpin");
+      this.pushpinInstances = M.Pushpin.init(elems, { top: 44 }); // true offset is 74px
     }
   }
 
@@ -83,8 +83,8 @@ class GraphControl extends Component {
       pushpinActive = true ? "pushpin" : "";
 
     return (
-      <div className={"graph-control " + pushpinActive}>
-        <div className={"card " + COLORS.GRAPH_BACKGROUND}>
+      <div className={"graph-control"}>
+        <div className={["card", COLORS.GRAPH_BACKGROUND, pushpinActive].join(" ")}>
           <div className={"card-content center-align " + COLORS.TITLE1}>
             {this.renderGraph()}
             <p style={{ margin: "0px"}}>

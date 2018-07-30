@@ -7,22 +7,22 @@ const top =
   bottom =
     "https://res.cloudinary.com/execool/image/upload/v1532923260/astro-app/greg-rakozy-38802-unsplash-bottom.jpg",
   app_view =
-    "https://res.cloudinary.com/execool/image/upload/v1532922949/astro-app/app-view.png",
+    "https://res.cloudinary.com/execool/image/upload/v1532957701/astro-app/app-view.png",
   payment_example =
     "https://res.cloudinary.com/execool/image/upload/v1532922949/astro-app/payment-example.png";
 
 
 class About extends Component {
   componentDidMount() {
-    const pElems = document.querySelectorAll(".parallax"),
-      mElems = document.querySelectorAll(".materialboxed");
-    document.parallaxInstances = M.Parallax.init(pElems);
-    document.materialboxedInstances = M.Materialbox.init(mElems);
+    const pElems = document.querySelectorAll(".about .parallax"),
+      mElems = document.querySelectorAll(".about .materialboxed");
+    M.Parallax.init(pElems);
+    M.Materialbox.init(mElems);
   }
 
   render() {
     return (
-      <div>
+      <div className="about">
         <div
           class="parallax-container"
           style={{ zIndex: "5", height: "200px" }}
@@ -36,7 +36,7 @@ class About extends Component {
           </div>
         </div>
         <div class="section white">
-          <div class="row container about">
+          <div class="row container">
             <p>
               <h1 className="about__heading">
                 Welcome to the Astrological Affinity App.{" "}

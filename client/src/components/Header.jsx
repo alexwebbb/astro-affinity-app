@@ -9,8 +9,8 @@ const ABOUT_PATH = "/about";
 
 class Header extends Component {
   componentDidUpdate() {
-    const elems = document.querySelectorAll(".dropdown-trigger");
-    document.dropdownInstances = M.Dropdown.init(elems);
+    const elems = document.querySelectorAll(".app-header .dropdown-trigger");
+    M.Dropdown.init(elems);
   }
 
   renderContent() {
@@ -20,7 +20,10 @@ class Header extends Component {
       case false:
         return (
           <ul className="nav-mobile">
-            <li>
+            <li key="1" className="hide-on-small-only">
+                <Link to={ABOUT_PATH}>About</Link>
+              </li>
+            <li key="2">
               <a href="/auth/google">Login With Google</a>
             </li>
           </ul>

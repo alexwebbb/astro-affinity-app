@@ -3,9 +3,7 @@ import { connect } from "react-redux";
 import * as COLORS from "../../config/colors";
 import Graph from "./Graph";
 import GraphSpinner from "./GraphSpinner";
-import * as chineseZodiac from "../../utils/chineseZodiac";
-import * as westernZodiac from "../../utils/westernZodiac";
-import "./zodiacDefinitions";
+import ZODIAC, { WESTERN, CHINESE } from "./zodiacDefinitions";
 
 class GraphSummary extends Component {
   state = { currentZodiac: WESTERN };
@@ -16,11 +14,11 @@ class GraphSummary extends Component {
         <div className="card-title">
           Comparing to{" "}
           <span className="graph__active-sign">
-            {chineseZodiac.getSign(this.props.birthdate)}
+            {ZODIAC[CHINESE].getSign(this.props.birthdate)}
           </span>
           <Graph
             birthdate={this.props.birthdate}
-            zodiac={chineseZodiac}
+            zodiac={ZODIAC[CHINESE]}
             selector="radarChart"
             title="Chinese Zodiac"
           />
@@ -31,11 +29,11 @@ class GraphSummary extends Component {
         <div className="card-title">
           Comparing to{" "}
           <span className="graph__active-sign">
-            {westernZodiac.getSign(this.props.birthdate)}
+            {ZODIAC[WESTERN].getSign(this.props.birthdate)}
           </span>
           <Graph
             birthdate={this.props.birthdate}
-            zodiac={westernZodiac}
+            zodiac={ZODIAC[WESTERN]}
             selector="radarChart"
             title="Western Zodiac"
           />

@@ -1,14 +1,14 @@
 import React from "react";
 import * as COLORS from "../../config/colors";
 
+const classes =
+  "profile-list__title btn-floating btn-large waves-effect waves-light left";
+
 export default ({ id, selected, setSelected }) => {
   if (selected) {
     return (
       <a
-        className={
-          "profile-list__title btn-floating btn-large waves-effect waves-light left " +
-          COLORS.SELECTED_BUTTON
-        }
+        className={[classes, COLORS.SELECTED_BUTTON].join(" ")}
         onClick={() => setSelected(id)}
       >
         <i className="material-icons">star</i>
@@ -17,10 +17,7 @@ export default ({ id, selected, setSelected }) => {
   } else {
     return (
       <a
-        className={
-          "profile-list__title btn-floating btn-large waves-effect waves-light left " +
-          COLORS.GRAPH_BACKGROUND
-        }
+        className={[classes, COLORS.GRAPH_BACKGROUND].join(" ")}
         onClick={() => setSelected(id)}
       >
         <i className="material-icons">star_border</i>

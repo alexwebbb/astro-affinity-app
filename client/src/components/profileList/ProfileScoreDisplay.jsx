@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { CHINESE, WESTERN, COMBINED } from "../../utils/zodiac";
 import * as COLORS from "../../config/colors";
-import CircularProgressBar from "../../utils/circularProgressBar/circularProgressBar";
+import CircularProgressBar from "../../utils/circularProgressBar";
 
 const selector = (id, role) => {
     return role + "-score-for-" + id;

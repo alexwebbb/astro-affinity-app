@@ -98,7 +98,7 @@ p.about__signature {
   color: var(--TITLE2);
 }
 
-.affinities-css {
+.dashboard {
   padding-top: 10px;
 }
 
@@ -168,7 +168,7 @@ circle.one {
   font-size: 1.2em;
 }
 
-.profile-primary-buttons__delete-button {
+.profile-list__delete-button {
   border: var(--GRAPH_BACKGROUND) solid 8px;
 }
 

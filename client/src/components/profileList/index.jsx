@@ -26,8 +26,8 @@ class ProfileList extends Component {
   }
 
   componentDidUpdate() {
-    const elems = document.querySelectorAll(".modal");
-    document.modalInstances = M.Modal.init(elems);
+    const elems = document.querySelectorAll(".profile-list .modal");
+    M.Modal.init(elems);
   }
 
   setSort(index) {
@@ -41,7 +41,7 @@ class ProfileList extends Component {
   renderProfiles() {
     const { profiles, auth, selected } = this.props;
 
-    if (profiles === null || profiles.length === 0 || auth === null) {
+    if (profiles === null || profiles.length === 0 || auth == null) {
       return null;
     }
 
@@ -105,7 +105,7 @@ class ProfileList extends Component {
 
   render() {
     return (
-      <div>
+      <div className="profile-list">
         <SortButtons
           currentIndex={this.state.sortIndex}
           currentReverse={this.state.reverse}

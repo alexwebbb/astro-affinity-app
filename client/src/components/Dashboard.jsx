@@ -1,28 +1,28 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import ProfileList from "./profileList/ProfileList";
-import GraphControl from "./graph/GraphControl";
+import ProfileList from "./ProfileList";
+import GraphControl from "./GraphControl";
 import * as COLORS from "../config/colors";
 import * as M from "materialize-css";
 
 class Dashboard extends Component {
 
   componentDidMount() {
-    const elems = document.querySelectorAll(".tap-target");
-    document.taptargetInstances = M.TapTarget.init(elems);
+    const elems = document.querySelectorAll(".dashboard .tap-target");
+    this.taptargetInstances = M.TapTarget.init(elems);
   }
 
   componentDidUpdate() {
     const { auth, profiles } = this.props;
     if (auth && profiles && profiles.length < 3) {
-      document.taptargetInstances[0].open();
+      this.taptargetInstances[0].open();
     }
   }
   
   render() {
     return (
-      <main className="affinities-css">
+      <main className="dashboard">
         <div className="row">
           <div className="col s12 m12 l7 xl6">
             <GraphControl />

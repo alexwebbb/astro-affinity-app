@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { scaleOrdinal } from "d3";
-import RadarChart from "../../utils/radarChart/radarChart";
+import RadarChart from "../../utils/radarChart";
 
 class Graph extends Component {
   constructor(props) {

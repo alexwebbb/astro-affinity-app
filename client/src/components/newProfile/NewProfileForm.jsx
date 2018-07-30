@@ -36,7 +36,6 @@ class ProfileForm extends Component {
   }
 
   render() {
-    // this.autofillEntries();
     return (
       <form onSubmit={this.props.handleSubmit(this.props.onProfileSubmit)}>
         {this.renderFields()}
