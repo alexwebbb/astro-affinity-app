@@ -82,7 +82,7 @@ html {
   color: var(--TEXT4);
 }
 
-.about a {
+.about a, .new-profile a {
   font-size: 1.2em;
   color: var(--TEXT3);
 }
@@ -94,8 +94,14 @@ html {
 }
 
 p.about__signature {
+  text-align: right;
   font-size: 4vw;
   color: var(--TITLE2);
+}
+
+p.about__email {
+  font-size: 2.5vw;
+  color: var(--TEXT3);
 }
 
 .dashboard {
@@ -112,8 +118,9 @@ circle.one {
   fill: var(--circle-one);
 }
 
-.profile-form-css {
-  padding: 20px;
+.footer {
+  padding: 30px 0 0 0;
+  color: var(--TEXT1);
 }
 
 .graph-control {
@@ -131,6 +138,31 @@ circle.one {
   text-shadow: 3px 3px var(--PRIMARY_RED);
 }
 
+.landing {
+  padding: 30px;
+  background-color: var(--GRAPH_BACKGROUND);
+  color: var(--TEXT1);
+}
+
+.landing p {
+  font-size: 1.2em;
+  
+}
+
+.landing h1 {
+  margin: 0;
+  font-size: 8vh;
+  padding-top: 35px;
+}
+
+.landing__text {
+  text-shadow: 2px 2px var(--PRIMARY_BLUE);
+}
+
+.landing__credentials {
+  color: var(--TEXT2);
+}
+
 /* radar chart */
 .legend {
   font-family: "Lato", sans-serif;
@@ -138,12 +170,10 @@ circle.one {
   fill: var(--TEXT1);
 }
 
-.radar .title {
-  fill: white;
-}
 
-.radarTooltipText {
-  fill: var(--TEXT2);
+
+.new-profile {
+  padding: 20px;
 }
 
 .new-profile__button {
@@ -170,6 +200,14 @@ circle.one {
 
 .profile-list__delete-button {
   border: var(--GRAPH_BACKGROUND) solid 8px;
+}
+
+.radar .title {
+  fill: white;
+}
+
+.radarTooltipText {
+  fill: var(--TEXT2);
 }
 
 .score-block {
@@ -228,30 +266,7 @@ circle.one {
   }
 }
 
-.landing {
-  padding: 30px;
-  background-color: var(--GRAPH_BACKGROUND);
-  color: var(--TEXT1);
-}
 
-.landing p {
-  font-size: 1.2em;
-  
-}
-
-.landing h1 {
-  margin: 0;
-  font-size: 8vh;
-  padding-top: 35px;
-}
-
-.landing__text {
-  text-shadow: 2px 2px var(--PRIMARY_BLUE);
-}
-
-.landing__credentials {
-  color: var(--TEXT2);
-}
 
 
 

@@ -28,6 +28,7 @@ class App extends Component {
             <Route path="/affinities/new" component={NewProfile} />
           </div>
         </BrowserRouter>
+        <footer className="footer"><p className="center-align">Alex Webb - 2018</p></footer>
       </div>
     );
   }

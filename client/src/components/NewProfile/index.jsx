@@ -4,7 +4,7 @@ import * as COLORS from "./../../config/colors";
 import ProfileForm from "./NewProfileForm";
 import ProfileFormReview from "./NewProfileFormReview";
 
-const classes = "profile-form-css " + COLORS.FORM_BACKGROUND;
+const classes = "new-profile " + COLORS.FORM_BACKGROUND;
 
 class NewProfile extends Component {
   state = { showFormReview: false };

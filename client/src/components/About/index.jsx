@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import * as M from "materialize-css";
 import ImageCredit from "./ImageCredit";
+import link from "./../../utils/externalLink.jsx";
 
 const top =
     "https://res.cloudinary.com/execool/image/upload/v1532923260/astro-app/greg-rakozy-38802-unsplash-top.jpg",
@@ -9,14 +10,7 @@ const top =
   app_view =
     "https://res.cloudinary.com/execool/image/upload/v1532957701/astro-app/app-view.png",
   payment_example =
-    "https://res.cloudinary.com/execool/image/upload/v1532922949/astro-app/payment-example.png",
-  link = (text, href) => {
-    return (
-      <a href={"https://" + href} target="_blank" rel="noopener noreferrer">
-        {text}
-      </a>
-    );
-  };
+    "https://res.cloudinary.com/execool/image/upload/v1532922949/astro-app/payment-example.png";
 
 class About extends Component {
   componentDidMount() {
@@ -101,7 +95,18 @@ class About extends Component {
               people, you must either purchase additional slots, or be willing
               to delete and re-add profiles by hand.
             </p>
-            <p className="right about__signature">- Alex Webb</p>
+            <p>
+              Celebrity info and copy used in autofill button is sourced from{" "}
+              {link("Famous Birthdays", "famousbirthdays.com")}.
+            </p>
+            <div className="right">
+              <p className="about__signature">- Alex Webb</p>
+              <p className="about__email">
+                <a href="mailto:alexwebbb@protonmail.com">
+                  alexwebbb@protonmail.com
+                </a>
+              </p>
+            </div>
           </div>
         </div>
         <div

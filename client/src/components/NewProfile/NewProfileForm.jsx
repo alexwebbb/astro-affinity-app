@@ -6,6 +6,7 @@ import * as COLORS from "../../config/colors";
 import CELEBRITIES from "../../utils/celebrities"
 import ProfileField from "./NewProfileField";
 import formFields from "./formFields";
+import link from "./../../utils/externalLink.jsx";
 
 class ProfileForm extends Component {
   async autofillEntries() {
@@ -63,6 +64,10 @@ class ProfileForm extends Component {
             Next
             <i className="material-icons right">done</i>
           </button>
+          <p>
+              Celebrity info and copy used in autofill button is sourced from{" "}
+              {link("Famous Birthdays", "famousbirthdays.com")}.
+            </p>
         </div>
       </form>
     );
