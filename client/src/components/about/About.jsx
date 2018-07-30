@@ -1,17 +1,21 @@
 import React, { Component } from "react";
 import * as M from "materialize-css";
 
-import top from "./../../images/greg-rakozy-38802-unsplash-top.jpg";
-import bottom from "./../../images/greg-rakozy-38802-unsplash-bottom.jpg";
-import app_view from "./../../images/app-view.png";
-import payment_example from "./../../images/payment-example.png";
+const top =
+    "https://res.cloudinary.com/execool/image/upload/v1532923260/astro-app/greg-rakozy-38802-unsplash-top.jpg",
+  bottom =
+    "https://res.cloudinary.com/execool/image/upload/v1532923260/astro-app/greg-rakozy-38802-unsplash-bottom.jpg",
+  app_view =
+    "https://res.cloudinary.com/execool/image/upload/v1532922949/astro-app/app-view.png",
+  payment_example =
+    "https://res.cloudinary.com/execool/image/upload/v1532922949/astro-app/payment-example.png";
 
 import ImageCredit from "./ImageCredit";
 
 class About extends Component {
   componentDidMount() {
     const pElems = document.querySelectorAll(".parallax"),
-      mElems = document.querySelectorAll('.materialboxed');
+      mElems = document.querySelectorAll(".materialboxed");
     document.parallaxInstances = M.Parallax.init(pElems);
     document.materialboxedInstances = M.Materialbox.init(mElems);
   }
@@ -24,7 +28,11 @@ class About extends Component {
           style={{ zIndex: "5", height: "200px" }}
         >
           <div class="parallax">
-            <img src={top} alt="by Greg Rakozy on Unsplash" role="presentation"/>
+            <img
+              src={top}
+              alt="by Greg Rakozy on Unsplash"
+              role="presentation"
+            />
           </div>
         </div>
         <div class="section white">
@@ -85,7 +93,7 @@ class About extends Component {
               alt="view of the app in action"
               class="left materialboxed"
               width="270"
-              style={{ margin: "5px 15px 5px 0px"}}
+              style={{ margin: "5px 15px 5px 0px" }}
             />
             <p>
               This app allows a user to create an account, add a profile with
@@ -107,7 +115,7 @@ class About extends Component {
               width="270"
               src={payment_example}
               alt="Example of a payment being applied to purchase more slots"
-              style={{ margin: "5px 0px 5px 15px"}}
+              style={{ margin: "5px 0px 5px 15px" }}
             />
             <p>
               The goal of the app is to allow users to have fun making quick
@@ -133,7 +141,11 @@ class About extends Component {
           style={{ zIndex: "5", height: "220px" }}
         >
           <div class="parallax">
-            <img src={bottom} alt="by Greg Rakozy on Unsplash" role="presentation" />
+            <img
+              src={bottom}
+              alt="by Greg Rakozy on Unsplash"
+              role="presentation"
+            />
           </div>
         </div>
         <ImageCredit />
