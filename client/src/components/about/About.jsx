@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import * as M from "materialize-css";
+import ImageCredit from "./ImageCredit";
 
 const top =
     "https://res.cloudinary.com/execool/image/upload/v1532923260/astro-app/greg-rakozy-38802-unsplash-top.jpg",
@@ -10,7 +11,6 @@ const top =
   payment_example =
     "https://res.cloudinary.com/execool/image/upload/v1532922949/astro-app/payment-example.png";
 
-import ImageCredit from "./ImageCredit";
 
 class About extends Component {
   componentDidMount() {
