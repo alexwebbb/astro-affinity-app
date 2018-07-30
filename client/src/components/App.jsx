@@ -6,10 +6,10 @@ import * as actions from "../actions";
 import "./../css/index.css";
 
 import Header from "./Header";
-import About from "./About/About.jsx";
-import Landing from "./Landing/index.jsx";
+import About from "./About";
+import Landing from "./Landing";
 import Dashboard from "./Dashboard";
-import NewProfile from "./NewProfile/index.jsx";
+import NewProfile from "./NewProfile";
 
 class App extends Component {
   componentDidMount() {

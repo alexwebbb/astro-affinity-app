@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import ProfileList from "./ProfileList/index.jsx";
-import GraphControl from "./GraphControl/index.jsx";
+import ProfileList from "./ProfileList";
+import GraphControl from "./GraphControl";
 import * as COLORS from "../config/colors";
 import * as M from "materialize-css";
 
