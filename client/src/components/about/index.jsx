@@ -9,8 +9,14 @@ const top =
   app_view =
     "https://res.cloudinary.com/execool/image/upload/v1532957701/astro-app/app-view.png",
   payment_example =
-    "https://res.cloudinary.com/execool/image/upload/v1532922949/astro-app/payment-example.png";
-
+    "https://res.cloudinary.com/execool/image/upload/v1532922949/astro-app/payment-example.png",
+  link = (text, href) => {
+    return (
+      <a href={"https://" + href} target="_blank" rel="noopener noreferrer">
+        {text}
+      </a>
+    );
+  };
 
 class About extends Component {
   componentDidMount() {
@@ -30,7 +36,7 @@ class About extends Component {
           <div class="parallax">
             <img
               src={top}
-              alt="by Greg Rakozy on Unsplash"
+              alt="by Greg Rakozy on Unsplash - A view of stars"
               role="presentation"
             />
           </div>
@@ -42,51 +48,13 @@ class About extends Component {
                 Welcome to the Astrological Affinity App.{" "}
               </h1>
               This capstone app is demonstration of a fullstack JavaScript app
-              that utilizes{" "}
-              <a href="" target="_blank" rel="noopener noreferrer">
-                Node.js
-              </a>
-              and{" "}
-              <a
-                href="https://expressjs.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Express
-              </a>{" "}
-              with{" "}
-              <a
-                href="https://reactjs.org/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                React
-              </a>{" "}
-              and{" "}
-              <a
-                href="https://redux.js.org/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Redux
-              </a>{" "}
+              that utilizes {link("Node.js", "nodejs.org")} and{" "}
+              {link("Express", "expressjs.com")} with{" "}
+              {link("React", "reactjs.org")} and {link("Redux", "redux.js.org")}{" "}
               to create a single page app experience. This app also utilizes{" "}
-              <a
-                href="https://d3js.org/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                D3.js
-              </a>{" "}
-              and{" "}
-              <a
-                href="https://materializecss.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Materialize
-              </a>{" "}
-              to create an engaging visual and interactive experience.
+              {link("D3.js", "d3js.org")} and{" "}
+              {link("Materialize", "materializecss.com")} to create an engaging
+              visual and interactive experience.
             </p>
             <img
               src={app_view}
@@ -143,7 +111,7 @@ class About extends Component {
           <div class="parallax">
             <img
               src={bottom}
-              alt="by Greg Rakozy on Unsplash"
+              alt="by Greg Rakozy on Unsplash - A person looking at the stars"
               role="presentation"
             />
           </div>
