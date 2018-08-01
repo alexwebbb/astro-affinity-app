@@ -14,18 +14,28 @@ export const handleToken = token => async dispatch => {
 };
 
 export const submitProfile = (values, history) => async dispatch => {
-  const user = await axios.post("/api/profiles", values);
+  const response = await axios.post("/api/profiles", values),
+    { user, profiles } = response.data;
 
-  dispatch({ type: FETCH_USER, payload: user.data });
+  // update the list of profiles
+  dispatch({ type: FETCH_PROFILES, payload: profiles });
+  // update the count of slots
+  dispatch({ type: FETCH_USER, payload: user });
   history.push("/affinities");
 };
 
 export const removeProfile = id => async dispatch => {
-  const user = await axios.delete("/api/profiles", { data: { id } }),
-    profiles = await axios.get("/api/profiles");
+  const response = await axios.delete("/api/profiles", { data: { id } }),
+    { user, profiles } = response.data;
 
-  dispatch({ type: FETCH_USER, payload: user.data });
-  dispatch({ type: FETCH_PROFILES, payload: profiles.data });
+  if (profiles && profiles.length > 0) {
+    dispatch({ type: SET_SELECTED, payload: user.primary });
+  }
+
+  // update the list of profiles
+  dispatch({ type: FETCH_PROFILES, payload: profiles });
+  // update the count of slots
+  dispatch({ type: FETCH_USER, payload: user });
 };
 
 export const fetchProfiles = () => async dispatch => {
@@ -39,7 +49,6 @@ export const setSelected = id => async dispatch => {
 };
 
 export const setPrimary = id => async dispatch => {
-
   const profiles = await axios.post("/api/profiles/set", { id });
 
   dispatch({ type: FETCH_USER, payload: profiles.data });

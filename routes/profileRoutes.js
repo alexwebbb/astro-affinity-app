@@ -23,20 +23,27 @@ module.exports = app => {
   });
 
   app.post("/api/profiles", requireLogin, requireCredits, async (req, res) => {
-    const { name, birthdate, description } = req.body;
-    const profile = new Profile({
-      name,
-      birthdate,
-      description,
-      _user: req.user.id
-    });
+    const { name, birthdate, description } = req.body,
+      profile = new Profile({
+        name,
+        birthdate,
+        description,
+        _user: req.user.id
+      });
 
     try {
       await profile.save();
+      const profiles = await Profile.find({ _user: req.user.id });
+
+      if (profiles && !profiles.find(v => v._id === req.user.primary)) {
+        req.user.primary = profiles[0]._id;
+      }
+
       req.user.credits -= 1;
+
       const user = await req.user.save();
 
-      res.send(user);
+      res.send({ user, profiles });
     } catch (err) {
       res.status(422).send(err);
     }
@@ -44,7 +51,8 @@ module.exports = app => {
 
   app.delete("/api/profiles", requireLogin, async (req, res) => {
     try {
-      const result = await Profile.findByIdAndRemove(req.body.id);
+      const result = await Profile.findByIdAndRemove(req.body.id),
+        profiles = await Profile.find({ _user: req.user.id });
 
       if (result !== null) {
         req.user.credits += 1;
@@ -53,7 +61,7 @@ module.exports = app => {
       }
       const user = await req.user.save();
 
-      res.send(user);
+      res.send({ user, profiles });
     } catch (err) {
       res.status(422).send(err);
     }
