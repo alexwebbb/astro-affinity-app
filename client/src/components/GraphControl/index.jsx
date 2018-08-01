@@ -7,10 +7,12 @@ import Graph from "./Graph";
 import Buttons from "./GraphButtons";
 import GraphSpinner from "./GraphSpinner";
 
+const TRANSITION_WIDTH = 992;
+
 class GraphControl extends Component {
   constructor(props) {
     super(props);
-    this.state = { width: 0, currentZodiac: WESTERN };
+    this.state = { currentZodiac: WESTERN };
     this.setZodiac = this.setZodiac.bind(this);
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
   }
@@ -20,26 +22,22 @@ class GraphControl extends Component {
   }
 
   updateWindowDimensions() {
-    // returns the view to the top so pushpinned graph will resize properly
-    window.scrollTo(0, 0);
-    this.setState({ width: window.innerWidth });
+    // logic for pushpin, so that it doesnt run on med and below
+    if (this.pushpinInstances && window.innerWidth < TRANSITION_WIDTH) {
+      this.pushpinInstances.forEach(element => {
+        element.destroy();
+      });
+    } else if (window.innerWidth >= TRANSITION_WIDTH) {
+      const elems = document.querySelectorAll(".graph-control .pushpin");
+      // returns the view to the top so pushpinned graph will resize properly
+      window.scrollTo(0, 0);
+      this.pushpinInstances = M.Pushpin.init(elems, { top: 44 }); // true offset is 74px
+    }
   }
 
   componentDidMount() {
     this.updateWindowDimensions();
     window.addEventListener("resize", this.updateWindowDimensions);
-  }
-
-  componentDidUpdate() {
-    // logic for pushpin, so that it doesnt run on med and below
-    if (this.pushpinInstances && this.state.width < 992) {
-      this.pushpinInstances.forEach(element => {
-        element.destroy();
-      });
-    } else if (this.state.width >= 992) {
-      const elems = document.querySelectorAll(".graph-control .pushpin");
-      this.pushpinInstances = M.Pushpin.init(elems, { top: 44 }); // true offset is 74px
-    }
   }
 
   componentWillUnmount() {
@@ -51,8 +49,9 @@ class GraphControl extends Component {
       { name, birthdate } = this.props;
     return (
       <div className="card-title">
-        <h1 style={{ fontSize: "0.6em", margin: "0px"}}>
-          Currently Selected: <br /><span className="graph__active-sign">{name}</span>
+        <h1 style={{ fontSize: "0.6em", margin: "0px" }}>
+          Currently Selected: <br />
+          <span className="graph__active-sign">{name}</span>
         </h1>
         <h2 style={{ fontSize: "1.4em", margin: "0px" }}>
           Comparing to{" "}
@@ -84,10 +83,12 @@ class GraphControl extends Component {
 
     return (
       <div className={"graph-control"}>
-        <div className={["card", COLORS.GRAPH_BACKGROUND, pushpinActive].join(" ")}>
+        <div
+          className={["card", COLORS.GRAPH_BACKGROUND, pushpinActive].join(" ")}
+        >
           <div className={"card-content center-align " + COLORS.TITLE1}>
             {this.renderGraph()}
-            <p style={{ margin: "0px"}}>
+            <p style={{ margin: "0px" }}>
               Graph of the different affinities <br /> with the sign of the
               person selected.
             </p>
