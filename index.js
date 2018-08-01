@@ -1,4 +1,5 @@
 const express = require('express'),
+secure = require('ssl-express-www'),
   mongoose = require('mongoose'),
   cookieSession = require('cookie-session'),
   passport = require('passport'),
@@ -13,6 +14,7 @@ mongoose.connect(keys.mongoURI, { useNewUrlParser: true });
 
 const app = express();
 
+app.use(secure);
 app.use(bodyParser.json());
 app.use(
   cookieSession({
