@@ -19,3 +19,4 @@ export const TEXT3 = "teal-text text-darken-4"; // #004d40
 export const TEXT4 = "blue-grey-text text-darken-1";
 export const ACCENT1 = "pink lighten-5";
 export const ACCENT2 = "red lighten-4";
+export const LANDING_BACKGROUND = "grey darken-3"; //#424242 

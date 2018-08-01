@@ -17,6 +17,7 @@
   --TEXT4: #546e7a;
   --DEFAULT_BUTTON: #00acc1;
   --GRAPH_BACKGROUND: #546e7a;
+  --LANDING_BACKGROUND: #424242;
   --circle-na: #333;
   --circle-zero: #c00;
   --circle-one: #6c0;
@@ -100,18 +101,19 @@ body {
 
 .about__heading {
   display: inline;
-  font-size: 6vw;
+  font-size: 2em;
   color: var(--TEXT2);
 }
 
 p.about__signature {
   text-align: right;
-  font-size: 4vw;
+  font-size: 1.8em;
   color: var(--TITLE2);
+  margin-bottom: 0px;
 }
 
 p.about__email {
-  font-size: 2.5vw;
+  font-size: 0.8em;
   color: var(--TEXT3);
 }
 p.about__github > a {
@@ -155,29 +157,31 @@ circle.one {
   text-shadow: 3px 3px var(--PRIMARY_RED);
 }
 
-.landing {
-  padding: 30px;
-  background-color: var(--GRAPH_BACKGROUND);
-  color: var(--TEXT1);
-}
 
 .landing p {
-  font-size: 1.2em;
+  font-size: 1.4em;
   
 }
 
 .landing h1 {
-  margin: 0;
-  font-size: 8vh;
+  color: var(--TEXT1);
+  margin: 0 0 0 10px;
+  font-size: 1.6em;
   padding-top: 35px;
 }
 
+.landing__content {
+  padding: 5px 20px;
+  background-color: var(--LANDING_BACKGROUND);
+  color: white;
+}
+
 .landing__text {
-  text-shadow: 2px 2px var(--PRIMARY_BLUE);
+  text-shadow: 1px 1px var(--PRIMARY_BLUE);
 }
 
 .landing__credentials {
-  color: var(--TEXT2);
+  color: var(--TEXT1);
 }
 
 /* radar chart */

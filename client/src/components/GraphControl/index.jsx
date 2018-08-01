@@ -15,6 +15,8 @@ class GraphControl extends Component {
     this.state = { currentZodiac: WESTERN };
     this.setZodiac = this.setZodiac.bind(this);
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
+
+    this.lastWidth = 0;
   }
 
   setZodiac(zodiac) {
@@ -30,7 +32,10 @@ class GraphControl extends Component {
     } else if (window.innerWidth >= TRANSITION_WIDTH) {
       const elems = document.querySelectorAll(".graph-control .pushpin");
       // returns the view to the top so pushpinned graph will resize properly
-      window.scrollTo(0, 0);
+      if (this.lastWidth !== window.innerWidth) {
+        window.scrollTo(0, 0);
+        this.lastWidth = window.innerWidth;
+      }
       this.pushpinInstances = M.Pushpin.init(elems, { top: 44 }); // true offset is 74px
     }
   }
@@ -38,6 +43,10 @@ class GraphControl extends Component {
   componentDidMount() {
     this.updateWindowDimensions();
     window.addEventListener("resize", this.updateWindowDimensions);
+  }
+
+  componentDidUpdate() {
+    this.updateWindowDimensions();
   }
 
   componentWillUnmount() {

@@ -21,7 +21,7 @@ class ProfileList extends Component {
   }
 
   setDefaultSelected() {
-    if (this.props.selected === 0) {
+    if (this.props.auth && this.props.selected === 0) {
       this.props.setSelected(this.props.auth.primary);
     }
   }
