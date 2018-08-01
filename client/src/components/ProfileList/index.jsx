@@ -20,17 +20,23 @@ class ProfileList extends Component {
     this.setReverse = this.setReverse.bind(this);
   }
 
-  async componentDidMount() {
-    await this.props.fetchProfiles();
-
+  setDefaultSelected() {
     if (this.props.selected === 0) {
       this.props.setSelected(this.props.auth.primary);
     }
   }
 
+  async componentDidMount() {
+    await this.props.fetchProfiles();
+
+    this.setDefaultSelected();
+  }
+
   componentDidUpdate() {
     const elems = document.querySelectorAll(".profile-list .modal");
     M.Modal.init(elems);
+
+    this.setDefaultSelected();
   }
 
   setSort(index) {
