@@ -16,11 +16,14 @@ const selector = (id, role) => {
 
 class ScoreDisplay extends Component {
   callDraw() {
-    const { _id, cScore, wScore, combinedScore } = this.props.data;
+    const { active } = this.props,
+      { _id, cScore, wScore, combinedScore } = this.props.data;
 
-    CircularProgressBar(selector(_id, CHINESE), cScore / 5);
-    CircularProgressBar(selector(_id, WESTERN), wScore / 5);
-    CircularProgressBar(selector(_id, COMBINED), combinedScore / 5);
+    if (active) {
+      CircularProgressBar(selector(_id, CHINESE), cScore / 5);
+      CircularProgressBar(selector(_id, WESTERN), wScore / 5);
+      CircularProgressBar(selector(_id, COMBINED), combinedScore / 5);
+    }
   }
 
   componentDidMount() {
@@ -50,7 +53,9 @@ class ScoreDisplay extends Component {
         <div className="col m4 xl6 score-block">
           <div className="score-block__title">
             <p>
-              <span className="score-block__active-sign">{truncate(wSign) + " "}</span>
+              <span className="score-block__active-sign">
+                {truncate(wSign) + " "}
+              </span>
               <br className="hide-on-large-and-up" /> x{" "}
               <br className="hide-on-large-and-up" />
               {wSignPrimary}
@@ -70,7 +75,9 @@ class ScoreDisplay extends Component {
         <div className="col m4 xl6 score-block">
           <div className="score-block__title">
             <p>
-              <span className="score-block__active-sign">{truncate(cSign) + " "}</span>
+              <span className="score-block__active-sign">
+                {truncate(cSign) + " "}
+              </span>
               <br className="hide-on-large-and-up" /> x{" "}
               <br className="hide-on-large-and-up" />
               {cSignPrimary}
@@ -90,9 +97,10 @@ class ScoreDisplay extends Component {
         <div className="col m4 xl12 score-block">
           <div className="score-block__title">
             <p>
-              <span className="score-block__active-sign">{truncate(name, 10) + " "}</span>
-              <br className="hide-on-large-and-up" /> x{" "}
-              {truncate(namePrimary)}
+              <span className="score-block__active-sign">
+                {truncate(name, 10) + " "}
+              </span>
+              <br className="hide-on-large-and-up" /> x {truncate(namePrimary)}
             </p>
           </div>
           <div className="score-block__score">

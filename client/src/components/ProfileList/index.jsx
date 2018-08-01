@@ -20,9 +20,42 @@ class ProfileList extends Component {
     this.setSort = this.setSort.bind(this);
     this.setReverse = this.setReverse.bind(this);
   }
+  
 
   async componentDidMount() {
     await this.props.fetchProfiles();
+
+    const { profiles, auth, selected } = this.props;
+
+    if (!profiles.find(v => v._id === auth.primary)) {
+      this.setPrimary(profiles[0]._id);
+    }
+
+    if (!profiles.find(v => v._id === selected)) {
+      this.props.setSelected(auth.primary);
+    }
+
+    this.readyToRender = true;
+  }
+  
+
+  componentWillUpdate() {
+    const { profiles, auth, selected } = this.props;
+
+    if (profiles === null || profiles.length === 0 || auth == null) {
+      this.readyToRender = false;
+      return;
+    }
+
+    // if (!profiles.find(v => v._id === auth.primary)) {
+    //   this.setPrimary(profiles[0]._id);
+    // }
+
+    // if (!profiles.find(v => v._id === selected)) {
+    //   this.props.setSelected(auth.primary);
+    // }
+
+    this.readyToRender = true;
   }
 
   componentDidUpdate() {
@@ -41,17 +74,7 @@ class ProfileList extends Component {
   renderProfiles() {
     const { profiles, auth, selected } = this.props;
 
-    if (profiles === null || profiles.length === 0 || auth == null) {
-      return null;
-    }
-
-    if (!profiles.find(v => v._id === auth.primary)) {
-      this.setPrimary(profiles[0]._id);
-      return null;
-    }
-
-    if (!profiles.find(v => v._id === selected)) {
-      this.props.setSelected(auth.primary);
+    if (!this.readyToRender) {
       return null;
     }
 
@@ -65,7 +88,9 @@ class ProfileList extends Component {
     return newProfiles.map(data => {
       const { _id, name, cSign, wSign, birthdate, description } = data,
         isSelected = selected === _id,
-        selectedColor = isSelected ? COLORS.SELECTED_BACKGROUND : COLORS.PROFILE_BACKGROUND,
+        selectedColor = isSelected
+          ? COLORS.SELECTED_BACKGROUND
+          : COLORS.PROFILE_BACKGROUND,
         isPrimary = auth.primary === _id;
 
       return (
