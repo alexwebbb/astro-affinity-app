@@ -249,11 +249,6 @@ circle.one {
   word-wrap: normal;
 }
 
-.score-block__circular-progress-bar {
-  height: 60px;
-  width: 60px;
-  margin: 0 auto;
-}
 
 .score-block__title {
   font-weight: 900;
@@ -263,7 +258,7 @@ circle.one {
 .score-block__title--combined {
   font-weight: 400;
   font-size: 16px;
-
+  
   padding-top: 20px;
 }
 
@@ -279,19 +274,22 @@ circle.one {
   width: 35px;
 }
 
+.score-block__circular-progress-bar {
+  height: 60px;
+  width: 60px;
+  margin: 0 auto;
+}
 .score-block__circular-progress-bar--combined {
-  height: 80px;
-  width: 80px;
+  height: 140px;
+  width: 140px;
   margin: 0px auto;
 }
-
-.score-block__active-sign {
-  color: var(--TITLE2);
-  text-shadow: 2px 2px 2px var(--TEXT1);
-  font-size: 1.1em;
-
+@media screen and (min-width: 386px) {
+  .score-block__circular-progress-bar--combined {
+    height: 80px;
+    width: 80px;
+  }
 }
-
 @media screen and (min-width: 1200px) {
   .score-block__circular-progress-bar--combined {
     height: 140px;
@@ -299,6 +297,13 @@ circle.one {
   }
 }
 
+
+.score-block__active-sign {
+  color: var(--TITLE2);
+  text-shadow: 2px 2px 2px var(--TEXT1);
+  font-size: 1.1em;
+
+}  
 
 
 
