@@ -5,25 +5,26 @@ import IMAGE from "./imageData";
 
 const carouselImage = element => {
   return (
-    <div className="carousel-item" href={"#" + element.number + "!"}>
+    <div className="carousel-item" href={"#" + element.number + "!"} >
       <div style={{position: "fixed", top: "0px", right: "0px"}}>
         {element.badge}
       </div>
-      <img src={element.url} alt={element.alt}/>
+      <img className="landing__image" src={element.url} alt={element.alt}/>
     </div>
   );
 };
 
 class Landing extends Component {
   componentDidMount() {
-    const elems = document.querySelectorAll(".landing .carousel");
+    const elems = document.querySelectorAll(".landing .carousel-slider");
     M.Carousel.init(elems, { fullWidth: true });
+    
   }
 
   render() {
     return (
       <div className="landing">
-        <div className="carousel carousel-slider">
+        <div className="carousel carousel-slider landing__carousel">
           {IMAGE.map(e => carouselImage(e))}
           <div className="carousel-fixed-item">
             <h1>Astrological Affinities App</h1>

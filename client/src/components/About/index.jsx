@@ -53,9 +53,9 @@ class About extends Component {
             <img
               src={app_view}
               alt="view of the app in action"
-              class="left materialboxed"
+              class="left materialboxed z-depth-5"
               width="270"
-              style={{ margin: "5px 15px 5px 0px" }}
+              style={{ margin: "5px 30px 20px 0px" }}
             />
             <p>
               This app allows a user to create an account, add a profile with
@@ -73,11 +73,11 @@ class About extends Component {
               sought out if deeper analysis is desired.
             </p>
             <img
-              className="right materialboxed"
+              className="right materialboxed z-depth-5"
               width="270"
               src={payment_example}
               alt="Example of a payment being applied to purchase more slots"
-              style={{ margin: "5px 0px 5px 15px" }}
+              style={{ margin: "5px 0px 20px 30px" }}
             />
             <p>
               The goal of the app is to allow users to have fun making quick

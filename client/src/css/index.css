@@ -170,6 +170,16 @@ circle.one {
   padding-top: 35px;
 }
 
+.landing__carousel {
+  max-height: 200px;
+}
+
+@media screen and (min-width: 992px) {
+  .landing__carousel {
+    max-height: 600px;
+  }
+}
+
 .landing__content {
   padding: 5px 20px;
   background-color: var(--LANDING_BACKGROUND);
