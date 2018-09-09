@@ -1,26 +1,28 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import ProfileList from "./ProfileList";
-import GraphControl from "./GraphControl";
-import * as COLORS from "../config/colors";
+import ProfileList from "./../ProfileList";
+import GraphControl from "./../GraphControl";
+import returnTapTarget from "./returnTapTarget";
+import * as COLORS from "../../config/colors";
 import * as M from "materialize-css";
 
 class Dashboard extends Component {
-
-  componentDidMount() {
-    const elems = document.querySelectorAll(".dashboard .tap-target");
-    this.taptargetInstances = M.TapTarget.init(elems);
-  }
-
   componentDidUpdate() {
-    const { auth, profiles } = this.props;
-    if (auth && profiles && profiles.length < 3) {
-      this.taptargetInstances[0].open();
+    const elems = document.querySelectorAll(".dashboard .tap-target"),
+      { auth, profiles } = this.props,
+      taptargetInstances = M.TapTarget.init(elems);
+
+    if (auth && profiles) {
+      if (taptargetInstances.length > 0) {
+        taptargetInstances[0].open();
+      }
     }
   }
-  
+
   render() {
+    const { profiles } = this.props;
+
     return (
       <main className="dashboard">
         <div className="row">
@@ -40,13 +42,7 @@ class Dashboard extends Component {
           >
             <i className="material-icons">add</i>
           </Link>
-          {/* <!-- Tap Target Structure --> */}
-          <div className="tap-target" data-target="newProfile">
-            <div className="tap-target-content white-text">
-              <h5>You're almost there!</h5>
-              <p>Try adding another profile by clicking this button! You need at least three profiles to use the app.</p>
-            </div>
-          </div>
+          {profiles && returnTapTarget(profiles.length)}
         </div>
       </main>
     );
@@ -57,6 +53,4 @@ const mapStateToProps = ({ auth, profiles }) => {
   return { auth, profiles };
 };
 
-export default connect(
-  mapStateToProps
-)(Dashboard);
+export default connect(mapStateToProps)(Dashboard);

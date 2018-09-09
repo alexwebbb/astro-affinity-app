@@ -1,16 +1,19 @@
-const express = require('express'),
-secure = require('ssl-express-www'),
-  mongoose = require('mongoose'),
-  cookieSession = require('cookie-session'),
-  passport = require('passport'),
-  bodyParser = require('body-parser'),
-  keys = require('./config/keys');
-require('./models/User');
-require('./models/Profile');
-require('./services/passport');
+const express = require("express"),
+  secure = require("ssl-express-www"),
+  mongoose = require("mongoose"),
+  cookieSession = require("cookie-session"),
+  passport = require("passport"),
+  bodyParser = require("body-parser"),
+  keys = require("./config/keys");
+require("./models/User");
+require("./models/Profile");
+require("./services/passport");
 
 mongoose.Promise = global.Promise;
-mongoose.connect(keys.mongoURI, { useNewUrlParser: true });
+mongoose.connect(
+  keys.mongoURI,
+  { useNewUrlParser: true }
+);
 
 const app = express();
 
@@ -26,17 +29,16 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-require('./routes/authRoutes')(app);
-require('./routes/billingRoutes')(app);
-require('./routes/profileRoutes')(app);
+require("./routes/authRoutes")(app);
+require("./routes/billingRoutes")(app);
+require("./routes/profileRoutes")(app);
 
-if (process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
 
-  app.use(express.static('client/build'));
-
-  const path = require('path');
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  const path = require("path");
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
   });
 }
 

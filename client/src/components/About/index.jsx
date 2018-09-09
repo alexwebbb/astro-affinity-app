@@ -37,68 +37,67 @@ class About extends Component {
         </div>
         <div class="section white">
           <div class="row container">
+            <h1 className="about__heading">
+              Welcome to the Astrological Affinity App.{" "}
+            </h1>
             <p>
-              <h1 className="about__heading">
-                Welcome to the Astrological Affinity App.{" "}
-              </h1>
               This capstone app is demonstration of a fullstack JavaScript app
               that utilizes {link("Node.js", "nodejs.org")} and{" "}
               {link("Express", "expressjs.com")} with{" "}
               {link("React", "reactjs.org")} and {link("Redux", "redux.js.org")}{" "}
-              to create a single page app experience. This app also utilizes{" "}
+              to create a single page app experience.
+            </p>
+            <br/>
+            <p>
               {link("D3.js", "d3js.org")} and{" "}
-              {link("Materialize", "materializecss.com")} to create an engaging
-              visual and interactive experience.
+              {link("Materialize", "materializecss.com")} are also utilized to
+              create an engaging visual and interactive experience.
             </p>
-            <img
-              src={app_view}
-              alt="view of the app in action"
-              class="left materialboxed z-depth-5"
-              width="270"
-              style={{ margin: "5px 30px 20px 0px" }}
-            />
-            <p>
-              This app allows a user to create an account, add a profile with
-              their birthdate, and the app will calculate their western zodiac
-              sign and chinese sign and use those to determine what their
-              affinity is with other profiles that are added. It also allows you
-              to sort profiles based on their affinity using a particular
-              zodiac.
-            </p>
-            <p>
-              Many people take astrology and the zodiacs very seriously. The
-              data used in this project was hand transcribed from charts found
-              via google by myself. It is by no means conclusive in the meaning
-              behind the scores granted, and a serious astrologer should be
-              sought out if deeper analysis is desired.
-            </p>
-            <img
-              className="right materialboxed z-depth-5"
-              width="270"
-              src={payment_example}
-              alt="Example of a payment being applied to purchase more slots"
-              style={{ margin: "5px 0px 20px 30px" }}
-            />
-            <p>
-              The goal of the app is to allow users to have fun making quick
-              comparisons to people they know, without having to do more
-              rigorous analysis. Because this app is just a demonstration, a
-              "social media" approach was not used, ie you cannot see or rate
-              other existing users, although that type of utility can be easily
-              added in the future.
-            </p>
-            <p>
-              One more feature I will make note of, is the "slots" you will see
-              when using the app. In order to use the app, no purchase is
-              necessary. However, you are only given five profile slots
-              initially. If you wish to make comparisons with large numbers of
-              people, you must either purchase additional slots, or be willing
-              to delete and re-add profiles by hand.
-            </p>
+            <br />
+            <div className="group">
+              <img
+                src={app_view}
+                alt="view of the app in action"
+                class="right materialboxed z-depth-5"
+                width="270"
+                style={{ margin: "5px 0px 20px 30px" }}
+              />
+              <p>
+                With Astro App, a user can create an account and add a profile
+                with their birthdate, and the app will calculate their western
+                zodiac sign and chinese sign and use those to determine what
+                their affinity is with your own or others. It also allows you to
+                sort profiles based on their affinity using a particular zodiac.
+              </p>
+            </div>
+            <br/>
             <p>
               Celebrity info and copy used in autofill button is sourced from{" "}
               {link("Famous Birthdays", "famousbirthdays.com")}.
             </p>
+            <br />
+            <div className="group">
+              <img
+                className="left materialboxed z-depth-5"
+                width="270"
+                src={payment_example}
+                alt="Example of a payment being applied to purchase more slots"
+                style={{ margin: "5px 30px 20px 0px" }}
+              />
+              <p>
+                Using the app does not require you to make a purchase. However,
+                you are only given five profile slots initially. Taking
+                inspiration from the "free to play" model seen in phone games,
+                you must purchase additional slots to make comparisons involving
+                larger numbers of people.
+              </p>
+            </div>
+            <br />
+            <p>
+              Maybe you and your crush are a perfect match. Or someone you never
+              expected is! Give the Astro App demo a try today.
+            </p>
+
             <div className="right">
               <p className="about__signature">- Alex Webb</p>
               <p className="about__email">
@@ -108,9 +107,9 @@ class About extends Component {
               </p>
             </div>
           </div>
-              <p className="about__github center-align">
-                {link("Visit on Github", "github.com/alexwebbb/astro-affinity-app")}
-              </p>
+          <p className="about__github center-align">
+            {link("Visit on Github", "github.com/alexwebbb/astro-affinity-app")}
+          </p>
         </div>
         <div
           class="parallax-container"
