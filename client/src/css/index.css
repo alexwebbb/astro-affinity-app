@@ -72,11 +72,13 @@ body {
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4a187c', endColorstr='#2a5193',GradientType=0 ); /* IE6-9 */
 
   height: 100%;
-}
 
-.app-css {
   font-family: "Lato", sans-serif;
   font-weight: 400;
+}
+
+.app-css h1 {
+  font-size: 24px;
 }
 
 .app-css p {

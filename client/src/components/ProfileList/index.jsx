@@ -9,7 +9,7 @@ import SortButtons from "./ProfileSortButtons";
 import SelectionButton from "./ProfileSelectionButton";
 import PrimaryButtons from "./ProfilePrimaryButtons";
 import ScoreDisplay from "./ProfileScoreDisplay";
-import { COMBINED } from "../../utils/zodiac";
+import { WESTERN, CHINESE, COMBINED } from "../../utils/zodiac";
 
 class ProfileList extends Component {
   constructor(props) {
@@ -20,23 +20,23 @@ class ProfileList extends Component {
     this.setReverse = this.setReverse.bind(this);
   }
 
-  setDefaultSelected() {
-    if (this.props.auth && this.props.selected === 0) {
-      this.props.setSelected(this.props.auth.primary);
-    }
-  }
-
   async componentDidMount() {
     await this.props.fetchProfiles();
-
+    
     this.setDefaultSelected();
   }
 
   componentDidUpdate() {
     const elems = document.querySelectorAll(".profile-list .modal");
     M.Modal.init(elems);
-
+    
     this.setDefaultSelected();
+  }
+  
+  setDefaultSelected() {
+    if (this.props.auth && this.props.selected === 0) {
+      this.props.setSelected(this.props.auth.primary);
+    }
   }
 
   setSort(index) {
@@ -61,8 +61,8 @@ class ProfileList extends Component {
       this.state.reverse
     );
 
-    return newProfiles.map(data => {
-      const { _id, name, cSign, wSign, birthdate, description } = data,
+    return newProfiles.map(profile => {
+      const { _id, name, birthdate, description } = profile,
         isSelected = selected === _id,
         selectedColor = isSelected
           ? COLORS.SELECTED_BACKGROUND
@@ -85,12 +85,12 @@ class ProfileList extends Component {
               <ScoreDisplay
                 id={_id}
                 namePrimary={primary.name}
-                data={data}
+                profile={profile}
                 active={!isPrimary}
               />
             </div>
             <div className="col s12 m6 l12 xl7">
-              <SignInfo cSign={cSign} wSign={wSign} birthdate={birthdate} />
+              <SignInfo cSign={profile[CHINESE].sign} wSign={profile[WESTERN].sign} birthdate={birthdate} />
               <PrimaryButtons
                 id={_id}
                 isPrimary={isPrimary}

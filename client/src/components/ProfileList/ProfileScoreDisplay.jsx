@@ -17,12 +17,15 @@ const selector = (id, role) => {
 class ScoreDisplay extends Component {
   callDraw() {
     const { active } = this.props,
-      { _id, cScore, wScore, combinedScore } = this.props.data;
+      { _id } = this.props.profile;
 
     if (active) {
-      CircularProgressBar(selector(_id, CHINESE), cScore / 5);
-      CircularProgressBar(selector(_id, WESTERN), wScore / 5);
-      CircularProgressBar(selector(_id, COMBINED), combinedScore / 5);
+      [CHINESE, WESTERN, COMBINED].forEach(function(name) {
+        CircularProgressBar(
+          selector(_id, name),
+          this.props.profile[name].score / 5
+        );
+      }, this);
     }
   }
 
@@ -36,64 +39,41 @@ class ScoreDisplay extends Component {
 
   render() {
     const { id, namePrimary, active } = this.props,
-      {
-        name,
-        cSign,
-        wSign,
-        cSignPrimary,
-        wSignPrimary,
-        cScore,
-        wScore,
-        combinedScore
-      } = this.props.data,
+      data = this.props.profile,
+      { name } = this.props.profile,
       state = active ? "" : "hide";
 
     return (
       <div className={"right " + state}>
-        <div className="col m4 xl6 score-block">
-          <div className="score-block__title">
-            <p>
-              <span className="score-block__active-sign">
-                {truncate(wSign) + " "}
-              </span>
-              <br className="hide-on-large-and-up" /> x{" "}
-              <br className="hide-on-large-and-up" />
-              {wSignPrimary}
-            </p>
-          </div>
-          <div className="score-block__score">
-            <div className={"score-block__decorative-circle " + COLORS.ACCENT2}>
-              {wScore}
+        {[
+          { zodiac: WESTERN, color: COLORS.ACCENT2 },
+          { zodiac: CHINESE, color: COLORS.ACCENT1 }
+        ].reduce(function(a, { zodiac, color }) {
+          return a.concat(
+            <div className="col m4 xl6 score-block" key={selector(id, zodiac)}>
+              <div className="score-block__title">
+                <p>
+                  <span className="score-block__active-sign">
+                    {truncate(data[zodiac].sign) + " "}
+                  </span>
+                  <br className="hide-on-large-and-up" /> x{" "}
+                  <br className="hide-on-large-and-up" />
+                  {data[zodiac].signPrimary}
+                </p>
+              </div>
+              <div className="score-block__score">
+                <div className={"score-block__decorative-circle " + color}>
+                  {data[zodiac].score}
+                </div>
+              </div>
+              <div
+                className={
+                  "score-block__circular-progress-bar " + selector(id, zodiac)
+                }
+              />
             </div>
-          </div>
-          <div
-            className={
-              "score-block__circular-progress-bar " + selector(id, WESTERN)
-            }
-          />
-        </div>
-        <div className="col m4 xl6 score-block">
-          <div className="score-block__title">
-            <p>
-              <span className="score-block__active-sign">
-                {truncate(cSign) + " "}
-              </span>
-              <br className="hide-on-large-and-up" /> x{" "}
-              <br className="hide-on-large-and-up" />
-              {cSignPrimary}
-            </p>
-          </div>
-          <div className="score-block__score">
-            <div className={"score-block__decorative-circle " + COLORS.ACCENT1}>
-              {cScore}
-            </div>
-          </div>
-          <div
-            className={
-              "score-block__circular-progress-bar " + selector(id, CHINESE)
-            }
-          />
-        </div>
+          );
+        }, [])}
         <div className="col m4 xl12 score-block">
           <div className="score-block__title">
             <p>
@@ -105,7 +85,7 @@ class ScoreDisplay extends Component {
           </div>
           <div className="score-block__score">
             <div className={"score-block__decorative-circle " + COLORS.WHITE}>
-              {combinedScore}
+              {data[COMBINED].score}
             </div>
           </div>
           <div

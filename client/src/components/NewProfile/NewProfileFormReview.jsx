@@ -43,7 +43,7 @@ const ProfileFormReview = ({
 
   return (
     <div>
-      <h5>Please confirm your entries</h5>
+      <h1 className="center">Please confirm your entries</h1>
       {reviewFields}
       <div className="group">
         <button

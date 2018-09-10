@@ -23,7 +23,7 @@ export default activeIndex => {
     return (
       <div className="tap-target" data-target="newProfile">
         <div className="tap-target-content white-text">
-          <h5>{title}</h5>
+          <h1>{title}</h1>
           <p>{text}</p>
         </div>
       </div>

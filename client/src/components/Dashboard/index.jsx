@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import ProfileList from "./../ProfileList";
 import GraphControl from "./../GraphControl";
 import returnTapTarget from "./returnTapTarget";
-import * as COLORS from "../../config/colors";
+import * as COLORS from "./../../config/colors";
 import * as M from "materialize-css";
 
 class Dashboard extends Component {

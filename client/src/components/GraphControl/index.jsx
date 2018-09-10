@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as M from "materialize-css";
-import ZODIAC, { WESTERN } from "../../utils/zodiac";
+import { WESTERN } from "../../utils/zodiac";
 import * as COLORS from "../../config/colors";
-import Graph from "./Graph";
+import renderGraph from "./renderGraph";
 import Buttons from "./GraphButtons";
 import GraphSpinner from "./GraphSpinner";
 
@@ -17,10 +17,6 @@ class GraphControl extends Component {
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
 
     this.lastWidth = 0;
-  }
-
-  setZodiac(zodiac) {
-    this.setState({ currentZodiac: zodiac });
   }
 
   updateWindowDimensions() {
@@ -53,29 +49,8 @@ class GraphControl extends Component {
     window.removeEventListener("resize", this.updateWindowDimensions);
   }
 
-  renderGraph() {
-    const { currentZodiac } = this.state,
-      { name, birthdate } = this.props;
-    return (
-      <div className="card-title">
-        <h1 style={{ fontSize: "0.6em", margin: "0px" }}>
-          Currently Selected: <br />
-          <span className="graph__active-sign">{name}</span>
-        </h1>
-        <h2 style={{ fontSize: "1.4em", margin: "0px" }}>
-          Comparing to{" "}
-          <span className="graph__active-sign">
-            {ZODIAC[currentZodiac].getSign(birthdate)}
-          </span>
-        </h2>
-        <Graph
-          birthdate={birthdate}
-          zodiac={ZODIAC[currentZodiac]}
-          selector="radarChart"
-          title={ZODIAC[currentZodiac].name}
-        />
-      </div>
-    );
+  setZodiac(zodiac) {
+    this.setState({ currentZodiac: zodiac });
   }
 
   render() {
@@ -87,16 +62,15 @@ class GraphControl extends Component {
         if (this.state.currentZodiac === zodiac) {
           return COLORS.SELECTED_BUTTON;
         }
-      },
-      pushpinActive = true ? "pushpin" : "";
+      };
 
     return (
       <div className={"graph-control"}>
         <div
-          className={["card", COLORS.GRAPH_BACKGROUND, pushpinActive].join(" ")}
+          className={["card", COLORS.GRAPH_BACKGROUND, "pushpin"].join(" ")}
         >
           <div className={"card-content center-align " + COLORS.TITLE1}>
-            {this.renderGraph()}
+            {renderGraph(this.state, this.props)}
             <p style={{ margin: "0px" }}>
               Graph of the different affinities <br /> with the sign of the
               person selected.
