@@ -47,7 +47,7 @@ class About extends Component {
               {link("React", "reactjs.org")} and {link("Redux", "redux.js.org")}{" "}
               to create a single page app experience.
             </p>
-            <br/>
+            <br />
             <p>
               {link("D3.js", "d3js.org")} and{" "}
               {link("Materialize", "materializecss.com")} are also utilized to
@@ -70,11 +70,6 @@ class About extends Component {
                 sort profiles based on their affinity using a particular zodiac.
               </p>
             </div>
-            <br/>
-            <p>
-              Celebrity info and copy used in autofill button is sourced from{" "}
-              {link("Famous Birthdays", "famousbirthdays.com")}.
-            </p>
             <br />
             <div className="group">
               <img
@@ -109,6 +104,10 @@ class About extends Component {
           </div>
           <p className="about__github center-align">
             {link("Visit on Github", "github.com/alexwebbb/astro-affinity-app")}
+          </p>
+          <p className="center">
+            Celebrity info and copy used in autofill button is sourced from{" "}
+            {link("Famous Birthdays", "famousbirthdays.com")}.
           </p>
         </div>
         <div

@@ -36,6 +36,7 @@ class ProfileForm extends Component {
     });
   }
 
+  
   render() {
     return (
       <form onSubmit={this.props.handleSubmit(this.props.onProfileSubmit)}>
@@ -49,6 +50,14 @@ class ProfileForm extends Component {
           >
             Cancel
           </Link>
+          <a
+            className={
+              "waves-effect waves-light btn-flat new-profile__button white-text " + COLORS.CLEAR_BUTTON
+            }
+            onClick={() => this.props.reset()}
+          >
+            <i className="material-icons right">clear</i>Clear
+          </a>
           <a
             className={
               "waves-effect waves-light btn-flat new-profile__button " + COLORS.AUTOFILL_BUTTON

@@ -8,16 +8,26 @@ import * as COLORS from "./../../config/colors";
 import * as M from "materialize-css";
 
 class Dashboard extends Component {
-  componentDidUpdate() {
+
+  openTapTargets() {
     const elems = document.querySelectorAll(".dashboard .tap-target"),
       { auth, profiles } = this.props,
       taptargetInstances = M.TapTarget.init(elems);
 
-    if (auth && profiles) {
+    if (auth && profiles && auth.newUserFlag) {
+      console.log(auth);
       if (taptargetInstances.length > 0) {
         taptargetInstances[0].open();
       }
     }
+  }
+
+  componentDidMount() {
+    this.openTapTargets();
+  }
+
+  componentDidUpdate() {
+    this.openTapTargets();
   }
 
   render() {

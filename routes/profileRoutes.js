@@ -10,18 +10,6 @@ module.exports = app => {
     res.send(profiles);
   });
 
-  app.post("/api/profiles/set", requireLogin, async (req, res) => {
-    const { id } = req.body;
-
-    try {
-      req.user.primary = id;
-      const user = await req.user.save();
-      res.send(user);
-    } catch (err) {
-      res.status(422).send(err);
-    }
-  });
-
   app.post("/api/profiles", requireLogin, requireCredits, async (req, res) => {
     const { name, birthdate, description } = req.body,
       profile = new Profile({
@@ -32,18 +20,15 @@ module.exports = app => {
       });
 
     try {
-      await profile.save();
-      const profiles = await Profile.find({ _user: req.user.id });
-
-      if (profiles && !profiles.find(v => v._id === req.user.primary)) {
-        req.user.primary = profiles[0]._id;
-      }
-
+      const { _id } = await profile.save(),
+        profiles = await Profile.find({ _user: req.user.id });
+      
+      req.user.primary = _id;
       req.user.credits -= 1;
 
       const user = await req.user.save();
 
-      res.send({ user, profiles });
+      res.send({ user, profiles, id: _id });
     } catch (err) {
       res.status(422).send(err);
     }

@@ -7,6 +7,7 @@ import "./../css/index.css";
 
 import Header from "./Header";
 import About from "./About";
+import Settings from "./Settings";
 import Landing from "./Landing";
 import Dashboard from "./Dashboard";
 import NewProfile from "./NewProfile";
@@ -24,6 +25,7 @@ class App extends Component {
             <Header />
             <Route exact path="/" component={Landing} />
             <Route exact path="/about" component={About} />
+            <Route exact path="/settings" component={Settings} />
             <Route exact path="/affinities" component={Dashboard} />
             <Route path="/affinities/new" component={NewProfile} />
           </div>

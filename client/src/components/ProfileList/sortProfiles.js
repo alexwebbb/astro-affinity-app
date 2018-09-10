@@ -1,5 +1,4 @@
 import getData from "./getData";
-import { CHINESE, WESTERN, COMBINED } from "../../utils/zodiac";
 
 export default (profiles, auth, sortIndex, reverse) => {
   let pIndex = profiles.findIndex(({ _id }) => {
@@ -20,25 +19,9 @@ export default (profiles, auth, sortIndex, reverse) => {
 
   const primaryProfile = newProfiles.splice(pIndex, 1)[0];
 
-  switch (sortIndex) {
-    case CHINESE:
-      newProfiles.sort((a, b) => {
-        return b.cScore - a.cScore;
-      });
-      break;
-    case WESTERN:
-      newProfiles.sort((a, b) => {
-        return b.wScore - a.wScore;
-      });
-      break;
-    case COMBINED:
-      newProfiles.sort((a, b) => {
-        return b.combinedScore - a.combinedScore;
-      });
-      break;
-    default:
-      break;
-  }
+  newProfiles.sort((a, b) => {
+    return b[sortIndex].score - a[sortIndex].score;
+  });
 
   if (reverse) {
     newProfiles.reverse();

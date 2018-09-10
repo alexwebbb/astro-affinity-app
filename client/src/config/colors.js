@@ -10,6 +10,7 @@ export const SELECTED_BUTTON = "green accent-3"; //#00e676
 export const SELECTED_BACKGROUND = "green accent-1";
 export const NEXT_BUTTON = "teal"; // #dd2c00 
 export const BACK_BUTTON = "yellow darken-3";
+export const CLEAR_BUTTON = "pink accent-2"; //#ff4081
 export const AUTOFILL_BUTTON = "yellow"; // #dd2c00 
 export const TITLE1 = "yellow-text text-lighten-5"; // #fffde7 yellow lighten-5
 export const TITLE2 = "lime-text text-darken-4"; // #827717

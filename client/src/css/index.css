@@ -7,7 +7,7 @@
   --BG_STOP_1: rgba(100, 31, 168, 1);
   --BG_STOP_2: rgba(100, 30, 191, 1);
   --BG_STOP_3: rgba(42, 81, 147, 1);
-/* site palette */
+  /* site palette */
   --PRIMARY_BLUE: #651fff;
   --PRIMARY_RED: #dd2c00; /* deep-orange accent-4 */
   --TITLE2: #9e9d24;
@@ -96,7 +96,8 @@ body {
   color: var(--TEXT4);
 }
 
-.about a, .new-profile a {
+.about a,
+.new-profile a {
   font-size: 1.2em;
   color: var(--TEXT3);
 }
@@ -119,11 +120,9 @@ p.about__email {
   color: var(--TEXT3);
 }
 p.about__github > a {
-
   font-size: 1.6em;
   color: var(--TEXT2);
 }
-
 
 .dashboard {
   padding-top: 10px;
@@ -159,10 +158,8 @@ circle.one {
   text-shadow: 3px 3px var(--PRIMARY_RED);
 }
 
-
 .landing p {
   font-size: 1.4em;
-  
 }
 
 .landing h1 {
@@ -204,8 +201,6 @@ circle.one {
   font-weight: 400;
   fill: var(--TEXT1);
 }
-
-
 
 .new-profile {
   padding: 20px;
@@ -251,7 +246,6 @@ circle.one {
   word-wrap: normal;
 }
 
-
 .score-block__title {
   font-weight: 900;
   font-size: 16px;
@@ -260,7 +254,7 @@ circle.one {
 .score-block__title--combined {
   font-weight: 400;
   font-size: 16px;
-  
+
   padding-top: 20px;
 }
 
@@ -299,16 +293,23 @@ circle.one {
   }
 }
 
-
 .score-block__active-sign {
   color: var(--TITLE2);
   text-shadow: 2px 2px 2px var(--TEXT1);
   font-size: 1.1em;
+}
 
-}  
+.settings {
+  padding: 40px;
+}
 
+.settings__label {
+  font-size: 20px;
+}
 
-
+.settings__button {
+  margin: 5px 10px;
+}
 
 .group:after {
   content: "";

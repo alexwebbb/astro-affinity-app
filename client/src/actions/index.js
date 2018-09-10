@@ -1,10 +1,13 @@
 import axios from "axios";
 import { FETCH_USER, FETCH_PROFILES, SET_SELECTED } from "./types";
 
-export const fetchUser = () => async dispatch => {
-  const res = await axios.get("/api/current_user");
+//
+// user actions
 
-  dispatch({ type: FETCH_USER, payload: res.data });
+export const fetchUser = () => async dispatch => {
+  const user = await axios.get("/api/current_user");
+
+  dispatch({ type: FETCH_USER, payload: user.data });
 };
 
 export const handleToken = token => async dispatch => {
@@ -13,13 +16,42 @@ export const handleToken = token => async dispatch => {
   dispatch({ type: FETCH_USER, payload: user.data });
 };
 
+export const setNewUserFlag = (flag, history) => async dispatch => {
+  const user = await axios.post("/api/new_user", { flag });
+
+  dispatch({ type: FETCH_USER, payload: user.data });
+  history.push("/affinities");
+};
+
+export const ejectUser = (history) => async dispatch => {
+  await axios.delete("/api/current_user");
+
+  history.push("/");
+};
+
+//
+// selection Actions
+
+export const setPrimary = id => async dispatch => {
+  const profiles = await axios.post("/api/profiles/set", { id });
+
+  dispatch({ type: SET_SELECTED, payload: id });
+  dispatch({ type: FETCH_USER, payload: profiles.data });
+};
+
+export const setSelected = id => async dispatch => {
+  dispatch({ type: SET_SELECTED, payload: id });
+};
+
+//
+// profile actions
+
 export const submitProfile = (values, history) => async dispatch => {
   const response = await axios.post("/api/profiles", values),
-    { user, profiles } = response.data;
+    { user, profiles, id } = response.data;
 
-  // update the list of profiles
+  dispatch({ type: SET_SELECTED, payload: id });
   dispatch({ type: FETCH_PROFILES, payload: profiles });
-  // update the count of slots
   dispatch({ type: FETCH_USER, payload: user });
   history.push("/affinities");
 };
@@ -42,14 +74,4 @@ export const fetchProfiles = () => async dispatch => {
   const profiles = await axios.get("/api/profiles");
 
   dispatch({ type: FETCH_PROFILES, payload: profiles.data });
-};
-
-export const setSelected = id => async dispatch => {
-  dispatch({ type: SET_SELECTED, payload: id });
-};
-
-export const setPrimary = id => async dispatch => {
-  const profiles = await axios.post("/api/profiles/set", { id });
-
-  dispatch({ type: FETCH_USER, payload: profiles.data });
 };
