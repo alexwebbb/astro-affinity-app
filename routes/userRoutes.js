@@ -26,7 +26,7 @@ module.exports = app => {
     try {
       req.user.primary = id;
       const user = await req.user.save();
-      res.sendStatus(200);
+      res.send(user);
     } catch (err) {
       res.status(422).send(err);
     }

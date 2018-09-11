@@ -55,20 +55,30 @@ class GraphControl extends Component {
 
   render() {
     if (!this.props.birthdate) {
+      if (this.props.activeIndex === 0) {
+        return (
+          <div
+            className={
+              "card graph-placeholder group center white-text " +
+              COLORS.GRAPH_BACKGROUND
+            }
+          >
+            <h1>Lets get started!</h1>
+          </div>
+        );
+      }
       return <GraphSpinner />;
     }
 
     const isActive = zodiac => {
-        if (this.state.currentZodiac === zodiac) {
-          return COLORS.SELECTED_BUTTON;
-        }
-      };
+      if (this.state.currentZodiac === zodiac) {
+        return COLORS.SELECTED_BUTTON;
+      }
+    };
 
     return (
       <div className={"graph-control"}>
-        <div
-          className={["card", COLORS.GRAPH_BACKGROUND, "pushpin"].join(" ")}
-        >
+        <div className={["card", COLORS.GRAPH_BACKGROUND, "pushpin"].join(" ")}>
           <div className={"card-content center-align " + COLORS.TITLE1}>
             {renderGraph(this.state, this.props)}
             <p style={{ margin: "0px" }}>
@@ -86,12 +96,14 @@ class GraphControl extends Component {
 const mapStateToProps = ({ profiles, selected }) => {
   let date = null,
     name = "",
-    profile;
+    profile,
+    activeIndex = null;
 
   if (profiles) {
     profile = profiles.find(v => {
       return v._id === selected;
     });
+    activeIndex = profiles.length;
   }
 
   if (profile) {
@@ -101,7 +113,8 @@ const mapStateToProps = ({ profiles, selected }) => {
 
   return {
     name,
-    birthdate: date
+    birthdate: date,
+    activeIndex
   };
 };
 

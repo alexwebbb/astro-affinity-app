@@ -5,7 +5,8 @@ import M from "materialize-css";
 import Payments from "./Payments";
 import * as COLORS from "../config/colors";
 
-const ABOUT_PATH = "/about";
+const ABOUT_PATH = "/about",
+  SETTINGS_PATH = "/settings";
 
 class Header extends Component {
   componentDidUpdate() {
@@ -42,9 +43,12 @@ class Header extends Component {
                 <Link to={ABOUT_PATH}>About</Link>
               </li>
               <li key="4" className="hide-on-small-only">
+                <Link to={SETTINGS_PATH}>Settings</Link>
+              </li>
+              <li key="5" className="hide-on-small-only">
                 <a href="/api/logout">Logout</a>
               </li>
-              <li key="5">
+              <li key="6">
                 <a
                   className="dropdown-trigger hide-on-med-and-up"
                   href="#!"
@@ -58,8 +62,11 @@ class Header extends Component {
               <li key="1">
                 <Link to={ABOUT_PATH}>About</Link>
               </li>
-              <li key="2" className="divider" />
-              <li key="3">
+              <li key="2">
+                <Link to={SETTINGS_PATH}>Settings</Link>
+              </li>
+              <li key="3" className="divider" />
+              <li key="4">
                 <a href="/api/logout">Logout</a>
               </li>
             </ul>

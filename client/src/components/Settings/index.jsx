@@ -10,7 +10,7 @@ class Settings extends Component {
       <div className={"settings group " + COLORS.FORM_BACKGROUND}>
         <div className="group">
           <a
-            className="waves-effect waves-light btn settings__button right"
+            className={"waves-effect waves-light btn settings__button right " + COLORS.BACK_BUTTON}
             onClick={() => this.props.setNewUserFlag(true, this.props.history)}
           >
             <i className="material-icons left">fast_rewind</i>
@@ -24,7 +24,7 @@ class Settings extends Component {
         </div>
         <div className="group">
           <a
-            className="waves-effect waves-light btn settings__button right"
+            className={"waves-effect waves-light btn settings__button right " + COLORS.PRIMARY_RED}
             onClick={() => this.props.ejectUser(this.props.history)}
           >
             <i className="material-icons right">eject</i>

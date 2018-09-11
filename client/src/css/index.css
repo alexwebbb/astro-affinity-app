@@ -143,6 +143,13 @@ circle.one {
   color: var(--TEXT1);
 }
 
+.graph__active-sign {
+  font-size: 1.2em;
+  font-weight: 900;
+  color: var(--TITLE2);
+  text-shadow: 3px 3px var(--PRIMARY_RED);
+}
+
 .graph-control {
   width: auto;
 }
@@ -151,11 +158,8 @@ circle.one {
   margin-bottom: 10px;
 }
 
-.graph__active-sign {
-  font-size: 1.2em;
-  font-weight: 900;
-  color: var(--TITLE2);
-  text-shadow: 3px 3px var(--PRIMARY_RED);
+.graph-placeholder {
+  padding: 100px 0 120px 0;
 }
 
 .landing p {

@@ -36,10 +36,10 @@ export const ejectUser = history => async dispatch => {
 // selection Actions
 
 export const setPrimary = id => async dispatch => {
-  const profiles = await axios.post("/api/profiles/set", { id });
+  const user = await axios.post("/api/profiles/set", { id });
 
   dispatch({ type: SET_SELECTED, payload: id });
-  dispatch({ type: FETCH_USER, payload: profiles.data });
+  dispatch({ type: FETCH_USER, payload: user.data });
 };
 
 export const setSelected = id => async dispatch => {

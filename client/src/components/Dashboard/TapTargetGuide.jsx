@@ -27,16 +27,20 @@ const tapTargetText = [
 
 class TapTargetGuide extends Component {
   openTapTargets() {
-    const elems = document.querySelectorAll(".dashboard .tap-target"),
+    const { setNewUserFlag } = this.props,
+      elems = document.querySelectorAll(".dashboard .tap-target"),
       { auth, profiles } = this.props,
-      taptargetInstances = M.TapTarget.init(elems);
+      taptargetInstances = M.TapTarget.init(elems, {
+        onClose: function() {
+          if (profiles.length === tapTargetText.length - 1) {
+            setNewUserFlag(false);
+          }
+        }
+      });
 
     if (auth && profiles && auth.newUserFlag) {
       if (taptargetInstances.length > 0) {
         taptargetInstances[0].open();
-      }
-      if (profiles.length === tapTargetText.length - 1) {
-        this.props.setNewUserFlag(false);
       }
     }
   }
