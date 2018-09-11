@@ -11,7 +11,7 @@ class Settings extends Component {
         <div className="group">
           <a
             className="waves-effect waves-light btn settings__button right"
-            onClick={() => this.props.setNewUserFlag(false, this.props.history)}
+            onClick={() => this.props.setNewUserFlag(true, this.props.history)}
           >
             <i className="material-icons left">fast_rewind</i>
             Rewind

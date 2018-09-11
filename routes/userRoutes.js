@@ -8,8 +8,10 @@ module.exports = app => {
     const { flag } = req.body;
 
     try {
-      const { n } = await Profile.deleteMany({ _user: req.user.id });
-      req.user.credits += n;
+      if (flag) {
+        const { n } = await Profile.deleteMany({ _user: req.user.id });
+        req.user.credits += n;
+      }
       req.user.newUserFlag = flag;
       const user = await req.user.save();
       res.send(user);
@@ -24,7 +26,7 @@ module.exports = app => {
     try {
       req.user.primary = id;
       const user = await req.user.save();
-      res.send(user);
+      res.sendStatus(200);
     } catch (err) {
       res.status(422).send(err);
     }
@@ -34,7 +36,7 @@ module.exports = app => {
     try {
       await Profile.deleteMany({ _user: req.user.id });
       await User.deleteOne({ _id: req.user.id });
-      res.send(true);
+      res.send({ user: null, profiles: null });
     } catch (err) {
       res.status(422).send(err);
     }

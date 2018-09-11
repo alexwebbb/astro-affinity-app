@@ -16,16 +16,19 @@ export const handleToken = token => async dispatch => {
   dispatch({ type: FETCH_USER, payload: user.data });
 };
 
-export const setNewUserFlag = (flag, history) => async dispatch => {
+export const setNewUserFlag = (flag, history = null) => async dispatch => {
   const user = await axios.post("/api/new_user", { flag });
 
   dispatch({ type: FETCH_USER, payload: user.data });
-  history.push("/affinities");
+  if (history) {
+    history.push("/affinities");
+  }
 };
 
-export const ejectUser = (history) => async dispatch => {
+export const ejectUser = history => async dispatch => {
   await axios.delete("/api/current_user");
 
+  dispatch({ type: FETCH_USER, payload: null });
   history.push("/");
 };
 

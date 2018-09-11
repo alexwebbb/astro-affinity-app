@@ -24,10 +24,10 @@ class About extends Component {
     return (
       <div className="about">
         <div
-          class="parallax-container"
+          className="parallax-container"
           style={{ zIndex: "5", height: "200px" }}
         >
-          <div class="parallax">
+          <div className="parallax">
             <img
               src={top}
               alt="by Greg Rakozy on Unsplash - A view of stars"
@@ -35,8 +35,8 @@ class About extends Component {
             />
           </div>
         </div>
-        <div class="section white">
-          <div class="row container">
+        <div className="section white">
+          <div className="row container">
             <h1 className="about__heading">
               Welcome to the Astrological Affinity App.{" "}
             </h1>
@@ -58,7 +58,7 @@ class About extends Component {
               <img
                 src={app_view}
                 alt="view of the app in action"
-                class="right materialboxed z-depth-5"
+                className="right materialboxed z-depth-5"
                 width="270"
                 style={{ margin: "5px 0px 20px 30px" }}
               />
@@ -111,10 +111,10 @@ class About extends Component {
           </p>
         </div>
         <div
-          class="parallax-container"
+          className="parallax-container"
           style={{ zIndex: "5", height: "220px" }}
         >
-          <div class="parallax">
+          <div className="parallax">
             <img
               src={bottom}
               alt="by Greg Rakozy on Unsplash - A person looking at the stars"
