@@ -5,7 +5,7 @@ import IMAGE from "./imageData";
 
 const carouselImage = element => {
   return (
-    <div className="carousel-item" href={"#" + element.number + "!"} >
+    <div className="carousel-item" href={"#" + element.number + "!"} key={element.number} >
       <div style={{position: "fixed", top: "0px", right: "0px"}}>
         {element.badge}
       </div>

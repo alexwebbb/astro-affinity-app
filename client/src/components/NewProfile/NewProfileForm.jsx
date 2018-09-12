@@ -16,6 +16,7 @@ class ProfileForm extends Component {
     await this.props.autofill("name", celeb.name);
     await this.props.autofill("birthdate", celeb.birthdate);
     await this.props.autofill("description", celeb.description);
+    await this.props.autofill("image", celeb.image);
 
     elem.focus();
     elem.dispatchEvent(new Event('change'));
