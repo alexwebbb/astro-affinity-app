@@ -43,6 +43,7 @@ class App extends Component {
               component={Dashboard}
             />
             <PrivateRoute
+              exact
               auth={this.props.auth}
               path="/affinities/new"
               component={NewProfile}

@@ -214,11 +214,6 @@ circle.one {
   margin: 5px 10px;
 }
 
-.profile-list__image {
-  border-radius: 50%;
-  object-fit: contain;
-}
-
 .profile-list__title {
   margin-right: 10px;
 }

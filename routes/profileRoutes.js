@@ -11,11 +11,12 @@ module.exports = app => {
   });
 
   app.post("/api/profiles", requireLogin, requireCredits, async (req, res) => {
-    const { name, birthdate, description } = req.body,
+    const { name, birthdate, description, image } = req.body,
       profile = new Profile({
         name,
         birthdate,
         description,
+        image,
         _user: req.user.id
       });
 
