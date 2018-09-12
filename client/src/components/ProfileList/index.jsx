@@ -91,7 +91,7 @@ class ProfileList extends Component {
             </div>
             <div className="col s12 m6 l12 xl7">
               <SignInfo cSign={profile[CHINESE].sign} wSign={profile[WESTERN].sign} birthdate={birthdate} />
-              <img className="responsive-img circle center-align" src={profile.image} alt="bruno mars"/>
+              <img className="responsive-img circle center-align" src={profile.image} alt=""/>
               <PrimaryButtons
                 id={_id}
                 isPrimary={isPrimary}
