@@ -10,12 +10,14 @@ import Landing from "./Landing";
 import Dashboard from "./Dashboard";
 import NewProfile from "./NewProfile";
 
-const PrivateRoute = ({ auth, component: Component, ...rest }) => (
+const PrivateRoute = ({ auth, component: Component, ...rest }) => {
+  console.log(auth);
+  return (
   <Route
     {...rest}
     render={props => (auth ? <Component {...props} /> : <Redirect to="/" />)}
   />
-);
+)};
 
 class App extends Component {
   componentDidMount() {
@@ -42,8 +44,7 @@ class App extends Component {
               path="/affinities"
               component={Dashboard}
             />
-            <PrivateRoute
-              exact
+            <Route
               auth={this.props.auth}
               path="/affinities/new"
               component={NewProfile}

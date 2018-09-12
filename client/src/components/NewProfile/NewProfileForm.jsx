@@ -87,9 +87,13 @@ class ProfileForm extends Component {
 function validate(values) {
   const errors = {};
 
-  formFields.forEach(({ name }) => {
+  formFields.forEach(({ name, defaultValue }) => {
     if (!values[name]) {
-      errors[name] = "You must provide a value";
+      if(defaultValue){
+        values[name] = defaultValue();
+      } else {
+        errors[name] = "You must provide a value";
+      }
     }
   });
 
