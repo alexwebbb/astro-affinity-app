@@ -29,11 +29,11 @@ class Graph extends Component {
     const labelFactorAdjusted =
         1.2 + (0.13 - 0.13 * (Math.min(parentWidth - 330, 194) / 194)),
       margin = { top: 75, right: 75, bottom: 60, left: 75 },
-      width = parentWidth - margin.left - margin.right,
-      height = Math.min(
+      width = Math.abs(parentWidth - margin.left - margin.right),
+      height = Math.abs(Math.min(
         width,
         window.innerHeight - margin.top - margin.bottom - 20
-      ),
+      )),
       radarChartOptions = {
         w: width,
         h: height,

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { CHINESE, WESTERN, COMBINED } from "../../utils/zodiac";
 import * as COLORS from "../../config/colors";
-import CircularProgressBar from "../../utils/circularProgressBar";
+import ScoreCircle from "../../utils/circularProgressBar";
 
 const selector = (id, role) => {
     return role + "-score-for-" + id;
@@ -21,7 +21,7 @@ class ScoreDisplay extends Component {
 
     if (active) {
       [CHINESE, WESTERN, COMBINED].forEach(function(name) {
-        CircularProgressBar(
+        ScoreCircle(
           selector(_id, name),
           this.props.profile[name].score / 5
         );
