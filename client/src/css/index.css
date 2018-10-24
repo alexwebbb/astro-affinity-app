@@ -2,11 +2,11 @@
 
 :root {
   /* gradient background colors */
-  --BG_FALLBACK: rgb(74, 24, 124);
-  --BG_STOP_0: rgba(74, 24, 124, 1);
-  --BG_STOP_1: rgba(100, 31, 168, 1);
-  --BG_STOP_2: rgba(100, 30, 191, 1);
-  --BG_STOP_3: rgba(42, 81, 147, 1);
+  --BG_FALLBACK: rgba(175, 112, 181, 1);
+  --BG_STOP_0: rgba(175, 112, 181, 1);
+  --BG_STOP_1: rgba(144, 81, 186, 1);
+  --BG_STOP_2: rgba(109, 84, 206, 1);
+  --BG_STOP_3: rgba(95, 105, 191, 1);
   /* site palette */
   --PRIMARY_BLUE: #651fff;
   --PRIMARY_RED: #dd2c00; /* deep-orange accent-4 */
@@ -46,33 +46,32 @@ body {
 }
 
 .app-css {
-  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#4a187c+0,641fa8+31,641ebf+43,2a5193+100 */
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#af70b5+0,9051ba+31,6d54ce+62,5f69bf+100 */
   background: var(--BG_FALLBACK); /* Old browsers */
   background: -moz-linear-gradient(
     top,
     var(--BG_STOP_0) 0%,
     var(--BG_STOP_1) 31%,
-    var(--BG_STOP_2) 43%,
+    var(--BG_STOP_2) 62%,
     var(--BG_STOP_3) 100%
   ); /* FF3.6-15 */
   background: -webkit-linear-gradient(
     top,
     var(--BG_STOP_0) 0%,
     var(--BG_STOP_1) 31%,
-    var(--BG_STOP_2) 43%,
+    var(--BG_STOP_2) 62%,
     var(--BG_STOP_3) 100%
   ); /* Chrome10-25,Safari5.1-6 */
   background: linear-gradient(
     to bottom,
     var(--BG_STOP_0) 0%,
     var(--BG_STOP_1) 31%,
-    var(--BG_STOP_2) 43%,
+    var(--BG_STOP_2) 62%,
     var(--BG_STOP_3) 100%
   ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4a187c', endColorstr='#2a5193',GradientType=0 ); /* IE6-9 */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#af70b5', endColorstr='#5f69bf',GradientType=0 ); /* IE6-9 */
 
   height: 100%;
-
   font-family: "Lato", sans-serif;
   font-weight: 400;
 }
