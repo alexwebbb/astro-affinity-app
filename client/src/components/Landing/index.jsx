@@ -37,10 +37,9 @@ class Landing extends Component {
             stars want you to end up with. Or just see which celebrity you would
             do well with!
           </p>
-          {/* <p className="landing__text">
-            To get started, login with google. if you don't feel comfortable
-            using your own credentials, here is a sample set
-          </p> */}
+          <p className="landing__text">
+            To get started, login with google. Unfortunately, it is not currently possible to use a google account as a generic login. Feel free to use a throwaway account!
+          </p>
           {/* <Credentials /> */}
         </div>
       </div>
