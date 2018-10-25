@@ -38,7 +38,7 @@ class Landing extends Component {
             do well with!
           </p>
           <p className="landing__text">
-            To get started, login with google. Unfortunately, it is not currently possible to use a google account as a generic login. Feel free to use a throwaway account!
+            To get started, login with google.
           </p>
           {/* <Credentials /> */}
         </div>
