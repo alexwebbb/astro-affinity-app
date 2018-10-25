@@ -41,7 +41,7 @@ class Landing extends Component {
             To get started, login with google. if you don't feel comfortable
             using your own credentials, here is a sample set
           </p> */}
-          <Credentials />
+          {/* <Credentials /> */}
         </div>
       </div>
     );
