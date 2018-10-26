@@ -25,7 +25,7 @@ const ProfileFormReview = ({
         return (
           <button
             onClick={() => submitProfile(formValues, history)}
-            className="green btn-flat right white-text new-profile__button"
+            className={"btn-flat right white-text new-profile__button " + COLORS.SAVE_BUTTON}
           >
             Save Profile
             <i className="material-icons right">save</i>

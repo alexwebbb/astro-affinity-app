@@ -37,10 +37,7 @@ class Landing extends Component {
             stars want you to end up with. Or just see which celebrity you would
             do well with!
           </p>
-          <p className="landing__text">
-            To get started, login with google.
-          </p>
-          {/* <Credentials /> */}
+          <Credentials />
         </div>
       </div>
     );

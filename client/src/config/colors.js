@@ -8,6 +8,7 @@ export const MENU_BACKGROUND = "grey darken-1"; // #757575 grey darken-1
 export const DEFAULT_BUTTON = "cyan darken-1"; //
 export const SELECTED_BUTTON = "green accent-3"; //#00e676 
 export const SELECTED_BACKGROUND = "green accent-1";
+export const SAVE_BUTTON = "green";
 export const NEXT_BUTTON = "teal"; // #dd2c00 
 export const BACK_BUTTON = "yellow darken-3";
 export const CLEAR_BUTTON = "pink accent-2"; //#ff4081

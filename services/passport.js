@@ -1,5 +1,6 @@
 const passport = require("passport"),
   GoogleStrategy = require("passport-google-oauth20").Strategy,
+  CustomStrategy = require("passport-custom").Strategy
   mongoose = require("mongoose"),
   keys = require("../config/keys"),
   User = mongoose.model("users");
@@ -13,6 +14,21 @@ passport.deserializeUser((id, done) => {
     done(null, user);
   });
 });
+
+passport.use(
+  new CustomStrategy(async (req, done) => {
+    const existingUser = await User.findOne({ googleId: 0 });
+
+    if (existingUser) {
+      return done(null, existingUser);
+    }
+
+    const user = await new User({
+      googleId: 0
+    }).save();
+    done(null, user);
+  })
+);
 
 passport.use(
   new GoogleStrategy(

@@ -4,7 +4,7 @@
   "description": "server application for astrological affinity website",
   "main": "index.js",
   "engines": {
-    "node": "9.11.1",
+    "node": ">=9.11.1",
     "npm": "6.0.0"
   },
   "scripts": {
@@ -24,6 +24,7 @@
     "mongoose": "^5.2.1",
     "nodemon": "^1.11.0",
     "passport": "^0.3.2",
+    "passport-custom": "^1.0.5",
     "passport-google-oauth20": "^1.0.0",
     "path-parser": "^2.0.2",
     "ssl-express-www": "^3.0.2",

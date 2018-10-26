@@ -2,6 +2,14 @@ const passport = require("passport");
 
 module.exports = app => {
   app.get(
+    "/auth/demo",
+    passport.authenticate("custom"),
+    (req, res) => {
+      res.redirect("/affinities");
+    }
+  );
+
+  app.get(
     "/auth/google",
     passport.authenticate("google", {
       scope: [
@@ -20,8 +28,8 @@ module.exports = app => {
     }
   );
 
-  app.get("/api/logout", (req, res) => {
-    req.logout();
+  app.get("/api/logout", async (req, res) => {
+    await req.logout();
     res.redirect("/");
   });
 
