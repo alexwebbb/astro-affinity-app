@@ -188,6 +188,7 @@ export default (parent_selector, data, options) => {
     .text(d => d)
     .call(wrap, cfg.wrapWidth);
 
+
   /////////////////////////////////////////////////////////
   ///////////// Draw the radar chart blobs ////////////////
   /////////////////////////////////////////////////////////
@@ -266,6 +267,7 @@ export default (parent_selector, data, options) => {
     .style("fill", d => cfg.color(data.map(v => v.name).indexOf(d.id)))
     .style("fill-opacity", 0.8);
 
+    
   /////////////////////////////////////////////////////////
   //////// Append invisible circles for tooltip ///////////
   /////////////////////////////////////////////////////////
